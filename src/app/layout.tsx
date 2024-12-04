@@ -1,7 +1,3 @@
-import Footer from '@/components/footer/';
-import Header from '@/components/header/';
-import Scaler from '@/components/scaler/';
-import ScrollTopWrapper from '@/components/scroll-top-wrapper/';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
@@ -36,17 +32,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 	return (
 		<html lang={locale}>
-			<body className={`bg-bg-primary ${ptSansFont.variable} antialiased text-fz-primary`}>
-				<div className="min-h-[100vh] flex flex-col">
-					<NextIntlClientProvider messages={messages}>
-						<Scaler className="lt-sm:hidden" />
-						<ScrollTopWrapper>
-							<Header />
-							<main className="flex-grow overflow-auto">{children}</main>
-							<Footer />
-						</ScrollTopWrapper>
-					</NextIntlClientProvider>
-				</div>
+			<body className={`${ptSansFont.variable} antialiased`}>
+				<NextIntlClientProvider messages={messages}>
+					<main className="flex-grow overflow-auto">{children}</main>
+				</NextIntlClientProvider>
 			</body>
 			<GoogleAnalytics gaId="G-1EEGSFQR9V" />
 		</html>
