@@ -1,7 +1,7 @@
+import DeferRender from '@/components/defer-render';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
-// import { headers } from 'next/headers';
 import './globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
@@ -21,20 +21,21 @@ export const viewport: Viewport = {
 	width: 'device-width',
 	initialScale: 1,
 	maximumScale: 1,
+	minimumScale: 1,
 	userScalable: false,
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const locale = await getLocale();
 	const messages = await getMessages();
-	// const headersList = headers(); // 保留一下，服务测获取头部信息
-	// const userAgent = headersList.get('user-agent');
 
 	return (
 		<html lang={locale}>
 			<body className={`${ptSansFont.variable} antialiased`}>
 				<NextIntlClientProvider messages={messages}>
-					<main className="flex-grow overflow-auto">{children}</main>
+					<DeferRender>
+						<main className="flex-grow overflow-auto">{children}</main>
+					</DeferRender>
 				</NextIntlClientProvider>
 			</body>
 			<GoogleAnalytics gaId="G-1EEGSFQR9V" />

@@ -9,6 +9,9 @@ const output = process.env.docker ? { output: 'standalone' } : {};
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: false,
+	experimental: {
+		middleware: true,
+	},
 	images: {
 		unoptimized: true,
 		remotePatterns: [
