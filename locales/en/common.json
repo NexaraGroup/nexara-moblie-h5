@@ -1,0 +1,25 @@
+{
+	"components": {
+		"footer": {
+			"t1": "Please contact <Link>cs@nexaracapital.com</Link> for more information",
+			"t2": "Room 1001, Chinachem Century Tower, 175-180 Gloucester Road, Wan Chai, Hong Kong",
+			"t3": "All rights reserved",
+			"t4": "Disclaimer",
+			"t5": "Policy"
+		},
+		"header": {
+			"Contact Us": "Contact Us",
+			"Custodian": "Custodian",
+			"Home": "Home",
+			"Investment": "Product",
+			"OTC": "OTC",
+			"Trust": "Trust",
+			"t1": "Sign up",
+			"t2": "Log in"
+		},
+		"scaler": {
+			"t1": "Current zoom level may affect display quality",
+			"t2": "Cannot zoom anymore"
+		}
+	}
+}

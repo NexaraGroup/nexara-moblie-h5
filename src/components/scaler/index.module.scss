@@ -1,0 +1,17 @@
+.iconSmall,
+.iconBig {
+	background: url(../../assets/images/components/scaler/small.png) no-repeat center;
+	background-size: 36px 36px;
+	width: 50px;
+	height: 56px;
+	border-radius: 0 0 9999px 9999px;
+	cursor: pointer;
+	&:hover {
+		background-color: #4b4b4b;
+	}
+}
+
+.iconBig {
+	border-radius: 9999px 9999px 0 0;
+	background-image: url(../../assets/images/components/scaler/big.png);
+}

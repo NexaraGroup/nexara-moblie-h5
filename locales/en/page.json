@@ -1,0 +1,16 @@
+{
+	"contactUsPage": {
+		"b1": "Sign Up",
+		"d1": "<Wrapper>Email us at <Email>cs@nexaracapital.com</Email>. Our relationship manager will contact you as soon as possible.</Wrapper>",
+		"d2": "Relationship manager will contact client via email to collect necessary information for account opening. Our compliance team will review the information and may request for additional data after client’s initial submission.",
+		"d3": "After client complete all the KYC verification, Nexara will send over your account details and Nexara wallet and bank account information via a Welcome Email.",
+		"d4": "Login and start using your account.",
+		"o1": "Contact Us",
+		"o2": "Join us to begin your wealth management journey",
+		"s1": "Step",
+		"t1": "Leave your contact",
+		"t2": "Open an account online",
+		"t3": "Welcome!",
+		"t4": "Online Account activated"
+	}
+}

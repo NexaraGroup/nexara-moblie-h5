@@ -1,0 +1,29 @@
+{
+	"typescript.suggest.paths": false,
+	"javascript.suggest.paths": false,
+	"path-intellisense.mappings": {
+		"@": "${workspaceRoot}/src"
+	},
+	"i18n-ally.localesPaths": ["locales"],
+	"i18n-ally.sourceLanguage": "zh-Hant",
+	// "i18n-ally.sourceLanguage": "zh-CN",
+	// "i18n-ally.sourceLanguage": "en-US",
+	// "i18n-ally.displayLanguage": "zh_CN",
+	"i18n-ally.displayLanguage": "en-US",
+	// "i18n-ally.enabledFrameworks": ["vue"],
+	"i18n-ally.namespace": true,
+	"i18n-ally.pathMatcher": "{locale}.json",
+	"i18n-ally.enabledParsers": ["json", "js"],
+	"i18n-ally.editor.preferEditor": true,
+	// https://github.com/lokalise/i18n-ally/wiki/Machine-Translation
+	"i18n-ally.translate.engines": ["google", "google-cn", "deepl"],
+	"i18n-ally.translate.deepl.useFreeApiEntry": true,
+	"i18n-ally.translate.deepl.apiKey": "3d63695a-60cb-b301-5347-eec8729a93d5:fx",
+	// https://github.com/lokalise/i18n-ally/wiki/Configurations
+	// 自定义注释颜色
+	"i18n-ally.theme.annotation": "rgba(153, 153, 153, .8)",
+	"i18n-ally.theme.annotationBorder": "rgba(153, 153, 153, .8)",
+	"i18n-ally.theme.annotationMissing": "#d4d4d4",
+	"i18n-ally.theme.annotationMissingBorder": "#d4d4d4",
+	"i18n-ally.keystyle": "nested"
+}
