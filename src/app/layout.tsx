@@ -1,8 +1,9 @@
-import DeferRender from '@/components/defer-render';
+import RenderWrapper from '@/components/defer-render';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import type { Locale } from '@/i18n/config';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 
@@ -26,16 +27,16 @@ export const viewport: Viewport = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-	const locale = await getLocale();
+	const locale: Locale = (await getLocale()) as Locale;
 	const messages = await getMessages();
 
 	return (
 		<html lang={locale}>
 			<body className={`${ptSansFont.variable} antialiased`}>
 				<NextIntlClientProvider messages={messages}>
-					<DeferRender>
+					<RenderWrapper locale={locale}>
 						<main className="flex-grow overflow-auto">{children}</main>
-					</DeferRender>
+					</RenderWrapper>
 				</NextIntlClientProvider>
 			</body>
 			<GoogleAnalytics gaId="G-1EEGSFQR9V" />

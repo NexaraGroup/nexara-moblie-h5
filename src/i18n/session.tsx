@@ -14,10 +14,10 @@ import { I18N_COOKIE_NAME } from '@/config/base';
 import { defaultLocale, Locale } from '@/i18n/config';
 import { cookies } from 'next/headers';
 
-export async function getLocaleCookie() {
-	return cookies().get(I18N_COOKIE_NAME)?.value || defaultLocale;
-}
+export const getLocaleCookie: () => Promise<Locale> = async () => {
+	return (cookies().get(I18N_COOKIE_NAME)?.value as Locale) ?? defaultLocale;
+};
 
-export async function setLocaleCookie(locale: Locale) {
+export const setLocaleCookie: (locale: Locale) => Promise<void> = async (locale) => {
 	cookies().set(I18N_COOKIE_NAME, locale);
-}
+};
