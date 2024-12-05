@@ -1,6 +1,5 @@
 'use client';
-
 const PageHome = () => {
-	return 'home';
+	return <>123</>;
 };
 export default PageHome;

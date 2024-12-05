@@ -1,4 +1,4 @@
-import RenderWrapper from '@/components/defer-render';
+import RenderWrapper from '@/components/render-wrapper';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
