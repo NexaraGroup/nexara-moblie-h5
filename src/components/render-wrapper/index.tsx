@@ -8,6 +8,7 @@ import { ConfigProvider } from 'antd-mobile';
 import enUS from 'antd-mobile/es/locales/en-US';
 import zhCN from 'antd-mobile/es/locales/zh-CN';
 import zhHK from 'antd-mobile/es/locales/zh-HK';
+import { ThemeProvider } from 'next-themes';
 
 const px2rem = px2remTransformer({
 	rootValue: PX_TO_REM_ROOT_VALUE_WITH_DESIGN_WIDTH,
@@ -32,9 +33,11 @@ export default function RenderWrapper(props: React.PropsWithChildren<{ locale: L
 		<>
 			{loaded ? (
 				<StyleProvider transformers={[px2rem]}>
-					<ConfigProvider locale={localMap.get(props.locale)}>
-						{props.children}
-					</ConfigProvider>
+					<ThemeProvider defaultTheme="light">
+						<ConfigProvider locale={localMap.get(props.locale)}>
+							{props.children}
+						</ConfigProvider>
+					</ThemeProvider>
 				</StyleProvider>
 			) : null}
 		</>
