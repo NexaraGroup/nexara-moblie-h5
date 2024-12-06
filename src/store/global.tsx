@@ -1,34 +1,34 @@
-import { I18N_COOKIE_NAME } from '@/config/base';
+import { LOCAL_STORE_NAME } from '@/config/base';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
 interface S {
-	mobileMenuVisible: boolean;
-	setMobileMenuVisible: (v: boolean) => void;
-	pageZoom: number;
-	setPageZoom: (v: number) => void;
+	userInfo: {
+		email: string;
+		userName: string;
+	};
+	setUserInfo: (v: S['userInfo']) => void;
 }
 
 export default create<S>()(
 	devtools(
 		persist(
 			(set) => ({
-				mobileMenuVisible: false,
-				setMobileMenuVisible: (v: boolean) =>
+				userInfo: {
+					email: '',
+					userName: '',
+				},
+				setUserInfo: (v: S['userInfo']) => {
 					set(() => {
-						return { mobileMenuVisible: v };
-					}),
-				pageZoom: 1,
-				setPageZoom: (v: number) => {
-					set(() => {
-						return { pageZoom: v };
+						return { userInfo: v };
 					});
 				},
 			}),
+			// TODO，这个获取在 next 有问题，需要看下，或者直接通过 store key 初始化
 			{
-				name: I18N_COOKIE_NAME,
+				name: LOCAL_STORE_NAME,
 				partialize: (state) => ({
-					pageZoom: state.pageZoom,
+					userInfo: state.userInfo,
 				}),
 			},
 		),

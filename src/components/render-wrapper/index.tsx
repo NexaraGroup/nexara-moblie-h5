@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { PX_TO_REM_ROOT_VALUE_WITH_DESIGN_WIDTH } from '@/config/base';
 import type { Locale } from '@/i18n/config';
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs';
 import { ConfigProvider } from 'antd-mobile';
@@ -11,7 +10,7 @@ import zhHK from 'antd-mobile/es/locales/zh-HK';
 import { ThemeProvider } from 'next-themes';
 
 const px2rem = px2remTransformer({
-	rootValue: PX_TO_REM_ROOT_VALUE_WITH_DESIGN_WIDTH,
+	rootValue: Number(process.env.PX_TO_REM_ROOT_VALUE_WITH_DESIGN_WIDTH),
 });
 
 export default function RenderWrapper(props: React.PropsWithChildren<{ locale: Locale }>) {

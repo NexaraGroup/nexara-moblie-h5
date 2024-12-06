@@ -1,8 +1,12 @@
 'use client';
 
-import { Button } from 'antd-mobile';
+import Button from '@/components/button';
 
 const PageHome = () => {
-	return <Button>123</Button>;
+	return (
+		<Button type="text" onClick={() => {}} block>
+			Forgot Password?
+		</Button>
+	);
 };
 export default PageHome;

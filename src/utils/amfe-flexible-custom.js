@@ -1,6 +1,6 @@
 /**
  * @file
- * 重置 body 那块处理成 14px，并且不需要处理 dpr
+ * 重置 body 那块处理成 16px，并且不需要处理 dpr
  */
 (function flexible(window, document) {
 	var docEl = document.documentElement;
@@ -10,7 +10,7 @@
 	function setBodyFontSize() {
 		if (document.body) {
 			// document.body.style.fontSize = 12 * dpr + 'px';
-			document.body.style.fontSize = 14 + 'px';
+			document.body.style.fontSize = 16 + 'px';
 		} else {
 			document.addEventListener('DOMContentLoaded', setBodyFontSize);
 		}

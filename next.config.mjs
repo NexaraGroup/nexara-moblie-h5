@@ -1,8 +1,18 @@
 /** @type {import('next').NextConfig} */
 
+import fs from 'fs';
+import dotenv from 'dotenv';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin();
+const baseEnv = fs.readFileSync(`.env`);
+const baseEnvConfig = dotenv.parse(baseEnv);
+const env = fs.readFileSync(`.env.${process.env.mode}`);
+const envConfig = dotenv.parse(env);
+dotenv.config({
+	path: ['.env', `./.env.${process.env.mode}`],
+	override: true,
+});
 
 /** @type {import('next').NextConfig} */
 const output = process.env.docker ? { output: 'standalone' } : {};
@@ -32,11 +42,12 @@ const nextConfig = {
 			// },
 		],
 	},
-	env: {
-		DEPLOY_ENV: process.env.DEPLOY_ENV,
-	},
 	eslint: {
 		// ignoreDuringBuilds: true,
+	},
+	env: {
+		...baseEnvConfig,
+		...envConfig,
 	},
 	experimental: {
 		serverActions: {
