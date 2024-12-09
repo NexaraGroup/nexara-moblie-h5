@@ -1,26 +1,20 @@
 'use client';
 
 import Button from '@/components/button';
-import Checkbox from '@/components/checkbox';
 import Form from '@/components/form';
 import Input from '@/components/input';
+import { Checkbox } from 'antd-mobile';
 import { useTranslations } from 'next-intl';
-import type { FormType } from './index.d';
-import styles from './index.module.scss';
+import type { FormType } from '.';
 
 const PageLogin = () => {
-	const t = useTranslations('page-login');
+	const t = useTranslations('loginPage');
 	const [form] = Form.useForm<FormType>();
 
 	const handleSubmit = async () => {
 		await form.validateFields();
 		const values = form.getFieldsValue();
 		console.log(values);
-	};
-
-	const handleOpenAgreement = (e: React.MouseEvent<HTMLAnchorElement>) => {
-		window.open('https://www.baidu.com', '_blank');
-		e.preventDefault();
 	};
 
 	return (
@@ -73,28 +67,32 @@ const PageLogin = () => {
 					</Form.Item>
 
 					<Form.Item
+						validateTrigger="onChange"
 						name="agreement"
-						className={styles.agreementWrapper}
 						rules={[
 							{
-								message: t('f3_e1'),
-								validator: (_, value) =>
-									value ? Promise.resolve() : Promise.reject(t('f3_e1')),
+								required: true,
+								message: t('f2_e1'),
 							},
 						]}
 					>
-						<Checkbox>
-							{t.rich('f3', {
-								Link: (chunks) => (
-									<a
-										className="cursor-pointer underline
-									text-fz-c1 dark:text-fz-c1"
-										onClick={handleOpenAgreement}
-									>
-										{chunks}
-									</a>
-								),
-							})}
+						<Checkbox
+							value="banana"
+							icon={(checked) =>
+								checked ? (
+									<i
+										className="rounded-[4px] border w-[20px] h-[20px] block
+									border-bd-c2 dark:border-bd-c2"
+									/>
+								) : (
+									<div
+										className="rounded-[4px] border w-[20px] h-[20px] block flex-center
+									border-bd-c2 dark:border-bd-c2"
+									></div>
+								)
+							}
+						>
+							自定义图标
 						</Checkbox>
 					</Form.Item>
 
