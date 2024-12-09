@@ -1,29 +1,25 @@
-@use '../../app/utils.scss' as *;
+.wrapper {
+	--adm-button-border-radius: 10px;
 
-@include light {
-	.wrapper {
-		--adm-button-border-radius: 10px;
-
-		:global(.adm-button) {
-			@apply text-sm p-[1em] font-bold;
-		}
-		:global(.adm-button-large) {
-			@apply text-base;
-		}
-		:global(.adm-button-small) {
-			@apply text-xs;
-		}
+	:global(.adm-button) {
+		@apply text-sm p-[1em] font-bold;
 	}
-
-	.dashedWrapper {
-		:global(.adm-button-fill-outline) {
-			@apply border-dashed text-fz-c1;
-		}
+	:global(.adm-button-large) {
+		@apply text-base;
 	}
+	:global(.adm-button-small) {
+		@apply text-xs;
+	}
+}
 
-	.textWrapper {
-		:global(.adm-button-fill-none) {
-			@apply text-fz-c1;
-		}
+.dashedWrapper {
+	:global(.adm-button-fill-outline) {
+		@apply border-dashed text-fz-c1 dark:text-dark-fz-c1;
+	}
+}
+
+.textWrapper {
+	:global(.adm-button-fill-none) {
+		@apply text-fz-c1 dark:text-dark-fz-c1;
 	}
 }

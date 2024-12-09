@@ -1,9 +1,14 @@
+/**
+ * @file
+ * 这里主要处理特别定制的样式，以及 antd 组件库的 theme 样式
+ * 采用 mixin 来处理
+ */
 @use './utils.scss' as *;
 
 @include light {
 	// antd 全局
 	--adm-font-family: theme('fontFamily.appFont'); // 定制字体，同项目一致
-	--adm-color-primary: theme('colors.c1');
+	--adm-color-primary: theme('colors.fz-c1');
 	--adm-color-text: theme('colors.fz-c1');
 	--adm-font-size-main: var(--adm-font-size-8); // 16px
 
@@ -20,6 +25,16 @@
 	--adm-color-background: #ffffff;
 
 	// antd 组件
-	--adm-button-text-color: theme('colors.fz-c-1');
+	--adm-button-text-color: theme('colors.fz-c0');
 	--adm-button-background-color: theme('colors.bg-c1');
+}
+
+@include dark {
+	--adm-font-family: theme('fontFamily.appFont'); // 定制字体，同项目一致
+	--adm-color-primary: theme('colors.dark-fz-c1');
+	--adm-color-text: theme('colors.dark-fz-c1');
+	--adm-font-size-main: var(--adm-font-size-8); // 16px
+
+	--adm-button-text-color: theme('colors.dark-fz-c0');
+	--adm-button-background-color: theme('colors.dark-bg-c1');
 }

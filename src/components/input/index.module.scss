@@ -1,0 +1,10 @@
+.wrapper {
+	@apply flex gap-x-[18px] justify-between border rounded-max
+	 px-[24px] py-[18px]
+		bg-bg-c0 dark:bg-dark-bg-c0
+		border-bd-c2	dark:border-dark-bd-c2;
+
+	:global(.adm-input) {
+		@apply text-fz-c1 dark:text-dark-fz-c1 text-sm;
+	}
+}

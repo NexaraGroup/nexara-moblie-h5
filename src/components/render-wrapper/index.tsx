@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { Locale } from '@/i18n/config';
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs';
-import { ConfigProvider } from 'antd-mobile';
+import { ConfigProvider, SafeArea } from 'antd-mobile';
 import enUS from 'antd-mobile/es/locales/en-US';
 import zhCN from 'antd-mobile/es/locales/zh-CN';
 import zhHK from 'antd-mobile/es/locales/zh-HK';
@@ -34,7 +34,9 @@ export default function RenderWrapper(props: React.PropsWithChildren<{ locale: L
 				<StyleProvider transformers={[px2rem]}>
 					<ThemeProvider defaultTheme="light">
 						<ConfigProvider locale={localMap.get(props.locale)}>
+							<SafeArea position="top" />
 							{props.children}
+							<SafeArea position="bottom" />
 						</ConfigProvider>
 					</ThemeProvider>
 				</StyleProvider>

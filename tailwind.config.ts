@@ -4,24 +4,33 @@ import type { PluginAPI } from 'tailwindcss/types/config.d';
 
 /**
  * @description
- * 1 为 light 最深色，数值越大越浅
- * -1 为 dark 最深色，数值越小越浅
- *
- * 区分 bd、bg、fz、通用的 color
+ * 1. 0 为反色，1 为 最深色，数值越大越浅
+ * 2. 只区分 bd、bg、fz
  */
 const themeConfig = {
+	'fz-c0': '#ffffff',
 	'fz-c1': '#1A1C1E',
 	'fz-c2': '#808289',
-	'fz-c-1': '#ffffff',
 
+	'bg-c0': '#fff',
 	'bg-c1': '#121826',
-	'bg-c2': '#F2F2F2',
-	'bg-c-1': '#ffffff',
+	'bg-c2': '#DBDBDB',
+	'bg-c3': '#F2F2F2',
 
 	'bd-c1': '#0F0D23',
 	'bd-c2': '#F7F7F7',
 
-	'c1': '#121826',
+	// 暗色主题
+	'dark-fz-c0': '#ffffff',
+	'dark-fz-c1': '#1A1C1E',
+	'dark-fz-c2': '#808289',
+
+	'dark-bg-c0': '#fff',
+	'dark-bg-c1': '#121826',
+	'dark-bg-c2': '#F2F2F2',
+	'dark-bg-c3': '#F2F2F2',
+	'dark-bd-c1': '#0F0D23',
+	'dark-bd-c2': '#F7F7F7',
 } as const;
 
 const config: Config = {
@@ -36,6 +45,11 @@ const config: Config = {
 			ptSans: ['var(--font-pt-sans)'],
 			appFont: ['var(--font-pt-sans)', 'PingFang SC', 'Microsoft YaHei', 'sans-serif'],
 		},
+	},
+	extend: {
+		textColor: ['dark'],
+		backgroundColor: ['dark'],
+		borderColor: ['dark'],
 	},
 	plugins: [
 		remToPx({ baseFontSize: 16 }),

@@ -1,12 +1,8 @@
 'use client';
 
-import Button from '@/components/button';
+import Input from '@/components/input';
 
 const PageHome = () => {
-	return (
-		<Button type="text" onClick={() => {}} block>
-			Forgot Password?
-		</Button>
-	);
+	return <Input />;
 };
 export default PageHome;

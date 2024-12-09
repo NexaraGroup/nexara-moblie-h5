@@ -1,0 +1,15 @@
+@use '../../app/utils.scss' as *;
+
+@include light {
+	.wrapper {
+		:global(.adm-popup-body) {
+			@apply px-[24px] py-[16px] rounded-tl-[30px] rounded-tr-[30px] z-[5000] max-h-[80vh];
+			> i {
+				@apply rounded-[12px] bg-bg-c2 dark:bg-dark-bg-c2 w-[34px] h-[3px] block mx-auto;
+			}
+			> h2 {
+				@apply text-fz-c1 dark:text-dark-fz-c1 font-bold my-[24px];
+			}
+		}
+	}
+}

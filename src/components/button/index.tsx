@@ -38,7 +38,9 @@ export default function Button(props: React.PropsWithChildren<Props>) {
 	}, [props.type]);
 
 	return (
-		<div className={`${styles.wrapper} ${dashClass} ${textClass}`}>
+		<div
+			className={`${styles.wrapper} ${dashClass} ${textClass} ${props.wrapperClassName ?? ''}`}
+		>
 			<AntdButton
 				style={{
 					textDecoration: props.type === 'link' ? 'underline' : 'none',
