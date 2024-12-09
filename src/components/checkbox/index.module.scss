@@ -1,0 +1,5 @@
+.wrapper {
+	:global(.adm-checkbox-content) {
+		@apply text-xs text-fz-c1 dark:text-fz-c1;
+	}
+}

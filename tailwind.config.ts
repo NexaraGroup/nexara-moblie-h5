@@ -17,8 +17,9 @@ const themeConfig = {
 	'bg-c2': '#DBDBDB',
 	'bg-c3': '#F2F2F2',
 
+	'bd-c0': '#ffffff',
 	'bd-c1': '#0F0D23',
-	'bd-c2': '#F7F7F7',
+	'bd-c2': 'rgba(15, 13, 35, .2)',
 
 	// 暗色主题
 	'dark-fz-c0': '#ffffff',
@@ -29,8 +30,10 @@ const themeConfig = {
 	'dark-bg-c1': '#121826',
 	'dark-bg-c2': '#F2F2F2',
 	'dark-bg-c3': '#F2F2F2',
+
+	'dark-bd-c0': '#ffffff',
 	'dark-bd-c1': '#0F0D23',
-	'dark-bd-c2': '#F7F7F7',
+	'dark-bd-c2': 'rgba(15, 13, 35, .2)',
 } as const;
 
 const config: Config = {

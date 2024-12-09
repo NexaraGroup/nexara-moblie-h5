@@ -1,16 +1,20 @@
 .wrapper {
-	@apply flex gap-x-[18px] justify-between border rounded-max
-	 px-[24px] py-[18px]
-		bg-bg-c0 dark:bg-dark-bg-c0
-		border-bd-c2	dark:border-dark-bd-c2;
-
-	transition: border-color 0.3s ease;
-
-	&.focus {
-		@apply border-bd-c1 dark:border-dark-bd-c1;
-	}
-
-	:global(.adm-input) {
-		@apply text-fz-c1 dark:text-dark-fz-c1 text-sm;
+	:global(.adm-form) {
+		--border-bottom: none;
+		--border-inner: none;
+		--border-top: none;
+		:global(.adm-list-item) {
+			padding-left: 0;
+		}
+		:global(.adm-list-item-content) {
+			padding-right: 0;
+		}
+		:global(.adm-form-item-label) {
+			@apply text-xs
+			text-fz-c2 dark:text-fz-c2;
+		}
+		:global(.adm-form-item-feedback-error) {
+			@apply text-xs;
+		}
 	}
 }
