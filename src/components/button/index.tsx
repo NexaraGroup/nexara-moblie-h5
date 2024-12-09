@@ -11,7 +11,7 @@ export default function Button(props: React.PropsWithChildren<Props>) {
 	 * 实际上，这里不需要 useCallback，不过还是留着吧
 	 */
 	const onClick = useCallback(() => {
-		props.onClick();
+		props.onClick?.();
 	}, [props]);
 
 	const fill = useMemo(() => {

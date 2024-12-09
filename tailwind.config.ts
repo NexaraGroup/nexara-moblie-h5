@@ -42,8 +42,8 @@ const config: Config = {
 	theme: {
 		colors: themeConfig,
 		fontFamily: {
-			ptSans: ['var(--font-pt-sans)'],
-			appFont: ['var(--font-pt-sans)', 'PingFang SC', 'Microsoft YaHei', 'sans-serif'],
+			popPins: ['var(--font-pop-pins)'],
+			appFont: ['var(--font-pop-pins)', 'PingFang SC', 'Microsoft YaHei', 'sans-serif'],
 		},
 	},
 	extend: {

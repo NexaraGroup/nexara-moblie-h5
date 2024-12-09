@@ -5,7 +5,7 @@ import { ComponentsInputEyeSvg } from '@/components/images/ComponentsInputEye';
 import { ComponentsInputEyeCloseSvg } from '@/components/images/ComponentsInputEyeClose';
 import { Input as AntdInput } from 'antd-mobile';
 import { useImmer } from 'use-immer';
-import { Props } from './index.d';
+import { Props } from '.';
 import styles from './index.module.scss';
 
 const AddonAfterCp = (props: React.PropsWithChildren) => {
@@ -38,7 +38,7 @@ const PasswordAddonAfter = (props: { onChange: (value: boolean) => void }) => {
 	);
 };
 
-export default function Input(props: React.PropsWithChildren<Props>) {
+export default function Button(props: React.PropsWithChildren<Props>) {
 	const [type, setType] = useImmer(props.type);
 	const [focus, setFocus] = useImmer(false);
 	const addonAfter = useMemo(() => {
@@ -51,11 +51,6 @@ export default function Input(props: React.PropsWithChildren<Props>) {
 		return null;
 	}, [props.type, props.addonAfter]);
 
-	const handleBlur = () => {
-		setFocus(false);
-		props.onBlur?.();
-	};
-
 	return (
 		<div className={`${props.wrapperClassName} ${styles.wrapper} ${focus ? styles.focus : ''}`}>
 			<AntdInput
@@ -65,7 +60,7 @@ export default function Input(props: React.PropsWithChildren<Props>) {
 				onChange={props.onChange}
 				maxLength={props.maxLength}
 				onFocus={() => setFocus(true)}
-				onBlur={handleBlur}
+				onBlur={() => setFocus(false)}
 			/>
 			{addonAfter}
 		</div>

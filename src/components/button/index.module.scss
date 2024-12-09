@@ -21,5 +21,8 @@
 .textWrapper {
 	:global(.adm-button-fill-none) {
 		@apply text-fz-c1 dark:text-dark-fz-c1;
+		&:active::before {
+			opacity: 0;
+		}
 	}
 }

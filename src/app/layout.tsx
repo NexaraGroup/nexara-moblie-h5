@@ -8,10 +8,9 @@ import type { Locale } from '@/i18n/config';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 
-const ptSansFont = localFont({
-	src: '../assets/fonts/PT_Sans/PTSans-Regular.ttf',
-	variable: '--font-pt-sans',
-	// weight: '100 900', // 字重，一般不要设置，即使是普通的字，也会根据设置，系统去补全
+const popPins = localFont({
+	src: '../assets/fonts/Poppins/Poppins-Regular.ttf',
+	variable: '--font-pop-pins',
 });
 
 export const metadata: Metadata = {
@@ -33,7 +32,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 	return (
 		<html lang={locale}>
-			<body className={`${ptSansFont.variable} antialiased`}>
+			<body className={`${popPins.variable} antialiased`}>
 				<NextIntlClientProvider messages={messages}>
 					<RenderWrapper locale={locale}>
 						<main className="flex-grow overflow-auto">{children}</main>

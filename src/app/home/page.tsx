@@ -3,6 +3,6 @@
 import Input from '@/components/input';
 
 const PageHome = () => {
-	return <Input />;
+	return <Input type="password" />;
 };
 export default PageHome;

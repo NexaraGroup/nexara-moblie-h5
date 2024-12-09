@@ -1,0 +1,20 @@
+.wrapper {
+	:global(.adm-form) {
+		--border-bottom: none;
+		--border-inner: none;
+		--border-top: none;
+		:global(.adm-list-item) {
+			padding-left: 0;
+		}
+		:global(.adm-list-item-content) {
+			padding-right: 0;
+		}
+		:global(.adm-form-item-label) {
+			@apply text-xs
+			text-fz-c2 dark:text-fz-c2;
+		}
+		:global(.adm-form-item-feedback-error) {
+			@apply text-xs;
+		}
+	}
+}

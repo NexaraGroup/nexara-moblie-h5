@@ -35,7 +35,7 @@ export default function RenderWrapper(props: React.PropsWithChildren<{ locale: L
 					<ThemeProvider defaultTheme="light">
 						<ConfigProvider locale={localMap.get(props.locale)}>
 							<SafeArea position="top" />
-							{props.children}
+							<div className="p-[24px]">{props.children}</div>
 							<SafeArea position="bottom" />
 						</ConfigProvider>
 					</ThemeProvider>
