@@ -16,6 +16,7 @@
 	"dependencies": {
 		"@ant-design/cssinjs": "^1.22.1",
 		"@next/third-parties": "^15.0.3",
+		"animate.css": "^4.1.1",
 		"antd": "^5.22.0",
 		"antd-mobile": "^5.38.1",
 		"big.js": "^6.2.2",
