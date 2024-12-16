@@ -5,9 +5,10 @@ export default getRequestConfig(async () => {
 	const locale = await getLocaleCookie();
 	const commonMessages = (await import(`../../locales/${locale}/common.json`)).default;
 	const loginPageMessage = (await import(`../../locales/${locale}/page-login.json`)).default;
-	const loginEmailVerifyPageMessage = (
-		await import(`../../locales/${locale}/page-login-email-verify.json`)
-	).default;
+	const emailVerifyPageMessage = (await import(`../../locales/${locale}/page-email-verify.json`))
+		.default;
+	const gaVerifyPageMessage = (await import(`../../locales/${locale}/page-ga-verify.json`))
+		.default;
 
 	return {
 		locale,
@@ -16,8 +17,11 @@ export default getRequestConfig(async () => {
 			'page-login': {
 				...loginPageMessage,
 			},
-			'page-login-email-verify': {
-				...loginEmailVerifyPageMessage,
+			'page-email-verify': {
+				...emailVerifyPageMessage,
+			},
+			'page-ga-verify': {
+				...gaVerifyPageMessage,
 			},
 		},
 	};

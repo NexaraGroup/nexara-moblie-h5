@@ -2,19 +2,16 @@
 
 import { useEffect, useRef } from 'react';
 import Button from '@/components/button';
-import Form from '@/components/form';
 import VerifyCodeInput from '@/components/verify-code-input';
 import Big from 'big.js';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { useImmer } from 'use-immer';
-import type { FormType } from '.';
 
 const PageLoginEmailVerify = () => {
-	const t = useTranslations('page-login-email-verify');
+	const t = useTranslations('page-email-verify');
 	const searchParams = useSearchParams();
 	const email = searchParams.get('email') || '';
-	const [form] = Form.useForm<FormType>();
 	const [countdown, setCountdown] = useImmer<number>(() => {
 		const savedTime = localStorage.getItem('countdown');
 		const endTime = localStorage.getItem('countdownEndTime');
@@ -80,8 +77,6 @@ const PageLoginEmailVerify = () => {
 	};
 
 	const handleSendCode = async () => {
-		await form.validateFields();
-		const values = form.getFieldsValue();
 		// api
 		startCountdown();
 	};
