@@ -1,9 +1,11 @@
 .wrapper {
 	@apply flex gap-x-[18px] justify-between border rounded-max
-	 px-[24px] py-[18px]
+	 px-[24px] py-[12px]
 		bg-bg-c0 dark:bg-dark-bg-c0
 		border-bd-c2	dark:border-dark-bd-c2;
-
+	> input {
+		line-height: 1;
+	}
 	transition: border-color 0.3s ease;
 
 	&.focus {

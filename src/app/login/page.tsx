@@ -111,7 +111,7 @@ const PageLogin = () => {
 					</Form.Item>
 
 					<Form.Item noStyle>
-						<Button size="small" type="text" block>
+						<Button size="small" type="text" className="mx-auto block">
 							{t('f5')}
 						</Button>
 					</Form.Item>
@@ -120,7 +120,7 @@ const PageLogin = () => {
 
 			<div className="flex-center">
 				<p className="text-fz-c2 dark:text-fz-c2 text-xs">{t('t3')}</p>
-				<Button size="small" type="text" block fontBold>
+				<Button size="small" type="text" fontBold>
 					{t('t4')}
 				</Button>
 			</div>

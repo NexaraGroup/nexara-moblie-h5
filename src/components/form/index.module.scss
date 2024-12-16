@@ -10,7 +10,7 @@
 			padding-right: 0;
 		}
 		:global(.adm-form-item-label) {
-			@apply text-xs
+			@apply text-xs mb-[12px]
 			text-fz-c2 dark:text-fz-c2;
 		}
 		:global(.adm-form-item-feedback-error) {

@@ -1,6 +1,6 @@
 export interface Props {
 	disabled?: boolean;
-	wrapperClassName?: string;
+	className?: string;
 	value?: string;
 	maxLength?: number;
 	onChange?: (value: string) => void;

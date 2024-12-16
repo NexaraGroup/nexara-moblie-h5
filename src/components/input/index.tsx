@@ -23,7 +23,7 @@ const PasswordAddonAfter = (props: { onChange: (value: boolean) => void }) => {
 	return isShow ? (
 		<AddonAfterCp>
 			<ComponentsInputEyeCloseSvg
-				className="w-[24px] h-[24px] fill-fz-c1 dark:fill-fz-c1-dark"
+				className="w-[24px] h-[24px] fill-fz-c1 dark:fill-fz-c1"
 				onClick={() => handleVisibleChange(false)}
 			/>
 		</AddonAfterCp>
@@ -31,7 +31,7 @@ const PasswordAddonAfter = (props: { onChange: (value: boolean) => void }) => {
 		<AddonAfterCp>
 			<ComponentsInputEyeSvg
 				fill="none"
-				className="w-[24px] h-[24px] stroke-fz-c1 dark:stroke-fz-c1-dark"
+				className="w-[24px] h-[24px] stroke-fz-c1 dark:stroke-fz-c1"
 				onClick={() => handleVisibleChange(true)}
 			/>
 		</AddonAfterCp>
@@ -57,7 +57,7 @@ export default function Input(props: React.PropsWithChildren<Props>) {
 	};
 
 	return (
-		<div className={`${props.wrapperClassName} ${styles.wrapper} ${focus ? styles.focus : ''}`}>
+		<div className={`${styles.wrapper} ${props.className} ${focus ? styles.focus : ''}`}>
 			<AntdInput
 				type={type}
 				disabled={props.disabled}

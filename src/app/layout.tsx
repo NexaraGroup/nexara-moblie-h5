@@ -32,7 +32,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 	return (
 		<html lang={locale}>
-			<body className={`${popPins.variable} antialiased`}>
+			<body className={`${popPins.variable} antialiased`} id="app">
 				<NextIntlClientProvider messages={messages}>
 					<RenderWrapper locale={locale}>
 						<main className="flex-grow overflow-auto">{children}</main>

@@ -6,14 +6,19 @@ import { Props } from './index.d';
 import styles from './index.module.scss';
 
 export default function Popup(props: React.PropsWithChildren<Props>) {
+	const handleMaskClick = () => {
+		if (!props.maskClosable) return;
+		props.onClose();
+	};
+
 	return (
 		<AntdPopup
 			className={`${styles.wrapper}`}
 			visible={props.visible}
-			onMaskClick={props.onClose}
+			onMaskClick={handleMaskClick}
 		>
-			<i onClick={props.onClose} />
-			<h2>{props.title}</h2>
+			<i className={styles.toolbar} onClick={props.onClose} />
+			<h2 className={styles.title}>{props.title}</h2>
 			{props.children}
 			{props.okText && (
 				<Button
@@ -22,7 +27,7 @@ export default function Popup(props: React.PropsWithChildren<Props>) {
 					size="large"
 					block
 					fontBold
-					wrapperClassName="mt-[16px]"
+					className="mt-[16px]"
 				>
 					{props.okText}
 				</Button>

@@ -37,6 +37,9 @@ const themeConfig = {
 } as const;
 
 const config: Config = {
+	// 给所有class添加#app命名空间
+	important: '#app',
+
 	content: [
 		'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
 		'./src/components/**/*.{js,ts,jsx,tsx,mdx}',

@@ -1,15 +1,6 @@
 {
-	"f1": "Email Address",
-	"f1_e1": "Please enter your email address",
-	"f1_e2": "Please enter a valid email address",
-	"f2": "Password",
-	"f2_e1": "Please enter your password",
-	"f3": "I agree to the <Link>\"xxx\"</Link>",
-	"f3_e1": "Please agree to the user agreement",
-	"f4": "Log in",
-	"f5": "Forgot Password?",
+	"b1": "Resend Code",
 	"t1": "Log in",
-	"t2": "Welcome Back",
-	"t3": "Don't have an account?",
-	"t4": "Sign in"
+	"t2": "We've sent an email to <Email></Email> with the next steps",
+	"t3": "Haven’t received verification code?"
 }

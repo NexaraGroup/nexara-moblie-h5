@@ -1,28 +1,26 @@
 .wrapper {
 	--adm-button-border-radius: 10px;
-
-	:global(.adm-button) {
-		@apply text-sm p-[1em] font-bold;
-	}
-	:global(.adm-button-large) {
+	@apply text-sm p-[1em];
+	&:global(.adm-button-large) {
 		@apply text-base;
 	}
-	:global(.adm-button-small) {
+	&:global(.adm-button-small) {
 		@apply text-xs;
 	}
 }
 
 .dashedWrapper {
-	:global(.adm-button-fill-outline) {
-		@apply border-dashed text-fz-c1 dark:text-dark-fz-c1;
+	--adm-button-border-style: dashed;
+	&:global(.adm-button-fill-outline) {
+		@apply text-fz-c1 dark:text-dark-fz-c1;
 	}
 }
 
 .textWrapper {
-	:global(.adm-button-fill-none) {
+	&:global(.adm-button-fill-none) {
 		@apply text-fz-c1 dark:text-dark-fz-c1;
-		&:active::before {
-			opacity: 0;
-		}
+		// &:active::before {
+		// 	opacity: 0;
+		// }
 	}
 }

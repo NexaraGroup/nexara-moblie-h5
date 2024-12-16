@@ -7,7 +7,6 @@ export interface Props {
 	onClick?: () => void;
 	style?: React.CSSProperties;
 	className?: string;
-	wrapperClassName?: string;
 	block?: boolean;
 	fontBold?: boolean;
 }

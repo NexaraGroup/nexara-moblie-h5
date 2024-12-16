@@ -38,26 +38,22 @@ export default function Button(props: React.PropsWithChildren<Props>) {
 	}, [props.type]);
 
 	return (
-		<div
-			className={`${styles.wrapper} ${dashClass} ${textClass} ${props.wrapperClassName ?? ''}`}
+		<AntdButton
+			style={{
+				textDecoration: props.type === 'link' ? 'underline' : 'none',
+				fontWeight: props.fontBold ? 'bold' : 'normal',
+				...props.style,
+			}}
+			className={`${styles.wrapper} ${dashClass} ${textClass} ${props.className ?? ''}`}
+			block={props.block ?? false}
+			shape={props.shape ?? 'default'}
+			disabled={props.disabled}
+			loading={props.loading}
+			onClick={onClick}
+			size={props.size}
+			fill={fill}
 		>
-			<AntdButton
-				style={{
-					textDecoration: props.type === 'link' ? 'underline' : 'none',
-					fontWeight: props.fontBold ? 'bold' : 'normal',
-					...props.style,
-				}}
-				className={props.className}
-				block={props.block ?? false}
-				shape={props.shape ?? 'default'}
-				disabled={props.disabled}
-				loading={props.loading}
-				onClick={onClick}
-				size={props.size ?? 'middle'}
-				fill={fill}
-			>
-				{props.children}
-			</AntdButton>
-		</div>
+			{props.children}
+		</AntdButton>
 	);
 }

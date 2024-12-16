@@ -4,4 +4,5 @@ export interface Props {
 	title?: string;
 	onOk?: () => void;
 	onClose: () => void;
+	maskClosable?: boolean;
 }
