@@ -19,6 +19,7 @@
 		"animate.css": "^4.1.1",
 		"antd": "^5.22.0",
 		"antd-mobile": "^5.38.1",
+		"antd-mobile-icons": "^0.3.0",
 		"big.js": "^6.2.2",
 		"lodash": "^4.17.21",
 		"next": "14.2.15",

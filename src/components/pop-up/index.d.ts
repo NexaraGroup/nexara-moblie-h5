@@ -3,6 +3,6 @@ export interface Props {
 	okText?: string;
 	title?: string;
 	onOk?: () => void;
-	onClose: () => void;
+	onClose?: () => void;
 	maskClosable?: boolean;
 }

@@ -3,7 +3,7 @@
 import VerifyCodeInput from '@/components/verify-code-input';
 import { useTranslations } from 'next-intl';
 
-const PageLoginEmailVerify = () => {
+const PageGaVerify = () => {
 	const t = useTranslations('page-ga-verify');
 
 	return (
@@ -26,4 +26,4 @@ const PageLoginEmailVerify = () => {
 	);
 };
 
-export default PageLoginEmailVerify;
+export default PageGaVerify;

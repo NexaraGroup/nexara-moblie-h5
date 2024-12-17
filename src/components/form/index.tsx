@@ -19,4 +19,6 @@ Form.Item = FormAntd.Item;
 
 Form.useForm = FormAntd.useForm;
 
+Form.useWatch = FormAntd.useWatch;
+
 export default Form;

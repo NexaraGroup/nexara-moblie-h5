@@ -1,0 +1,8 @@
+.agreementWrapper {
+	:global(.adm-list-item-content-main) {
+		@apply py-[0px];
+	}
+	:global(.adm-checkbox) {
+		@apply items-start;
+	}
+}

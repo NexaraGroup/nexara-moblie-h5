@@ -9,7 +9,7 @@ import { Props } from './index.d';
 import styles from './index.module.scss';
 
 const AddonAfterCp = (props: React.PropsWithChildren) => {
-	return <div className="flex-none">{props.children}</div>;
+	return <div className="flex-none flex-center">{props.children}</div>;
 };
 
 const PasswordAddonAfter = (props: { onChange: (value: boolean) => void }) => {

@@ -43,7 +43,6 @@ const PageLogin = () => {
 
 				<Form className="mt-[30px]" form={form}>
 					<Form.Item
-						validateTrigger="onBlur"
 						label={t('f1')}
 						name="email"
 						rules={[
@@ -62,7 +61,6 @@ const PageLogin = () => {
 
 					<Form.Item
 						label={t('f2')}
-						validateTrigger="onBlur"
 						name="password"
 						rules={[
 							{

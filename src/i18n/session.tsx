@@ -11,7 +11,7 @@
  * 2. 明确开发意图，这个是服务端使用的模块代码
  */
 import { I18N_COOKIE_NAME } from '@/config/base';
-import { defaultLocale, Locale } from '@/i18n/config';
+import { defaultLocale, type Locale } from '@/i18n/config';
 import { cookies } from 'next/headers';
 
 export const getLocaleCookie: () => Promise<Locale> = async () => {

@@ -9,6 +9,7 @@ export default getRequestConfig(async () => {
 		.default;
 	const gaVerifyPageMessage = (await import(`../../locales/${locale}/page-ga-verify.json`))
 		.default;
+	const signUpPageMessage = (await import(`../../locales/${locale}/page-sign-up.json`)).default;
 
 	return {
 		locale,
@@ -22,6 +23,9 @@ export default getRequestConfig(async () => {
 			},
 			'page-ga-verify': {
 				...gaVerifyPageMessage,
+			},
+			'page-sign-up': {
+				...signUpPageMessage,
 			},
 		},
 	};
