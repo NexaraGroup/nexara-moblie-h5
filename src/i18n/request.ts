@@ -10,6 +10,9 @@ export default getRequestConfig(async () => {
 	const gaVerifyPageMessage = (await import(`../../locales/${locale}/page-ga-verify.json`))
 		.default;
 	const signUpPageMessage = (await import(`../../locales/${locale}/page-sign-up.json`)).default;
+	const forgotPasswordPageMessage = (
+		await import(`../../locales/${locale}/page-forgot-password.json`)
+	).default;
 
 	return {
 		locale,
@@ -26,6 +29,9 @@ export default getRequestConfig(async () => {
 			},
 			'page-sign-up': {
 				...signUpPageMessage,
+			},
+			'page-forgot-password': {
+				...forgotPasswordPageMessage,
 			},
 		},
 	};

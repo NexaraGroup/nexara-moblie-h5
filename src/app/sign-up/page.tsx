@@ -8,7 +8,7 @@ import Step2 from './components/step2';
 
 const PageSignUp = () => {
 	const t = useTranslations('page-sign-up');
-	const [step, setStep] = useImmer<1 | 2 | 3>(2);
+	const [step, setStep] = useImmer<1 | 2 | 3>(1);
 	const [userType, setUserType] = useImmer<UserType | undefined>(undefined);
 
 	const handleSelectedUserType = (step: 2, type: UserType) => {

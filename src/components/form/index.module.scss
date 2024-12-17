@@ -10,7 +10,7 @@
 			padding-right: 0;
 		}
 		:global(.adm-form-item-label) {
-			@apply text-xs mb-[9px] flex
+			@apply text-xs mb-[10px] flex
 			text-fz-c2 dark:text-fz-c2;
 			> :global(.adm-form-item-required-asterisk) {
 				position: initial;

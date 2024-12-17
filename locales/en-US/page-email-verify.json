@@ -1,6 +1,7 @@
 {
 	"b1": "Resend Code",
-	"t1": "Log in",
+	"dt1": "Log in",
+	"dt2": "Forgot Password",
 	"t2": "We've sent an email to <Email></Email> with the next steps",
 	"t3": "Haven’t received verification code?"
 }

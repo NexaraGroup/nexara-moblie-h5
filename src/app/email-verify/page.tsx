@@ -8,10 +8,11 @@ import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { useImmer } from 'use-immer';
 
-const PageLoginEmailVerify = () => {
+const PageEmailVerify = () => {
 	const t = useTranslations('page-email-verify');
 	const searchParams = useSearchParams();
 	const email = searchParams.get('email') || '';
+	const title = searchParams.get('title') || 'dt1';
 	const [countdown, setCountdown] = useImmer<number>(() => {
 		const savedTime = localStorage.getItem('countdown');
 		const endTime = localStorage.getItem('countdownEndTime');
@@ -94,7 +95,7 @@ const PageLoginEmailVerify = () => {
 				className="text-[28px] font-bold
 			text-fz-c1 dark:text-fz-c1"
 			>
-				{t('t1')}
+				{t(title)}
 			</h2>
 			<p
 				className="text-sm mt-[6px]
@@ -130,4 +131,4 @@ const PageLoginEmailVerify = () => {
 	);
 };
 
-export default PageLoginEmailVerify;
+export default PageEmailVerify;

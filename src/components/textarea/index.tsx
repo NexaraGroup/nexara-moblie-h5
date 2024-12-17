@@ -5,7 +5,7 @@ import { useImmer } from 'use-immer';
 import { Props } from './index.d';
 import styles from './index.module.scss';
 
-export default function Input(props: React.PropsWithChildren<Props>) {
+export default function TextArea(props: React.PropsWithChildren<Props>) {
 	const [focus, setFocus] = useImmer(false);
 
 	const handleBlur = () => {
