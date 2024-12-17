@@ -21,5 +21,7 @@
 			"t1": "Current zoom level may affect display quality",
 			"t2": "Cannot zoom anymore"
 		}
-	}
+	},
+	"formRequireRulePrefix": "Please enter",
+	"invalidEmail": "Please enter a valid email address"
 }
