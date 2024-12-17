@@ -5,6 +5,7 @@ import Checkbox from '@/components/checkbox';
 import Form from '@/components/form';
 import Input from '@/components/input';
 import Selector from '@/components/selector';
+import TextArea from '@/components/textarea';
 import { COMMON_FIELD_MAX_LENGTH } from '@/config/base';
 import { Language, UserType } from '@/global.enum';
 import { useLocale, useTranslations } from 'next-intl';
@@ -209,7 +210,7 @@ export default (props: Props) => {
 					</Form.Item>
 
 					<Form.Item label={t('t11')} name="intentionOfService">
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
+						<TextArea maxLength={COMMON_FIELD_MAX_LENGTH} rows={5} />
 					</Form.Item>
 
 					<Form.Item

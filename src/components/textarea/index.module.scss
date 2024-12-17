@@ -1,9 +1,9 @@
 .wrapper {
-	@apply flex gap-x-[18px] justify-between border rounded-max
+	@apply flex gap-x-[18px] justify-between border rounded-[12px]
 	 px-[24px] py-[12px]
 		bg-bg-c0 dark:bg-dark-bg-c0
 		border-bd-c2	dark:border-dark-bd-c2;
-	> input {
+	> textarea {
 		line-height: 1;
 	}
 	transition: border-color 0.3s ease;
@@ -12,7 +12,7 @@
 		@apply border-bd-c1 dark:border-dark-bd-c1;
 	}
 
-	:global(.adm-input-element) {
-		@apply text-fz-c1 dark:text-dark-fz-c1 text-sm;
+	:global(.adm-text-area-element) {
+		@apply text-sm text-fz-c1 dark:text-fz-c1;
 	}
 }
