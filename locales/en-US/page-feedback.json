@@ -1,9 +1,9 @@
 {
 	"b1": "Continue",
-	"d1": "Your account has been created successfully, Press continue to continue using the app",
-	"d2": "Start your trading",
+	"d1": "Your account has been created successfully. The initial password will be sent to your email after approval. Please check your email",
+	"d2": "Please log in again with GA to start your trading",
 	"d3": "Start your trading",
-	"t1": "Login Success",
+	"t1": "Sign Up Success",
 	"t2": "GA Binding Successful",
 	"t3": "Modify Password Success"
 }
