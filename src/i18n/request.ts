@@ -15,6 +15,8 @@ export default getRequestConfig(async () => {
 	).default;
 	const setPasswordPageMessage = (await import(`../../locales/${locale}/page-set-password.json`))
 		.default;
+	const feedbackPageMessage = (await import(`../../locales/${locale}/page-feedback.json`))
+		.default;
 
 	return {
 		locale,
@@ -37,6 +39,9 @@ export default getRequestConfig(async () => {
 			},
 			'page-set-password': {
 				...setPasswordPageMessage,
+			},
+			'page-feedback': {
+				...feedbackPageMessage,
 			},
 		},
 	};

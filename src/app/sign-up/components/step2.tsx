@@ -209,7 +209,7 @@ export default (props: Props) => {
 							...requireRuleTs('t6'),
 							{
 								type: 'email',
-								message: t('f2'),
+								message: tc('invalidEmail'),
 							},
 						]}
 					>

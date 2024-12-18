@@ -1,0 +1,1143 @@
+{
+	"assets": [
+		{
+			"e": 1,
+			"h": 342,
+			"id": "image_0",
+			"p": "data:image/png;base64,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",
+			"u": "",
+			"w": 342
+		}
+	],
+	"ddd": 0,
+	"fr": 60,
+	"h": 240,
+	"ip": 0,
+	"layers": [
+		{
+			"ao": 0,
+			"bm": 0,
+			"cl": "png",
+			"ddd": 0,
+			"ef": [
+				{
+					"ef": [
+						{
+							"ix": 1,
+							"mn": "Pseudo/MDS Elastic Controller-0001",
+							"nm": "Amplitude",
+							"ty": 0,
+							"v": {
+								"a": 0,
+								"ix": 1,
+								"k": 20
+							}
+						},
+						{
+							"ix": 2,
+							"mn": "Pseudo/MDS Elastic Controller-0002",
+							"nm": "Frequency",
+							"ty": 0,
+							"v": {
+								"a": 0,
+								"ix": 2,
+								"k": 40
+							}
+						},
+						{
+							"ix": 3,
+							"mn": "Pseudo/MDS Elastic Controller-0003",
+							"nm": "Decay",
+							"ty": 0,
+							"v": {
+								"a": 0,
+								"ix": 3,
+								"k": 60
+							}
+						}
+					],
+					"en": 1,
+					"ix": 1,
+					"mn": "Pseudo/MDS Elastic Controller",
+					"nm": "Elastic: 缩放",
+					"np": 5,
+					"ty": 5
+				},
+				{
+					"ef": [
+						{
+							"ix": 1,
+							"mn": "Pseudo/MDS Bounce Controller-0001",
+							"nm": "Amplitude",
+							"ty": 0,
+							"v": {
+								"a": 0,
+								"ix": 1,
+								"k": 50
+							}
+						},
+						{
+							"ix": 2,
+							"mn": "Pseudo/MDS Bounce Controller-0002",
+							"nm": "Gravity",
+							"ty": 0,
+							"v": {
+								"a": 0,
+								"ix": 2,
+								"k": 15
+							}
+						},
+						{
+							"ix": 3,
+							"mn": "Pseudo/MDS Bounce Controller-0003",
+							"nm": "Max Jumps",
+							"ty": 0,
+							"v": {
+								"a": 0,
+								"ix": 3,
+								"k": 5
+							}
+						},
+						{
+							"ix": 4,
+							"mn": "Pseudo/MDS Bounce Controller-0004",
+							"nm": "Jump In/Out",
+							"ty": 7,
+							"v": {
+								"a": 0,
+								"ix": 4,
+								"k": 0
+							}
+						}
+					],
+					"en": 1,
+					"ix": 2,
+					"mn": "Pseudo/MDS Bounce Controller",
+					"nm": "Bounce: 缩放",
+					"np": 6,
+					"ty": 5
+				},
+				{
+					"ef": [
+						{
+							"ix": 1,
+							"mn": "Pseudo/MDS Elastic Controller-0001",
+							"nm": "Amplitude",
+							"ty": 0,
+							"v": {
+								"a": 0,
+								"ix": 1,
+								"k": 20
+							}
+						},
+						{
+							"ix": 2,
+							"mn": "Pseudo/MDS Elastic Controller-0002",
+							"nm": "Frequency",
+							"ty": 0,
+							"v": {
+								"a": 0,
+								"ix": 2,
+								"k": 40
+							}
+						},
+						{
+							"ix": 3,
+							"mn": "Pseudo/MDS Elastic Controller-0003",
+							"nm": "Decay",
+							"ty": 0,
+							"v": {
+								"a": 0,
+								"ix": 3,
+								"k": 60
+							}
+						}
+					],
+					"en": 1,
+					"ix": 3,
+					"mn": "Pseudo/MDS Elastic Controller",
+					"nm": "Elastic: 缩放 2",
+					"np": 5,
+					"ty": 5
+				}
+			],
+			"ind": 1,
+			"ip": 0,
+			"ks": {
+				"a": {
+					"a": 0,
+					"ix": 1,
+					"k": [171, 171, 0]
+				},
+				"o": {
+					"a": 0,
+					"ix": 11,
+					"k": 100
+				},
+				"p": {
+					"a": 0,
+					"ix": 2,
+					"k": [120, 120, 0]
+				},
+				"r": {
+					"a": 0,
+					"ix": 10,
+					"k": 0
+				},
+				"s": {
+					"a": 1,
+					"ix": 6,
+					"k": [
+						{
+							"i": {
+								"x": [0.833, 0.833, 0.833],
+								"y": [0.914, 0.914, -2.871]
+							},
+							"o": {
+								"x": [1, 1, 1],
+								"y": [0, 0, 0]
+							},
+							"s": [0, 0, 100],
+							"t": 0
+						},
+						{
+							"s": [45, 45, 100],
+							"t": 16
+						}
+					],
+					"x": "var $bm_rt;\nvar amp, freq, decay, n, n, t, t, v;\ntry {\n    amp = $bm_div(effect('Elastic: \\u7f29\\u653e 2')(1), 200);\n    freq = $bm_div(effect('Elastic: \\u7f29\\u653e 2')(2), 30);\n    decay = $bm_div(effect('Elastic: \\u7f29\\u653e 2')(3), 10);\n    $bm_rt = n = 0;\n    if (numKeys > 0) {\n        $bm_rt = n = nearestKey(time).index;\n        if (key(n).time > time) {\n            n--;\n        }\n    }\n    if (n == 0) {\n        $bm_rt = t = 0;\n    } else {\n        $bm_rt = t = $bm_sub(time, key(n).time);\n    }\n    if (n > 0) {\n        v = velocityAtTime($bm_sub(key(n).time, $bm_div(thisComp.frameDuration, 10)));\n        $bm_rt = $bm_sum(value, $bm_div($bm_mul($bm_mul(v, amp), Math.sin($bm_mul($bm_mul($bm_mul(freq, t), 2), Math.PI))), Math.exp($bm_mul(decay, t))));\n    } else {\n        $bm_rt = value;\n    }\n} catch (e$$4) {\n    $bm_rt = value = value;\n}"
+				}
+			},
+			"nm": "duihao 3x.png",
+			"op": 360,
+			"refId": "image_0",
+			"sr": 1,
+			"st": 0,
+			"ty": 2
+		},
+		{
+			"ao": 0,
+			"bm": 0,
+			"ddd": 0,
+			"ind": 2,
+			"ip": 0,
+			"ks": {
+				"a": {
+					"a": 0,
+					"ix": 1,
+					"k": [69.009, -104.459, 0]
+				},
+				"o": {
+					"a": 1,
+					"ix": 11,
+					"k": [
+						{
+							"i": {
+								"x": [0.833],
+								"y": [0.833]
+							},
+							"o": {
+								"x": [0.167],
+								"y": [0.167]
+							},
+							"s": [0],
+							"t": 0
+						},
+						{
+							"s": [100],
+							"t": 31
+						}
+					]
+				},
+				"p": {
+					"a": 1,
+					"ix": 2,
+					"k": [
+						{
+							"i": {
+								"x": 0.35,
+								"y": 1
+							},
+							"o": {
+								"x": 0.65,
+								"y": 0
+							},
+							"s": [117.009, 118.541, 0],
+							"t": 0,
+							"ti": [0, 0, 0],
+							"to": [0, 0, 0]
+						},
+						{
+							"s": [231.009, 223.541, 0],
+							"t": 31
+						}
+					]
+				},
+				"r": {
+					"a": 0,
+					"ix": 10,
+					"k": 0
+				},
+				"s": {
+					"a": 1,
+					"ix": 6,
+					"k": [
+						{
+							"i": {
+								"x": [0.833, 0.833, 0.833],
+								"y": [0.833, 0.833, 0.833]
+							},
+							"o": {
+								"x": [0.167, 0.167, 0.167],
+								"y": [0.167, 0.167, 0.167]
+							},
+							"s": [0, 0, 100],
+							"t": 0
+						},
+						{
+							"s": [100, 100, 100],
+							"t": 31
+						}
+					]
+				}
+			},
+			"nm": "形状图层 5",
+			"op": 360,
+			"shapes": [
+				{
+					"bm": 0,
+					"cix": 2,
+					"hd": false,
+					"it": [
+						{
+							"d": 1,
+							"hd": false,
+							"mn": "ADBE Vector Shape - Ellipse",
+							"nm": "椭圆路径 1",
+							"p": {
+								"a": 0,
+								"ix": 3,
+								"k": [0, 0]
+							},
+							"s": {
+								"a": 0,
+								"ix": 2,
+								"k": [11.198, 11.198]
+							},
+							"ty": "el"
+						},
+						{
+							"bm": 0,
+							"c": {
+								"a": 0,
+								"ix": 4,
+								"k": [0.788235353956, 0.733333333333, 0.972549079446, 1]
+							},
+							"hd": false,
+							"mn": "ADBE Vector Graphic - Fill",
+							"nm": "填充 1",
+							"o": {
+								"a": 0,
+								"ix": 5,
+								"k": 100
+							},
+							"r": 1,
+							"ty": "fl"
+						},
+						{
+							"a": {
+								"a": 0,
+								"ix": 1,
+								"k": [0, 0]
+							},
+							"nm": "变换",
+							"o": {
+								"a": 0,
+								"ix": 7,
+								"k": 100
+							},
+							"p": {
+								"a": 0,
+								"ix": 2,
+								"k": [69.009, -104.459]
+							},
+							"r": {
+								"a": 0,
+								"ix": 6,
+								"k": 0
+							},
+							"s": {
+								"a": 0,
+								"ix": 3,
+								"k": [100, 100]
+							},
+							"sa": {
+								"a": 0,
+								"ix": 5,
+								"k": 0
+							},
+							"sk": {
+								"a": 0,
+								"ix": 4,
+								"k": 0
+							},
+							"ty": "tr"
+						}
+					],
+					"ix": 1,
+					"mn": "ADBE Vector Group",
+					"nm": "椭圆 1",
+					"np": 3,
+					"ty": "gr"
+				}
+			],
+			"sr": 1,
+			"st": 0,
+			"ty": 4
+		},
+		{
+			"ao": 0,
+			"bm": 0,
+			"ddd": 0,
+			"ind": 3,
+			"ip": 0,
+			"ks": {
+				"a": {
+					"a": 0,
+					"ix": 1,
+					"k": [69.009, -104.459, 0]
+				},
+				"o": {
+					"a": 1,
+					"ix": 11,
+					"k": [
+						{
+							"i": {
+								"x": [0.833],
+								"y": [0.833]
+							},
+							"o": {
+								"x": [0.167],
+								"y": [0.167]
+							},
+							"s": [0],
+							"t": 0
+						},
+						{
+							"s": [100],
+							"t": 31
+						}
+					]
+				},
+				"p": {
+					"a": 1,
+					"ix": 2,
+					"k": [
+						{
+							"i": {
+								"x": 0.61,
+								"y": 1
+							},
+							"o": {
+								"x": 0.39,
+								"y": 0
+							},
+							"s": [116.509, 119.541, 0],
+							"t": 0,
+							"ti": [0, 0, 0],
+							"to": [0, 0, 0]
+						},
+						{
+							"s": [8.509, 56.541, 0],
+							"t": 31
+						}
+					]
+				},
+				"r": {
+					"a": 0,
+					"ix": 10,
+					"k": 0
+				},
+				"s": {
+					"a": 1,
+					"ix": 6,
+					"k": [
+						{
+							"i": {
+								"x": [0.833, 0.833, 0.833],
+								"y": [0.833, 0.833, 0.833]
+							},
+							"o": {
+								"x": [0.167, 0.167, 0.167],
+								"y": [0.167, 0.167, 0.167]
+							},
+							"s": [0, 0, 100],
+							"t": 0
+						},
+						{
+							"s": [100, 100, 100],
+							"t": 31
+						}
+					]
+				}
+			},
+			"nm": "形状图层 4",
+			"op": 360,
+			"shapes": [
+				{
+					"bm": 0,
+					"cix": 2,
+					"hd": false,
+					"it": [
+						{
+							"d": 1,
+							"hd": false,
+							"mn": "ADBE Vector Shape - Ellipse",
+							"nm": "椭圆路径 1",
+							"p": {
+								"a": 0,
+								"ix": 3,
+								"k": [0, 0]
+							},
+							"s": {
+								"a": 0,
+								"ix": 2,
+								"k": [11.198, 11.198]
+							},
+							"ty": "el"
+						},
+						{
+							"bm": 0,
+							"c": {
+								"a": 0,
+								"ix": 4,
+								"k": [0.788235353956, 0.733333333333, 0.972549079446, 1]
+							},
+							"hd": false,
+							"mn": "ADBE Vector Graphic - Fill",
+							"nm": "填充 1",
+							"o": {
+								"a": 0,
+								"ix": 5,
+								"k": 100
+							},
+							"r": 1,
+							"ty": "fl"
+						},
+						{
+							"a": {
+								"a": 0,
+								"ix": 1,
+								"k": [0, 0]
+							},
+							"nm": "变换",
+							"o": {
+								"a": 0,
+								"ix": 7,
+								"k": 100
+							},
+							"p": {
+								"a": 0,
+								"ix": 2,
+								"k": [69.009, -104.459]
+							},
+							"r": {
+								"a": 0,
+								"ix": 6,
+								"k": 0
+							},
+							"s": {
+								"a": 0,
+								"ix": 3,
+								"k": [100, 100]
+							},
+							"sa": {
+								"a": 0,
+								"ix": 5,
+								"k": 0
+							},
+							"sk": {
+								"a": 0,
+								"ix": 4,
+								"k": 0
+							},
+							"ty": "tr"
+						}
+					],
+					"ix": 1,
+					"mn": "ADBE Vector Group",
+					"nm": "椭圆 1",
+					"np": 3,
+					"ty": "gr"
+				}
+			],
+			"sr": 1,
+			"st": 0,
+			"ty": 4
+		},
+		{
+			"ao": 0,
+			"bm": 0,
+			"ddd": 0,
+			"ind": 4,
+			"ip": 0,
+			"ks": {
+				"a": {
+					"a": 0,
+					"ix": 1,
+					"k": [69.009, -104.459, 0]
+				},
+				"o": {
+					"a": 0,
+					"ix": 11,
+					"k": 100
+				},
+				"p": {
+					"a": 1,
+					"ix": 2,
+					"k": [
+						{
+							"i": {
+								"x": 0.833,
+								"y": 0.833
+							},
+							"o": {
+								"x": 0.74,
+								"y": 0
+							},
+							"s": [118.009, 118.541, 0],
+							"t": 0,
+							"ti": [0, 0, 0],
+							"to": [0, 0, 0]
+						},
+						{
+							"i": {
+								"x": 0.99,
+								"y": 1
+							},
+							"o": {
+								"x": 0.74,
+								"y": 0
+							},
+							"s": [36.009, 211.541, 0],
+							"t": 22,
+							"ti": [0, 0, 0],
+							"to": [0, 0, 0]
+						},
+						{
+							"s": [17.009, 195.541, 0],
+							"t": 118
+						}
+					]
+				},
+				"r": {
+					"a": 0,
+					"ix": 10,
+					"k": 0
+				},
+				"s": {
+					"a": 1,
+					"ix": 6,
+					"k": [
+						{
+							"i": {
+								"x": [0.833, 0.833, 0.833],
+								"y": [0.833, 0.833, 0.833]
+							},
+							"o": {
+								"x": [0.167, 0.167, 0.167],
+								"y": [0.167, 0.167, 0.167]
+							},
+							"s": [0, 0, 100],
+							"t": 0
+						},
+						{
+							"s": [100, 100, 100],
+							"t": 24
+						}
+					]
+				}
+			},
+			"nm": "形状图层 3",
+			"op": 360,
+			"shapes": [
+				{
+					"bm": 0,
+					"cix": 2,
+					"hd": false,
+					"it": [
+						{
+							"d": 1,
+							"hd": false,
+							"mn": "ADBE Vector Shape - Ellipse",
+							"nm": "椭圆路径 1",
+							"p": {
+								"a": 0,
+								"ix": 3,
+								"k": [0, 0]
+							},
+							"s": {
+								"a": 0,
+								"ix": 2,
+								"k": [11.198, 11.198]
+							},
+							"ty": "el"
+						},
+						{
+							"bm": 0,
+							"c": {
+								"a": 0,
+								"ix": 4,
+								"k": [0.070588235294, 0.094117654539, 0.149019607843, 1]
+							},
+							"hd": false,
+							"mn": "ADBE Vector Graphic - Fill",
+							"nm": "填充 1",
+							"o": {
+								"a": 0,
+								"ix": 5,
+								"k": 100
+							},
+							"r": 1,
+							"ty": "fl"
+						},
+						{
+							"a": {
+								"a": 0,
+								"ix": 1,
+								"k": [0, 0]
+							},
+							"nm": "变换",
+							"o": {
+								"a": 0,
+								"ix": 7,
+								"k": 100
+							},
+							"p": {
+								"a": 0,
+								"ix": 2,
+								"k": [69.009, -104.459]
+							},
+							"r": {
+								"a": 0,
+								"ix": 6,
+								"k": 0
+							},
+							"s": {
+								"a": 0,
+								"ix": 3,
+								"k": [100, 100]
+							},
+							"sa": {
+								"a": 0,
+								"ix": 5,
+								"k": 0
+							},
+							"sk": {
+								"a": 0,
+								"ix": 4,
+								"k": 0
+							},
+							"ty": "tr"
+						}
+					],
+					"ix": 1,
+					"mn": "ADBE Vector Group",
+					"nm": "椭圆 1",
+					"np": 3,
+					"ty": "gr"
+				}
+			],
+			"sr": 1,
+			"st": 0,
+			"ty": 4
+		},
+		{
+			"ao": 0,
+			"bm": 0,
+			"ddd": 0,
+			"ind": 5,
+			"ip": 0,
+			"ks": {
+				"a": {
+					"a": 0,
+					"ix": 1,
+					"k": [69.009, -104.459, 0]
+				},
+				"o": {
+					"a": 0,
+					"ix": 11,
+					"k": 100
+				},
+				"p": {
+					"a": 1,
+					"ix": 2,
+					"k": [
+						{
+							"i": {
+								"x": 0.833,
+								"y": 0.818
+							},
+							"o": {
+								"x": 0.77,
+								"y": 0
+							},
+							"s": [122.509, 119.041, 0],
+							"t": 0,
+							"ti": [0, 0, 0],
+							"to": [0, 0, 0]
+						},
+						{
+							"i": {
+								"x": 0.808,
+								"y": 0.558
+							},
+							"o": {
+								"x": 0.514,
+								"y": 0
+							},
+							"s": [225.509, 106.791, 0],
+							"t": 22,
+							"ti": [-0.75, -5.042, 0],
+							"to": [0, 0, 0]
+						},
+						{
+							"i": {
+								"x": 0.89,
+								"y": 1
+							},
+							"o": {
+								"x": 0.508,
+								"y": 0.411
+							},
+							"s": [230.076, 119.901, 0],
+							"t": 89.75,
+							"ti": [0, 0, 0],
+							"to": [0.75, 5.042, 0]
+						},
+						{
+							"s": [230.009, 137.041, 0],
+							"t": 119
+						}
+					]
+				},
+				"r": {
+					"a": 0,
+					"ix": 10,
+					"k": 0
+				},
+				"s": {
+					"a": 1,
+					"ix": 6,
+					"k": [
+						{
+							"i": {
+								"x": [0.833, 0.833, 0.833],
+								"y": [0.833, 0.833, 0.833]
+							},
+							"o": {
+								"x": [0.167, 0.167, 0.167],
+								"y": [0.167, 0.167, 0.167]
+							},
+							"s": [0, 0, 100],
+							"t": 0
+						},
+						{
+							"s": [100, 100, 100],
+							"t": 22
+						}
+					]
+				}
+			},
+			"nm": "形状图层 2",
+			"op": 360,
+			"shapes": [
+				{
+					"bm": 0,
+					"cix": 2,
+					"hd": false,
+					"it": [
+						{
+							"d": 1,
+							"hd": false,
+							"mn": "ADBE Vector Shape - Ellipse",
+							"nm": "椭圆路径 1",
+							"p": {
+								"a": 0,
+								"ix": 3,
+								"k": [0, 0]
+							},
+							"s": {
+								"a": 0,
+								"ix": 2,
+								"k": [11.198, 11.198]
+							},
+							"ty": "el"
+						},
+						{
+							"bm": 0,
+							"c": {
+								"a": 0,
+								"ix": 4,
+								"k": [0.070588235294, 0.094117654539, 0.149019607843, 1]
+							},
+							"hd": false,
+							"mn": "ADBE Vector Graphic - Fill",
+							"nm": "填充 1",
+							"o": {
+								"a": 0,
+								"ix": 5,
+								"k": 100
+							},
+							"r": 1,
+							"ty": "fl"
+						},
+						{
+							"a": {
+								"a": 0,
+								"ix": 1,
+								"k": [0, 0]
+							},
+							"nm": "变换",
+							"o": {
+								"a": 0,
+								"ix": 7,
+								"k": 100
+							},
+							"p": {
+								"a": 0,
+								"ix": 2,
+								"k": [69.009, -104.459]
+							},
+							"r": {
+								"a": 0,
+								"ix": 6,
+								"k": 0
+							},
+							"s": {
+								"a": 0,
+								"ix": 3,
+								"k": [100, 100]
+							},
+							"sa": {
+								"a": 0,
+								"ix": 5,
+								"k": 0
+							},
+							"sk": {
+								"a": 0,
+								"ix": 4,
+								"k": 0
+							},
+							"ty": "tr"
+						}
+					],
+					"ix": 1,
+					"mn": "ADBE Vector Group",
+					"nm": "椭圆 1",
+					"np": 3,
+					"ty": "gr"
+				}
+			],
+			"sr": 1,
+			"st": 0,
+			"ty": 4
+		},
+		{
+			"ao": 0,
+			"bm": 0,
+			"ddd": 0,
+			"ind": 6,
+			"ip": 0,
+			"ks": {
+				"a": {
+					"a": 0,
+					"ix": 1,
+					"k": [69.009, -104.459, 0]
+				},
+				"o": {
+					"a": 0,
+					"ix": 11,
+					"k": 100
+				},
+				"p": {
+					"a": 1,
+					"ix": 2,
+					"k": [
+						{
+							"i": {
+								"x": 0.833,
+								"y": 0.833
+							},
+							"o": {
+								"x": 0.74,
+								"y": 0
+							},
+							"s": [119.509, 116.541, 0],
+							"t": 0,
+							"ti": [0, 0, 0],
+							"to": [0, 0, 0]
+						},
+						{
+							"i": {
+								"x": 0.817,
+								"y": 0.573
+							},
+							"o": {
+								"x": 0.533,
+								"y": 0
+							},
+							"s": [168.509, 15.541, 0],
+							"t": 22,
+							"ti": [-5.5, -3.167, 0],
+							"to": [0, 0, 0]
+						},
+						{
+							"i": {
+								"x": 0.89,
+								"y": 1
+							},
+							"o": {
+								"x": 0.46,
+								"y": 0.505
+							},
+							"s": [188.148, 21.636, 0],
+							"t": 90,
+							"ti": [0, 0, 0],
+							"to": [5.5, 3.167, 0]
+						},
+						{
+							"s": [201.509, 34.541, 0],
+							"t": 119
+						}
+					]
+				},
+				"r": {
+					"a": 0,
+					"ix": 10,
+					"k": 0
+				},
+				"s": {
+					"a": 1,
+					"ix": 6,
+					"k": [
+						{
+							"i": {
+								"x": [0.833, 0.833, 0.833],
+								"y": [0.833, 0.833, 0.833]
+							},
+							"o": {
+								"x": [0.167, 0.167, 0.167],
+								"y": [0.167, 0.167, 0.167]
+							},
+							"s": [0, 0, 100],
+							"t": 0
+						},
+						{
+							"s": [100, 100, 100],
+							"t": 22
+						}
+					]
+				}
+			},
+			"nm": "形状图层 1",
+			"op": 360,
+			"shapes": [
+				{
+					"bm": 0,
+					"cix": 2,
+					"hd": false,
+					"it": [
+						{
+							"d": 1,
+							"hd": false,
+							"mn": "ADBE Vector Shape - Ellipse",
+							"nm": "椭圆路径 1",
+							"p": {
+								"a": 0,
+								"ix": 3,
+								"k": [0, 0]
+							},
+							"s": {
+								"a": 0,
+								"ix": 2,
+								"k": [11.198, 11.198]
+							},
+							"ty": "el"
+						},
+						{
+							"bm": 0,
+							"c": {
+								"a": 0,
+								"ix": 4,
+								"k": [0.070588235294, 0.094117654539, 0.149019607843, 1]
+							},
+							"hd": false,
+							"mn": "ADBE Vector Graphic - Fill",
+							"nm": "填充 1",
+							"o": {
+								"a": 0,
+								"ix": 5,
+								"k": 100
+							},
+							"r": 1,
+							"ty": "fl"
+						},
+						{
+							"a": {
+								"a": 0,
+								"ix": 1,
+								"k": [0, 0]
+							},
+							"nm": "变换",
+							"o": {
+								"a": 0,
+								"ix": 7,
+								"k": 100
+							},
+							"p": {
+								"a": 0,
+								"ix": 2,
+								"k": [69.009, -104.459]
+							},
+							"r": {
+								"a": 0,
+								"ix": 6,
+								"k": 0
+							},
+							"s": {
+								"a": 0,
+								"ix": 3,
+								"k": [100, 100]
+							},
+							"sa": {
+								"a": 0,
+								"ix": 5,
+								"k": 0
+							},
+							"sk": {
+								"a": 0,
+								"ix": 4,
+								"k": 0
+							},
+							"ty": "tr"
+						}
+					],
+					"ix": 1,
+					"mn": "ADBE Vector Group",
+					"nm": "椭圆 1",
+					"np": 3,
+					"ty": "gr"
+				}
+			],
+			"sr": 1,
+			"st": 0,
+			"ty": 4
+		}
+	],
+	"markers": [],
+	"nm": "合成 1",
+	"op": 120,
+	"v": "5.6.8",
+	"w": 240
+}
