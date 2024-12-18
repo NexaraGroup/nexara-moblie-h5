@@ -6,6 +6,15 @@ import { useTranslations } from 'next-intl';
 const PageGaVerify = () => {
 	const t = useTranslations('page-ga-verify');
 
+	const handleSubmit = async (code: string) => {
+		// api
+		if (false) {
+			return false;
+		}
+		return true;
+		// TODO，需要前一页，指明跳转路径和参数
+	};
+
 	return (
 		<>
 			<h2
@@ -21,7 +30,7 @@ const PageGaVerify = () => {
 				{t('t2')}
 			</p>
 
-			<VerifyCodeInput className="mt-[60px]" onSend={() => Promise.resolve(false)} />
+			<VerifyCodeInput className="mt-[60px]" onSubmit={handleSubmit} />
 		</>
 	);
 };

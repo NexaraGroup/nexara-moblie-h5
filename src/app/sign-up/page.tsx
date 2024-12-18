@@ -8,11 +8,11 @@ import Step2 from './components/step2';
 
 const PageSignUp = () => {
 	const t = useTranslations('page-sign-up');
-	const [step, setStep] = useImmer<1 | 2 | 3>(1);
+	const [step, setStep] = useImmer<1 | 2>(1);
 	const [userType, setUserType] = useImmer<UserType | undefined>(undefined);
 
-	const handleSelectedUserType = (step: 2, type: UserType) => {
-		setStep(step);
+	const handleSelectedUserType = (type: UserType) => {
+		setStep(2);
 		setUserType(type!);
 	};
 
@@ -35,8 +35,8 @@ const PageSignUp = () => {
 				</div>
 			)}
 
-			{step === 1 && <Step1 onChange={(type) => handleSelectedUserType(2, type)} />}
-			{step === 2 && <Step2 userType={userType} onOk={() => setStep(3)} />}
+			{step === 1 && <Step1 onChange={handleSelectedUserType} />}
+			{step === 2 && <Step2 userType={userType} />}
 		</>
 	);
 };

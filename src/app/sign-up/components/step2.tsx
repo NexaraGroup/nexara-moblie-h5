@@ -8,7 +8,8 @@ import Selector from '@/components/selector';
 import TextArea from '@/components/textarea';
 import { COMMON_FIELD_MAX_LENGTH } from '@/config/base';
 import { Language, UserType } from '@/global.enum';
-import { useLocale, useTranslations } from 'next-intl';
+import useRequireRuleTs from '@/utils/useRequireRuleTs';
+import { useTranslations } from 'next-intl';
 import { useImmer } from 'use-immer';
 import SelectLanguagePopUp from '../components/select-language-pop-up';
 import { languageOptions } from '../const';
@@ -17,12 +18,12 @@ import styles from '../index.module.scss';
 
 interface Props {
 	userType: UserType | undefined;
-	onOk: () => void;
 }
 
 export default (props: Props) => {
 	const t = useTranslations('page-sign-up');
-	const locale: keyof typeof Language = useLocale() as keyof typeof Language;
+	const tc = useTranslations();
+	const requireRuleTs = useRequireRuleTs({ tsKey: 'page-sign-up' });
 	const [form] = Form.useForm<IndividualForm | CorporateForm>();
 	const [languagePopupVisible, setLanguagePopupVisible] = useImmer(false);
 
@@ -50,16 +51,7 @@ export default (props: Props) => {
 		delete values.agreement;
 		console.log(values);
 		// api
-		props.onOk();
-	};
-
-	const handleRequireRuleTs = (field: string) => {
-		return [
-			{
-				required: true,
-				message: `${t('f1')} ${locale === 'en-US' ? ' ' : ''} ${t(field)}`,
-			},
-		];
+		// 跳转
 	};
 
 	return (
@@ -70,17 +62,12 @@ export default (props: Props) => {
 						label={t('t3')}
 						name="invitationCode"
 						required
-						rules={handleRequireRuleTs('t3')}
+						rules={requireRuleTs('t3')}
 					>
 						<Input maxLength={8} />
 					</Form.Item>
 
-					<Form.Item
-						label={t('t4')}
-						name="name"
-						required
-						rules={handleRequireRuleTs('t4')}
-					>
+					<Form.Item label={t('t4')} name="name" required rules={requireRuleTs('t4')}>
 						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
 					</Form.Item>
 
@@ -88,7 +75,7 @@ export default (props: Props) => {
 						label={t('t5')}
 						name="countryOfResidence"
 						required
-						rules={handleRequireRuleTs('t5')}
+						rules={requireRuleTs('t5')}
 					>
 						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
 					</Form.Item>
@@ -98,10 +85,10 @@ export default (props: Props) => {
 						name="email"
 						required
 						rules={[
-							...handleRequireRuleTs('t6'),
+							...requireRuleTs('t6'),
 							{
 								type: 'email',
-								message: t('f2'),
+								message: tc('invalidEmail'),
 							},
 						]}
 					>
@@ -156,7 +143,7 @@ export default (props: Props) => {
 					</Form.Item>
 
 					<Form.Item>
-						<Button block shape="rounded" fontBold size="large">
+						<Button block shape="rounded" fontBold size="large" onClick={handleSubmit}>
 							{t('b3')}
 						</Button>
 					</Form.Item>
@@ -167,7 +154,7 @@ export default (props: Props) => {
 						label={t('t3')}
 						name="invitationCode"
 						required
-						rules={handleRequireRuleTs('t3')}
+						rules={requireRuleTs('t3')}
 					>
 						<Input maxLength={8} />
 					</Form.Item>
@@ -176,7 +163,7 @@ export default (props: Props) => {
 						label={t('t8')}
 						name="institutionName"
 						required
-						rules={handleRequireRuleTs('t8')}
+						rules={requireRuleTs('t8')}
 					>
 						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
 					</Form.Item>
@@ -185,7 +172,7 @@ export default (props: Props) => {
 						label={t('t9')}
 						name="registeredCountry"
 						required
-						rules={handleRequireRuleTs('t9')}
+						rules={requireRuleTs('t9')}
 					>
 						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
 					</Form.Item>
@@ -199,7 +186,7 @@ export default (props: Props) => {
 						name="email"
 						required
 						rules={[
-							...handleRequireRuleTs('t6'),
+							...requireRuleTs('t6'),
 							{
 								type: 'email',
 								message: t('f2'),

@@ -4,6 +4,7 @@ export interface Props {
 	value?: string;
 	maxLength?: number;
 	onChange?: (value: string) => void;
+	onEnterPress?: () => void;
 	onBlur?: () => void;
 	addonAfter?: React.ReactNode;
 	type?: 'password' | 'text';

@@ -5,24 +5,31 @@ import Form from '@/components/form';
 import Input from '@/components/input';
 import useRequireRuleTs from '@/utils/useRequireRuleTs';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useImmer } from 'use-immer';
 import { generateRulesData } from './const';
 
 const PageSetPassword = () => {
 	const t = useTranslations('page-set-password');
 	const router = useRouter();
+	const searchParams = useSearchParams();
+	const email = searchParams.get('email');
 	const [form] = Form.useForm<{ password: string; confirmPassword?: string }>();
 	const requireRuleTs = useRequireRuleTs({ tsKey: 'page-set-password' });
 	const password = Form.useWatch('password', form);
 	const confirmPassword = Form.useWatch('confirmPassword', form);
 	const rulesData = generateRulesData(t);
+	const [loading, setLoading] = useImmer<boolean>(false);
 
 	const handleSubmit = async () => {
 		await form.validateFields();
 		const values = form.getFieldsValue();
 		delete values.confirmPassword;
+		setLoading(true);
 		// api
-		router.push(`/email-verify?email=${values}&title=dt2`);
+		setLoading(false);
+		// TODO，去密码设置成功页面
+		// router.replace(`/login?email=${email}`);
 	};
 
 	const handlePasswordBlur = () => {
@@ -63,7 +70,12 @@ const PageSetPassword = () => {
 						},
 					]}
 				>
-					<Input maxLength={32} type="password" onBlur={handlePasswordBlur} />
+					<Input
+						maxLength={32}
+						type="password"
+						onBlur={handlePasswordBlur}
+						disabled={loading}
+					/>
 				</Form.Item>
 
 				<Form.Item
@@ -84,7 +96,7 @@ const PageSetPassword = () => {
 						},
 					]}
 				>
-					<Input maxLength={32} type="password" />
+					<Input maxLength={32} type="password" disabled={loading} />
 				</Form.Item>
 			</Form>
 
@@ -92,6 +104,7 @@ const PageSetPassword = () => {
 				className="mt-[12px]"
 				size="large"
 				fontBold
+				loading={loading}
 				shape="rounded"
 				block
 				onClick={handleSubmit}

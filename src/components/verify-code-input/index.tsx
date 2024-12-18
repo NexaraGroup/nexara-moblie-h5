@@ -1,33 +1,45 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { useImmer } from 'use-immer';
 
 interface Props {
 	className?: string;
-	onSend: (msgCode: string) => Promise<boolean>;
+	onSubmit: (msgCode: string) => Promise<boolean>;
 }
 
-const VerifyCodeInput = (props: Props) => {
+export default (props: Props) => {
 	const [msgCode, setMsgCode] = useImmer<string>('');
 	const [msgCodeError, setMsgCodeError] = useImmer<boolean>(false);
 	const [isLoading, setIsLoading] = useImmer<boolean>(false);
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleMsgCodeChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (isLoading) return;
-		if (msgCodeError) setMsgCodeError(false);
+		if (msgCodeError) setMsgCodeError(false); // 这一步是修改的时候重置错误状态
 		setMsgCode(e.target.value);
 		if (e.target.value.length !== 6) {
 			return;
 		}
+		inputRef.current?.blur();
 		setIsLoading(true);
-		const result = await props.onSend(e.target.value);
+
+		// 下面主要是为了错误状态的处理
+		const result = await props.onSubmit(e.target.value);
 		setMsgCodeError(!result);
 		setIsLoading(false);
 	};
 
+	useEffect(() => {
+		inputRef.current?.focus();
+	}, []);
+
 	return (
-		<div className={`${props.className} relative overflow-hidden`}>
+		<div
+			className={`${props.className} relative overflow-hidden ${isLoading ? 'opacity-50' : ''}`}
+		>
 			<input
+				ref={inputRef}
 				type="text"
 				maxLength={6}
 				onChange={handleMsgCodeChange}
@@ -61,5 +73,3 @@ const VerifyCodeInput = (props: Props) => {
 		</div>
 	);
 };
-
-export default VerifyCodeInput;

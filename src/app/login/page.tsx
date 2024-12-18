@@ -1,26 +1,50 @@
 'use client';
 
+import { useEffect } from 'react';
 import Button from '@/components/button';
-import Checkbox from '@/components/checkbox';
 import Form from '@/components/form';
 import Input from '@/components/input';
+import { COMMON_FIELD_MAX_LENGTH } from '@/config/base';
+import useRequireRuleTs from '@/utils/useRequireRuleTs';
 import { useTranslations } from 'next-intl';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useImmer } from 'use-immer';
 import type { FormType } from './index.d';
-import styles from './index.module.scss';
 
 const PageLogin = () => {
 	const t = useTranslations('page-login');
+	const tc = useTranslations();
+	const searchParams = useSearchParams();
 	const [form] = Form.useForm<FormType>();
+	const requireRuleTs = useRequireRuleTs({ tsKey: 'page-login' });
+	const router = useRouter();
+	const [loading, setLoading] = useImmer(false);
 
 	const handleSubmit = async () => {
 		await form.validateFields();
 		const values = form.getFieldsValue();
+		setLoading(true);
 		console.log(values);
+		setTimeout(() => {
+			router.push('/home');
+		}, 3000);
 	};
 
-	const handleOpenAgreement = (e: React.MouseEvent<HTMLAnchorElement>) => {
-		window.open('https://www.baidu.com', '_blank');
-		e.preventDefault();
+	useEffect(() => {
+		const email = searchParams.get('email');
+		if (email && form) form.setFieldValue('email', email);
+	}, [searchParams, form]);
+
+	const handleRouteToForgotPassword = () => {
+		const email = form.getFieldValue('email');
+		const queryString = email ? `?email=${email}` : '';
+		router.push(`/forgot-password${queryString}`);
+	};
+
+	const handleRouteToSignUp = () => {
+		const email = form.getFieldValue('email');
+		const queryString = email ? `?email=${email}` : '';
+		router.push(`/sign-up${queryString}`);
 	};
 
 	return (
@@ -46,60 +70,28 @@ const PageLogin = () => {
 						label={t('f1')}
 						name="email"
 						rules={[
-							{
-								required: true,
-								message: t('f1_e1'),
-							},
+							...requireRuleTs('f1'),
 							{
 								type: 'email',
-								message: t('f1_e2'),
+								message: tc('invalidEmail'),
 							},
 						]}
 					>
-						<Input maxLength={50} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
 					</Form.Item>
 
-					<Form.Item
-						label={t('f2')}
-						name="password"
-						rules={[
-							{
-								required: true,
-								message: t('f2_e1'),
-							},
-						]}
-					>
-						<Input type="password" maxLength={50} />
-					</Form.Item>
-
-					<Form.Item
-						name="agreement"
-						className={styles.agreementWrapper}
-						rules={[
-							{
-								message: t('f3_e1'),
-								validator: (_, value) =>
-									value ? Promise.resolve() : Promise.reject(t('f3_e1')),
-							},
-						]}
-					>
-						<Checkbox>
-							{t.rich('f3', {
-								Link: (chunks) => (
-									<a
-										className="cursor-pointer underline
-									text-fz-c1 dark:text-fz-c1"
-										onClick={handleOpenAgreement}
-									>
-										{chunks}
-									</a>
-								),
-							})}
-						</Checkbox>
+					<Form.Item label={t('f2')} name="password" rules={requireRuleTs('f2')}>
+						<Input
+							type="password"
+							maxLength={COMMON_FIELD_MAX_LENGTH}
+							disabled={loading}
+							onEnterPress={() => handleSubmit()}
+						/>
 					</Form.Item>
 
 					<Form.Item>
 						<Button
+							loading={loading}
 							block
 							size="large"
 							fontBold
@@ -110,8 +102,14 @@ const PageLogin = () => {
 						</Button>
 					</Form.Item>
 
-					<Form.Item noStyle>
-						<Button size="small" type="text" className="mx-auto block">
+					<Form.Item>
+						<Button
+							size="small"
+							loading={loading}
+							type="text"
+							className="mx-auto block"
+							onClick={handleRouteToForgotPassword}
+						>
 							{t('f5')}
 						</Button>
 					</Form.Item>
@@ -119,8 +117,19 @@ const PageLogin = () => {
 			</div>
 
 			<div className="flex-center">
-				<p className="text-fz-c2 dark:text-fz-c2 text-xs">{t('t3')}</p>
-				<Button size="small" type="text" fontBold>
+				<p
+					className="text-xs
+				text-fz-c2 dark:text-fz-c2"
+				>
+					{t('t3')}
+				</p>
+				<Button
+					size="small"
+					type="text"
+					fontBold
+					onClick={handleRouteToSignUp}
+					loading={loading}
+				>
 					{t('t4')}
 				</Button>
 			</div>

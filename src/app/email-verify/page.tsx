@@ -5,68 +5,26 @@ import Button from '@/components/button';
 import VerifyCodeInput from '@/components/verify-code-input';
 import Big from 'big.js';
 import { useTranslations } from 'next-intl';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useImmer } from 'use-immer';
+
+const titleMap = {
+	'1': 'dt1',
+	'2': 'dt2',
+} as const;
 
 const PageEmailVerify = () => {
 	const t = useTranslations('page-email-verify');
 	const searchParams = useSearchParams();
-	const email = searchParams.get('email') || '';
-	const title = searchParams.get('title') || 'dt1';
-	const [countdown, setCountdown] = useImmer<number>(() => {
-		const savedTime = localStorage.getItem('countdown');
-		const endTime = localStorage.getItem('countdownEndTime');
-		if (savedTime && endTime) {
-			const remainingTime = Math.floor((parseInt(endTime) - Date.now()) / 1000);
-			return Math.max(0, remainingTime);
-		}
-		return 0;
-	});
-	const [receiving, setReceiving] = useImmer<boolean>(countdown > 0);
+	const email = searchParams.get('email');
+	const type = searchParams.get('type') || '1';
+	const title = titleMap[type as keyof typeof titleMap] || 'dt1';
+	const router = useRouter();
+	const [loading, setLoading] = useImmer<boolean>(false);
+	const [countdown, setCountdown] = useImmer<number | undefined>(undefined);
+	const [receiving, setReceiving] = useImmer<boolean>(false);
 	const rafRef = useRef<number>();
 	const lastTimeRef = useRef<number>(0);
-
-	useEffect(() => {
-		const animate = (timestamp: number) => {
-			if (!lastTimeRef.current) {
-				lastTimeRef.current = timestamp;
-			}
-
-			const deltaTime = timestamp - lastTimeRef.current;
-
-			if (deltaTime >= 1000) {
-				// 每秒更新一次
-				lastTimeRef.current = timestamp;
-
-				if (countdown > 0) {
-					setCountdown((prev) => {
-						const newCountdown = new Big(prev).minus(1).toNumber();
-						if (newCountdown <= 0) {
-							setReceiving(false);
-							localStorage.removeItem('countdown');
-							localStorage.removeItem('countdownEndTime');
-							return 0;
-						}
-						return newCountdown;
-					});
-				}
-			}
-
-			if (countdown > 0) {
-				rafRef.current = requestAnimationFrame(animate);
-			}
-		};
-
-		if (countdown > 0) {
-			rafRef.current = requestAnimationFrame(animate);
-		}
-
-		return () => {
-			if (rafRef.current) {
-				cancelAnimationFrame(rafRef.current);
-			}
-		};
-	}, [countdown]);
 
 	const startCountdown = () => {
 		const startTime = Date.now();
@@ -82,12 +40,91 @@ const PageEmailVerify = () => {
 		startCountdown();
 	};
 
+	const handleSubmit = async (msgCode: string) => {
+		setLoading(true);
+		// api
+		setLoading(false);
+
+		if (false) {
+			return false;
+		}
+		// 清楚计时器状态
+		setCountdown(undefined);
+		setReceiving(false);
+		localStorage.removeItem('countdown');
+		localStorage.removeItem('countdownEndTime');
+		if (type === '1') {
+			// 登录
+			// 去验证 ga
+		} else if (type === '2') {
+			// 忘记密码，去设置密码
+			router.push(`/set-password?email=${email}`);
+		}
+		return true;
+	};
+
 	// 页面加载时自动发送验证码
 	useEffect(() => {
-		if (!receiving) {
+		const savedTime = localStorage.getItem('countdown');
+		const endTime = localStorage.getItem('countdownEndTime');
+		if (savedTime && endTime) {
+			const remainingTime = Math.floor((parseInt(endTime) - Date.now()) / 1000);
+			const _t = Math.max(0, remainingTime);
+			setCountdown(_t);
+			if (_t > 0) {
+				setReceiving(true);
+			} else {
+				localStorage.removeItem('countdown');
+				localStorage.removeItem('countdownEndTime');
+				handleSendCode();
+			}
+		} else {
 			handleSendCode();
 		}
 	}, []);
+
+	// 基于 countdown 的倒计时，这个要放在第一个 useEffect 上面
+	useEffect(() => {
+		const animate = (timestamp: number) => {
+			if (!lastTimeRef.current) {
+				lastTimeRef.current = timestamp;
+			}
+
+			const deltaTime = timestamp - lastTimeRef.current;
+
+			if (deltaTime >= 1000) {
+				// 每秒更新一次
+				lastTimeRef.current = timestamp;
+
+				if (countdown ?? 0 > 0) {
+					setCountdown((prev) => {
+						const newCountdown = new Big(prev ?? 0).minus(1).toNumber();
+						if (newCountdown <= 0) {
+							setReceiving(false);
+							localStorage.removeItem('countdown');
+							localStorage.removeItem('countdownEndTime');
+							return 0;
+						}
+						return newCountdown;
+					});
+				}
+			}
+
+			if (countdown ?? 0 > 0) {
+				rafRef.current = requestAnimationFrame(animate);
+			}
+		};
+
+		if (countdown ?? 0 > 0) {
+			rafRef.current = requestAnimationFrame(animate);
+		}
+
+		return () => {
+			if (rafRef.current) {
+				cancelAnimationFrame(rafRef.current);
+			}
+		};
+	}, [countdown]);
 
 	return (
 		<>
@@ -108,7 +145,7 @@ const PageEmailVerify = () => {
 				})}
 			</p>
 
-			<VerifyCodeInput className="mt-[60px]" onSend={() => Promise.resolve(false)} />
+			<VerifyCodeInput className="mt-[60px]" onSubmit={handleSubmit} />
 
 			<p
 				className="text-sm mt-[30px] text-center
@@ -120,6 +157,7 @@ const PageEmailVerify = () => {
 			<Button
 				type="link"
 				size="large"
+				loading={loading}
 				className="block mx-auto mt-[12px]"
 				fontBold
 				disabled={receiving}
