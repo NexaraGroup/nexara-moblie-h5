@@ -1,4 +1,5 @@
 export interface Props<T> {
+	disabled?: boolean;
 	className?: string;
 	options?: {
 		label: string;

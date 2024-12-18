@@ -28,11 +28,20 @@ export default function Selector<T = string>(props: React.PropsWithChildren<Prop
 		return '';
 	}, [props.value, props.options]);
 
+	const handleClick = () => {
+		if (props.disabled) return;
+		props.onClick?.();
+	};
+
 	return (
-		<div className={`${styles.wrapper} ${props.className} relative`}>
+		<div
+			className={`${styles.wrapper} ${props.className ?? ''} relative ${
+				props.disabled ? 'opacity-50' : ''
+			}`}
+		>
 			<i
 				className="absolute position-full bg-transparent cursor-pointer"
-				onClick={props.onClick}
+				onClick={handleClick}
 			/>
 			<AntdInput value={showValue} />
 			{<AddonAfterCp>{<RightOutline />}</AddonAfterCp>}

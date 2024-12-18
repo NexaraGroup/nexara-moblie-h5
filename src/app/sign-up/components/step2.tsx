@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Button from '@/components/button';
 import Checkbox from '@/components/checkbox';
 import Form from '@/components/form';
@@ -18,6 +19,7 @@ import styles from '../index.module.scss';
 
 interface Props {
 	userType: UserType | undefined;
+	invitationCode?: string;
 }
 
 export default (props: Props) => {
@@ -25,9 +27,11 @@ export default (props: Props) => {
 	const tc = useTranslations();
 	const requireRuleTs = useRequireRuleTs({ tsKey: 'page-sign-up' });
 	const [form] = Form.useForm<IndividualForm | CorporateForm>();
+	const [loading, setLoading] = useImmer(false);
 	const [languagePopupVisible, setLanguagePopupVisible] = useImmer(false);
 
 	const handleOpenAgreement = (type: 'term' | 'privacy') => {
+		if (loading) return;
 		const env = process.env.DEPLOY_ENV;
 		const termMap = {
 			'prod': 'https://frontend-static-assets.hkbitex.com.hk/nexara/docs/Nexara_Custody_Online%20Application_Terms%20and%20Conditions.pdf',
@@ -50,9 +54,16 @@ export default (props: Props) => {
 		const values = form.getFieldsValue();
 		delete values.agreement;
 		console.log(values);
+		setLoading(true);
 		// api
-		// 跳转
+		// TODO，跳转
+		setLoading(false);
 	};
+
+	useEffect(() => {
+		if (props.invitationCode && form)
+			form.setFieldValue('invitationCode', props.invitationCode);
+	}, [form, props.invitationCode]);
 
 	return (
 		<>
@@ -64,11 +75,11 @@ export default (props: Props) => {
 						required
 						rules={requireRuleTs('t3')}
 					>
-						<Input maxLength={8} />
+						<Input maxLength={8} disabled={loading} />
 					</Form.Item>
 
 					<Form.Item label={t('t4')} name="name" required rules={requireRuleTs('t4')}>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
 					</Form.Item>
 
 					<Form.Item
@@ -77,7 +88,7 @@ export default (props: Props) => {
 						required
 						rules={requireRuleTs('t5')}
 					>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
 					</Form.Item>
 
 					<Form.Item
@@ -91,8 +102,9 @@ export default (props: Props) => {
 								message: tc('invalidEmail'),
 							},
 						]}
+						disabled={loading}
 					>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
 					</Form.Item>
 
 					<Form.Item
@@ -104,6 +116,7 @@ export default (props: Props) => {
 						<Selector<Language>
 							onClick={() => setLanguagePopupVisible(true)}
 							options={languageOptions}
+							disabled={loading}
 						/>
 					</Form.Item>
 
@@ -118,7 +131,7 @@ export default (props: Props) => {
 							},
 						]}
 					>
-						<Checkbox>
+						<Checkbox disabled={loading}>
 							{t.rich('f3', {
 								Link: (chunks) => (
 									<a
@@ -143,7 +156,14 @@ export default (props: Props) => {
 					</Form.Item>
 
 					<Form.Item>
-						<Button block shape="rounded" fontBold size="large" onClick={handleSubmit}>
+						<Button
+							block
+							shape="rounded"
+							fontBold
+							size="large"
+							onClick={handleSubmit}
+							loading={loading}
+						>
 							{t('b3')}
 						</Button>
 					</Form.Item>
@@ -156,7 +176,7 @@ export default (props: Props) => {
 						required
 						rules={requireRuleTs('t3')}
 					>
-						<Input maxLength={8} />
+						<Input maxLength={8} disabled={loading} />
 					</Form.Item>
 
 					<Form.Item
@@ -165,7 +185,7 @@ export default (props: Props) => {
 						required
 						rules={requireRuleTs('t8')}
 					>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
 					</Form.Item>
 
 					<Form.Item
@@ -174,11 +194,11 @@ export default (props: Props) => {
 						required
 						rules={requireRuleTs('t9')}
 					>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
 					</Form.Item>
 
 					<Form.Item label={t('t10')} name="businessNature">
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
 					</Form.Item>
 
 					<Form.Item
@@ -193,11 +213,11 @@ export default (props: Props) => {
 							},
 						]}
 					>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
 					</Form.Item>
 
 					<Form.Item label={t('t11')} name="intentionOfService">
-						<TextArea maxLength={COMMON_FIELD_MAX_LENGTH} rows={5} />
+						<TextArea maxLength={COMMON_FIELD_MAX_LENGTH} rows={5} disabled={loading} />
 					</Form.Item>
 
 					<Form.Item
@@ -209,6 +229,7 @@ export default (props: Props) => {
 						<Selector<Language>
 							onClick={() => setLanguagePopupVisible(true)}
 							options={languageOptions}
+							disabled={loading}
 						/>
 					</Form.Item>
 
@@ -223,7 +244,7 @@ export default (props: Props) => {
 							},
 						]}
 					>
-						<Checkbox>
+						<Checkbox disabled={loading}>
 							{t.rich('f3', {
 								Link: (chunks) => (
 									<a
@@ -248,7 +269,14 @@ export default (props: Props) => {
 					</Form.Item>
 
 					<Form.Item>
-						<Button block shape="rounded" fontBold size="large" onClick={handleSubmit}>
+						<Button
+							block
+							shape="rounded"
+							fontBold
+							size="large"
+							onClick={handleSubmit}
+							loading={loading}
+						>
 							{t('b3')}
 						</Button>
 					</Form.Item>

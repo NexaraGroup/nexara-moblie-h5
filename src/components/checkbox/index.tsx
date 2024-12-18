@@ -7,6 +7,7 @@ export default function Checkbox(props: React.PropsWithChildren<Props>) {
 	return (
 		<div className={styles.wrapper}>
 			<AntdCheckbox
+				disabled={props.disabled}
 				value={props.value}
 				icon={(checked) =>
 					!checked ? (
