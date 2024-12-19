@@ -6,9 +6,9 @@ import { <%= module.name %> as <%= module.name %>Class } from './<%= module.name
 import { HttpClient } from './http-client';
 
 const axiosOptions = {
-  baseURL: import.meta.env.VITE_APP_SERVER_IP_ADDR,
-  // withCredentials: true,
-  ignoreGlobalResponseErrorCodes: ['ErrNeedLogin', 'ErrNeedLogin'],
+  baseURL: process.env.BASE_URL,
+  withCredentials: true,
+  ignoreGlobalResponseErrorCodes: ['ErrNeedLogin'],
 };
 <% modules.forEach(function(module){ %>
 export const <%= module.name %> = new <%= module.name %>Class(axiosOptions);
