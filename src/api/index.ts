@@ -1,18 +1,22 @@
 // import Cookies from 'js-cookie';
 
-import { Backend as BackendClass } from './Backend';
+import { Custody as CustodyClass } from './Custody';
+
+import { Fiat as FiatClass } from './Fiat';
+
+import { Handle as HandleClass } from './Handle';
 
 import { Health as HealthClass } from './Health';
 
+import { Investment as InvestmentClass } from './Investment';
+
 import { Login as LoginClass } from './Login';
 
-import { System as SystemClass } from './System';
-
-import { Token as TokenClass } from './Token';
-
-import { Transaction as TransactionClass } from './Transaction';
+import { Market as MarketClass } from './Market';
 
 import { User as UserClass } from './User';
+
+import { VpnHealth as VpnHealthClass } from './VpnHealth';
 
 // import { md5 } from 'js-md5';
 import { HttpClient } from './http-client';
@@ -23,19 +27,23 @@ const axiosOptions = {
   ignoreGlobalResponseErrorCodes: ['ErrNeedLogin'],
 };
 
-export const Backend = new BackendClass(axiosOptions);
+export const Custody = new CustodyClass(axiosOptions);
+
+export const Fiat = new FiatClass(axiosOptions);
+
+export const Handle = new HandleClass(axiosOptions);
 
 export const Health = new HealthClass(axiosOptions);
 
+export const Investment = new InvestmentClass(axiosOptions);
+
 export const Login = new LoginClass(axiosOptions);
 
-export const System = new SystemClass(axiosOptions);
-
-export const Token = new TokenClass(axiosOptions);
-
-export const Transaction = new TransactionClass(axiosOptions);
+export const Market = new MarketClass(axiosOptions);
 
 export const User = new UserClass(axiosOptions);
+
+export const VpnHealth = new VpnHealthClass(axiosOptions);
 
 export const Http = new HttpClient({});
 

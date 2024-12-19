@@ -10,59 +10,72 @@
  */
 
 import {
-  BaseRequest,
-  BaseResponse,
-  BaseResponseUserVo,
-  Login2FacodeRequest,
-  ResetPasswordRequest,
-  Send2FACodeByLoginRequest,
-  Send2FacodeByMailRequest,
+  _,
+  RegisterRequest,
+  SendFaCodeByInvitationRequest,
+  SendFaCodeByLoginRequest,
 } from './data-contracts';
 import { ContentType, HttpClient, RequestParams } from './http-client';
 
 export class Login<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
-   * @description Login by 2FA code
+   * @description loginByFaCode
    *
    * @tags login-controller
-   * @name Login2FacodeUsingPost
-   * @summary login2Facode
-   * @request POST:/login/login2Facode
+   * @name LoginByFaCodeUsingPost
+   * @summary LoginByFaCodeRequest
+   * @request POST:/login/loginByFaCode
    */
-  login2FacodeUsingPost = <T,>(request: Login2FacodeRequest, params: RequestParams = {}) =>
-    this.request<BaseResponseUserVo, void>({
-      path: `/login/login2Facode`,
+  loginByFaCodeUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
+    this.request<_, void>({
+      path: `/login/loginByFaCode`,
       method: 'POST',
       body: request,
       type: ContentType.Json,
       ...params,
     });
   /**
-   * @description logout
+   * @description loginByFaGa
    *
    * @tags login-controller
-   * @name LogoutUsingPost
-   * @summary logout
-   * @request POST:/login/logout
+   * @name LoginByFaGaUsingPost
+   * @summary LoginByFaGaRequest
+   * @request POST:/login/loginByFaGa
    */
-  logoutUsingPost = <T,>(request: BaseRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
-      path: `/login/logout`,
+  loginByFaGaUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
+    this.request<_, void>({
+      path: `/login/loginByFaGa`,
       method: 'POST',
       body: request,
       type: ContentType.Json,
       ...params,
     });
   /**
-   * @description reset new password
+   * @description register
+   *
+   * @tags login-controller
+   * @name RegisterUsingPost1
+   * @summary RegisterRequest
+   * @request POST:/login/register
+   */
+  registerUsingPost1 = <T,>(request: RegisterRequest, params: RequestParams = {}) =>
+    this.request<_, void>({
+      path: `/login/register`,
+      method: 'POST',
+      body: request,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description resetPassword
    *
    * @tags login-controller
    * @name ResetPasswordUsingPost
-   * @summary resetPassword
+   * @summary ResetPasswordRequest
    * @request POST:/login/resetPassword
    */
-  resetPasswordUsingPost = <T,>(request: ResetPasswordRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
+  resetPasswordUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
+    this.request<_, void>({
       path: `/login/resetPassword`,
       method: 'POST',
       body: request,
@@ -70,54 +83,70 @@ export class Login<SecurityDataType = unknown> extends HttpClient<SecurityDataTy
       ...params,
     });
   /**
-   * @description Login step1 by email and password ,send 2FA code
+   * @description sendFaByEmail
    *
    * @tags login-controller
-   * @name Send2FacodeByLoginUsingPost
-   * @summary send2Facode
-   * @request POST:/login/send2FacodeByLogin
+   * @name SendFaByEmailUsingPost
+   * @summary SendFaByEmailRequest
+   * @request POST:/login/sendFaByEmail
    */
-  send2FacodeByLoginUsingPost = <T,>(
-    request: Send2FACodeByLoginRequest,
-    params: RequestParams = {},
-  ) =>
-    this.request<BaseResponse, void>({
-      path: `/login/send2FacodeByLogin`,
+  sendFaByEmailUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
+    this.request<_, void>({
+      path: `/login/sendFaByEmail`,
       method: 'POST',
       body: request,
       type: ContentType.Json,
       ...params,
     });
   /**
-   * @description send 2FA Code to mail
+   * @description sendFaCodeByinvitation
    *
    * @tags login-controller
-   * @name Send2FacodeByMailUsingPost
-   * @summary send2FacodeByMail
-   * @request POST:/login/send2FacodeByMail
+   * @name SendFaCodeByInvitationUsingPost
+   * @summary SendFaCodeByInvitationRequest
+   * @request POST:/login/sendFaCodeByInvitation
    */
-  send2FacodeByMailUsingPost = <T,>(
-    request: Send2FacodeByMailRequest,
+  sendFaCodeByInvitationUsingPost = <T,>(
+    request: SendFaCodeByInvitationRequest,
     params: RequestParams = {},
   ) =>
-    this.request<BaseResponse, void>({
-      path: `/login/send2FacodeByMail`,
+    this.request<_, void>({
+      path: `/login/sendFaCodeByInvitation`,
       method: 'POST',
       body: request,
       type: ContentType.Json,
       ...params,
     });
   /**
-   * @description send reset password url to mail
+   * @description sendFaCodeByLogin
    *
    * @tags login-controller
-   * @name SendResetUrlMailUsingPost
-   * @summary sendResetUrlMail
-   * @request POST:/login/sendResetUrlMail
+   * @name SendFaCodeByLoginUsingPost
+   * @summary SendFaCodeByLoginRequest
+   * @request POST:/login/sendFaCodeByLogin
    */
-  sendResetUrlMailUsingPost = <T,>(request: Send2FacodeByMailRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
-      path: `/login/sendResetUrlMail`,
+  sendFaCodeByLoginUsingPost = <T,>(
+    request: SendFaCodeByLoginRequest,
+    params: RequestParams = {},
+  ) =>
+    this.request<_, void>({
+      path: `/login/sendFaCodeByLogin`,
+      method: 'POST',
+      body: request,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description verifyGaFa
+   *
+   * @tags login-controller
+   * @name VerifyGaFaUsingPost
+   * @summary VerifyGaFaRequest
+   * @request POST:/login/verifyGaFa
+   */
+  verifyGaFaUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
+    this.request<_, void>({
+      path: `/login/verifyGaFa`,
       method: 'POST',
       body: request,
       type: ContentType.Json,

@@ -79,7 +79,8 @@ const generate = (url, output, templateDirPath = path.join(__dirname, 'template'
 (async () => {
 	await generate(
 		// 'http://10.1.9.99:7983/v2/api-docs',
-		'http://10.1.9.123:7983/v2/api-docs',
+		'http://10.1.9.123:7982/v2/api-docs',
+		// 'http://10.1.9.123:7984/v2/api-docs',
 		// 'https://admin-backend-uat.894523.com/v2/api-docs',
 		path.resolve(process.cwd(), 'src/api'),
 	);
