@@ -17,7 +17,7 @@ export default getRequestConfig(async () => {
 		.default;
 	const feedbackPageMessage = (await import(`../../locales/${locale}/page-feedback.json`))
 		.default;
-
+	const bindGaPageMessage = (await import(`../../locales/${locale}/page-bind-ga.json`)).default;
 	return {
 		locale,
 		messages: {
@@ -42,6 +42,9 @@ export default getRequestConfig(async () => {
 			},
 			'page-feedback': {
 				...feedbackPageMessage,
+			},
+			'page-bind-ga': {
+				...bindGaPageMessage,
 			},
 		},
 	};

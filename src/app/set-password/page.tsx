@@ -14,6 +14,7 @@ const PageSetPassword = () => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const email = searchParams.get('email');
+	const type = searchParams.get('type');
 	const [form] = Form.useForm<{ password: string; confirmPassword?: string }>();
 	const requireRuleTs = useRequireRuleTs({ tsKey: 'page-set-password' });
 	const password = Form.useWatch('password', form);
@@ -39,9 +40,21 @@ const PageSetPassword = () => {
 
 	return (
 		<>
+			{type === '1' ? (
+				<div className="flex justify-between gap-[18px]">
+					{Array.from({ length: 3 }).map((_, index) => (
+						<i
+							key={index}
+							className={`flex-1 h-[4px] rounded-max transition-all duration-300 ease-in-out
+							bg-bg-c1 dark:bg-bg-c1-dark`}
+						/>
+					))}
+				</div>
+			) : null}
+
 			<h2
-				className="text-[28px] font-bold
-			text-fz-c1 dark:text-fz-c1"
+				className={`${type === '1' ? 'text-[24px] mt-[12px]' : 'text-[28px]'} font-bold
+			text-fz-c1 dark:text-fz-c1`}
 			>
 				{t('t1')}
 			</h2>

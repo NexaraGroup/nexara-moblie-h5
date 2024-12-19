@@ -37,4 +37,10 @@
 
 	--adm-button-text-color: theme('colors.dark-fz-c0');
 	--adm-button-background-color: theme('colors.dark-bg-c1');
+
+	// antd 组件，样式复写
+	.adm-toast-mask .adm-toast-main-text {
+		background: rgba(255, 255, 255, 0.8);
+		color: theme('colors.fz-c1');
+	}
 }

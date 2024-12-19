@@ -1,0 +1,16 @@
+{
+	"b1": "Copy",
+	"b2": "Next",
+	"b3": "Paste",
+	"b4": "Send",
+	"b5": "Next",
+	"e1": "Email Verification Code",
+	"m1": "Copied Successfully",
+	"t1": "Enable Google Authenticator",
+	"t2": "1. Open Google Authenticator, click the + icon in the bottom right corner, select 'Enter key'",
+	"t3": "2. After customizing the account, copy the key below, paste it into Google Authenticator, and click Add",
+	"t4": "Verify Activation",
+	"t5": "After successful addition, enter the valid verification code in the input box below",
+	"t6": "Google Authenticator Code",
+	"t7": "Email Verification Code for { email }"
+}
