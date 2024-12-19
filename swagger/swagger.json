@@ -1,0 +1,731 @@
+{
+  "info": {
+    "title": "nx",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/login/register": {
+      "post": {
+        "summary": "register",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userType": {
+                  "type": "integer",
+                  "description": "1 individual 2 enterprise"
+                },
+                "invitationCode": {
+                  "type": "string",
+                  "title": "邀请码"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "名称"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "businessNature": {
+                  "type": "string"
+                },
+                "intentionOfService": {
+                  "type": "string"
+                },
+                "language": {
+                  "type": "integer",
+                  "description": "1 engilish 2 chinese"
+                },
+                "faCode": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "country",
+                "email",
+                "businessNature",
+                "intentionOfService",
+                "language",
+                "faCode",
+                "userType"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "$ref": "#/definitions/OkResponse"
+            }
+          }
+        },
+        "security": [],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/login/sendFaCodeByInvitation": {
+      "post": {
+        "summary": "sendFaCodeByInvitation",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "invitationCode": {
+                  "type": "string",
+                  "description": "邀请码"
+                },
+                "email": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "email"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "$ref": "#/definitions/OkResponse"
+            }
+          }
+        },
+        "security": [],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/login/sendFaCodeByLogin": {
+      "post": {
+        "summary": "sendFaCodeByLogin",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "password",
+                "email"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "状态"
+                    },
+                    "isFirstLogin": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "isFirstLogin"
+                  ]
+                }
+              },
+              "required": [
+                "data",
+                "code"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/login/loginByFaCode": {
+      "post": {
+        "summary": "loginByFaCode",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "faCode": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "faCode",
+                "email"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "jwt_token": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "jwt_token"
+                  ]
+                }
+              },
+              "required": [
+                "data",
+                "code"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/user/getGASecretKey": {
+      "post": {
+        "summary": "getGASecretKey",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "encryptGaKey": {
+                      "type": "string"
+                    },
+                    "gaUrl": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "encryptGaKey",
+                    "gaUrl"
+                  ]
+                }
+              },
+              "required": [
+                "data",
+                "code"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/user/saveGACode": {
+      "post": {
+        "summary": "saveGACode",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "gaCode": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "gaCode"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "$ref": "#/definitions/OkResponse"
+            }
+          }
+        },
+        "security": [],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/user/setPassword": {
+      "post": {
+        "summary": "setPassword ",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "$ref": "#/definitions/OkResponse"
+            }
+          }
+        },
+        "security": [],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/login/loginByFaGa": {
+      "post": {
+        "summary": "loginByFaGa",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "faCode": {
+                  "type": "string"
+                },
+                "gaCode": {
+                  "type": "string"
+                },
+                "mail": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "faCode",
+                "gaCode",
+                "mail"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "$ref": "#/definitions/User"
+                    },
+                    "jwt_token": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "user",
+                    "jwt_token"
+                  ]
+                }
+              },
+              "required": [
+                "data",
+                "code"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/login/sendFaByEmail": {
+      "post": {
+        "summary": "sendFaByEmail",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "email"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "$ref": "#/definitions/OkResponse"
+            }
+          }
+        },
+        "security": [],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/login/resetPasswordValidate": {
+      "post": {
+        "summary": "resetPasswordValidate",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "faCode": {
+                  "type": "string"
+                },
+                "gaCode": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "faCode",
+                "gaCode"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "resetPasswordToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "resetPasswordToken"
+                  ]
+                }
+              },
+              "required": [
+                "data",
+                "code"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/login/resetPasswordByForget": {
+      "post": {
+        "summary": "resetPasswordByForget",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string"
+                },
+                "resetPasswordToken": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "password",
+                "resetPasswordToken"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "$ref": "#/definitions/OkResponse"
+            }
+          }
+        },
+        "security": [],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0",
+  "definitions": {
+    "OkResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ]
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "description": "用户类型，1 个人，2 机构"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "businessNature": {
+          "type": "string"
+        },
+        "intentionOfService": {
+          "type": "string"
+        },
+        "language": {
+          "type": "integer"
+        },
+        "everLogin": {
+          "type": "boolean",
+          "description": "是否登录过，没有登陆过表示首次登陆"
+        },
+        "isChangeInitPassword": {
+          "type": "boolean",
+          "description": "是否修改过初始密码"
+        },
+        "status": {
+          "type": "integer",
+          "description": "状态"
+        },
+        "hasGa": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "name",
+        "country",
+        "email",
+        "mobile",
+        "businessNature",
+        "intentionOfService",
+        "language",
+        "icon",
+        "everLogin",
+        "isChangeInitPassword",
+        "status",
+        "id",
+        "hasGa"
+      ]
+    }
+  },
+  "securityDefinitions": {},
+  "x-components": {}
+}

@@ -1,0 +1,33 @@
+// import Cookies from 'js-cookie';
+<% modules.forEach(function(module){ %>
+import { <%= module.name %> as <%= module.name %>Class } from './<%= module.name %>';
+<% }); %>
+// import { md5 } from 'js-md5';
+import { HttpClient } from './http-client';
+
+const axiosOptions = {
+  baseURL: import.meta.env.VITE_APP_SERVER_IP_ADDR,
+  // withCredentials: true,
+  ignoreGlobalResponseErrorCodes: ['ErrNeedLogin', 'ErrNeedLogin'],
+};
+<% modules.forEach(function(module){ %>
+export const <%= module.name %> = new <%= module.name %>Class(axiosOptions);
+<% }); %>
+export const Http = new HttpClient({});
+
+/** <!-- Http.instance.interceptors.request.use((config) => {
+  if (config.headers) {
+    config.headers['clienttype'] = 'web';
+    config.headers['accept-language'] = 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7';
+    config.headers['bnc-location'] = Cookies.get('BNC-Location');
+    config.headers['bnc-uuid'] = Cookies.get('bnc-uuid');
+    config.headers['csrftoken'] = md5(Cookies.get('cr00') || '');
+    config.headers['fvideo-id'] = Cookies.get('BNC_FV_KEY');
+    config.headers['lang'] = 'zh-CN';
+    config.headers.Accept = '*';
+  }
+  if (config.method?.toLocaleUpperCase() === 'POST') {
+    config.withCredentials = true;
+  }
+  return config;
+}); --> */
