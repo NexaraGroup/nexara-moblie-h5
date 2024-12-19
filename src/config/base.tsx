@@ -11,3 +11,5 @@ export const NO_AUTH_ROUTES = [
 	'/feedback',
 	'/forgot-password',
 ];
+
+export const TOKEN_KEY = 'nexara-mobile-h5-token';
