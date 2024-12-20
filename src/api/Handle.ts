@@ -9,7 +9,10 @@
  * ---------------------------------------------------------------
  */
 
-import { _, QueryTransactionRequest } from './data-contracts';
+import {
+  BaseResponseListRecentTransactionResponse,
+  QueryTransactionRequest,
+} from './data-contracts';
 import { ContentType, HttpClient, RequestParams } from './http-client';
 
 export class Handle<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
@@ -25,7 +28,7 @@ export class Handle<SecurityDataType = unknown> extends HttpClient<SecurityDataT
     request: QueryTransactionRequest,
     params: RequestParams = {},
   ) =>
-    this.request<_, void>({
+    this.request<BaseResponseListRecentTransactionResponse, void>({
       path: `/handle/transaction/recent`,
       method: 'POST',
       body: request,

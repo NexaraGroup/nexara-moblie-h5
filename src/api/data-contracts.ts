@@ -23,6 +23,8 @@ export interface AddBankRequest {
   bankAccount?: string;
   /** 银行名称 */
   bankName?: string;
+  /** 币种 */
+  currency?: string;
   /** 银行其它扩展信息，用k-v的JSON形式 */
   extInfo?: string;
   /**
@@ -39,16 +41,86 @@ export interface AddBankRequest {
   userName?: string;
 }
 
-/** BasePageResponse */
-export interface BasePageResponse {
-  content?: BasePageObject;
+/** AddressVo */
+export interface AddressVo {
+  /** address */
+  address?: string;
   /**
-   * 返回码 0成功，其他为失败,例如15xxx
+   * blockchainId
+   * @format int64
+   */
+  blockchainId?: number;
+  /** blockchainName */
+  blockchainName?: string;
+  /**
+   * chainId
+   * @format int64
+   */
+  chainId?: number;
+  /**
+   * 1=bitcoin链,2=eth链,3=bsc链
    * @format int32
    */
-  respCode?: number;
-  /** 返回信息,用于非成功说明 */
-  respMsg?: string;
+  chainType?: number;
+  /**
+   * id
+   * @format int64
+   */
+  id?: number;
+  /** 链名称 */
+  name?: string;
+  /**
+   * 1=MAIN_NET，2=TEST_NET
+   * @format int32
+   */
+  networkType?: number;
+  /**
+   * 0=废弃,1=有效，2=冻结
+   * @format int32
+   */
+  status?: number;
+  /** 交易所名称 */
+  tradingName?: string;
+  /**
+   * 1=deposit，2=hot，3=cold，4=warm,5=gas
+   * @format int32
+   */
+  type?: number;
+  /**
+   * walletId
+   * @format int64
+   */
+  walletId?: number;
+}
+
+/** BalanceVo */
+export interface BalanceVo {
+  /** balance */
+  balance?: string;
+  /** icon */
+  icon?: string;
+  /** lockedAmount */
+  lockedAmount?: string;
+  /** price */
+  price?: string;
+  /** token balance - freeze_amount */
+  realBalance?: string;
+  /** remark */
+  remark?: string;
+  /**
+   * tokenId
+   * @format int64
+   */
+  tokenId?: number;
+  /** tokenName */
+  tokenName?: string;
+  /** tradingName */
+  tradingName?: string;
+  /**
+   * userId
+   * @format int64
+   */
+  userId?: number;
 }
 
 /** BaseRequest */
@@ -77,6 +149,18 @@ export interface BaseRequest {
   userId?: number;
 }
 
+/** BaseResponse */
+export interface BaseResponse {
+  content?: object;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
 /** BaseUserRequest */
 export interface BaseUserRequest {
   /**
@@ -91,6 +175,234 @@ export interface BaseUserRequest {
   userId?: number;
   /** userName */
   userName?: string;
+}
+
+/** BlockchainVo */
+export interface BlockchainVo {
+  /**
+   * chainId
+   * @format int64
+   */
+  chainId?: number;
+  /**
+   * chainType
+   * @format int32
+   */
+  chainType?: number;
+  /**
+   * confirmations
+   * @format int32
+   */
+  confirmations?: number;
+  /**
+   * id
+   * @format int64
+   */
+  id?: number;
+  /** name */
+  name?: string;
+  /**
+   * networkType
+   * @format int32
+   */
+  networkType?: number;
+  /** tradingName */
+  tradingName?: string;
+  /** txTime */
+  txTime?: string;
+}
+
+/** ChildBalanceVo */
+export interface ChildBalanceVo {
+  /**
+   * accountStatus
+   * @format int32
+   */
+  accountStatus?: number;
+  /** 邮箱 */
+  email?: string;
+  /**
+   * 签约状态
+   * @format int32
+   */
+  fmsStatus?: number;
+  /** USDC=balance*price */
+  fmsUsdc?: string;
+  /** invitationTime */
+  invitationTime?: string;
+  /** kycTime */
+  kycTime?: string;
+  /** 手机 */
+  mobile?: string;
+  /** name */
+  name?: string;
+  /** 签约时间 */
+  signedTime?: string;
+  /**
+   * userId
+   * @format int64
+   */
+  userId?: number;
+}
+
+/** CommissionVo */
+export interface CommissionVo {
+  /** amount */
+  amount?: string;
+  /** holdValue */
+  holdValue?: number;
+  /**
+   * id
+   * @format int64
+   */
+  id?: number;
+  /**
+   * investmentId
+   * @format int64
+   */
+  investmentId?: number;
+  /** logDate结算时间 */
+  logDate?: string;
+  /**
+   * maturityTime到期时间
+   * @format int64
+   */
+  maturityTime?: number;
+  /** token单价 */
+  price?: number;
+  /** rate */
+  rate?: string;
+  /** sourceAmount */
+  sourceAmount?: string;
+  /**
+   * status：1=未兑付，2=已兑付，3=转账中，4=已转账
+   * @format int32
+   */
+  status?: number;
+  /**
+   * toUserId
+   * @format int64
+   */
+  toUserId?: number;
+  /**
+   * tokenId
+   * @format int64
+   */
+  tokenId?: number;
+  /** tokenName */
+  tokenName?: string;
+  /**
+   * txId
+   * @format int64
+   */
+  txId?: number;
+  /**
+   * userId
+   * @format int64
+   */
+  userId?: number;
+}
+
+/** ContractVo */
+export interface ContractVo {
+  /** 合约地址 */
+  address?: string;
+  /** 合约代码 */
+  code?: string;
+  /**
+   * 合约ID
+   * @format int64
+   */
+  contractId?: number;
+  /** name合约名称 */
+  name?: string;
+  /**
+   * 所有者ID
+   * @format int64
+   */
+  owner?: number;
+  /** 备注 */
+  remark?: string;
+  /** 合约BIP规范集 */
+  standard?: string[];
+  /** 版本 */
+  version?: string;
+}
+
+/** CustodyBalanceVo */
+export interface CustodyBalanceVo {
+  /** balance */
+  balance?: string;
+  /**
+   * blockchainId
+   * @format int64
+   */
+  blockchainId?: number;
+  /** blockchainName */
+  blockchainName?: string;
+  /** icon url */
+  icon?: string;
+  /** lockedAmount */
+  lockedAmount?: string;
+  /** price */
+  price?: number;
+  /** token balance - freeze_amount */
+  realBalance?: string;
+  /** remark */
+  remark?: string;
+  /**
+   * tokenId
+   * @format int64
+   */
+  tokenId?: number;
+  /** tokenname */
+  tokenName?: string;
+  /** token交易名称 */
+  tradingName?: string;
+  /**
+   * userId
+   * @format int64
+   */
+  userId?: number;
+}
+
+/** CustodyTransactionVo */
+export interface CustodyTransactionVo {
+  amount?: string;
+  /** @format int64 */
+  blockChainId?: number;
+  blockChainName?: string;
+  errorMsg?: string;
+  fee?: string;
+  fromAddress?: string;
+  fromName?: string;
+  /** @format int64 */
+  fromUserId?: number;
+  /** @format int64 */
+  id?: number;
+  /** @format int64 */
+  requestId?: number;
+  riskScore?: string;
+  riskTime?: string;
+  /** @format int32 */
+  status?: number;
+  toAddress?: string;
+  toName?: string;
+  /** @format int64 */
+  toUserId?: number;
+  /** @format int64 */
+  tokenId?: number;
+  tokenName?: string;
+  txBillTime?: string;
+  txHash?: string;
+  txTime?: string;
+  /** @format int32 */
+  txType?: number;
+  updateTime?: string;
+  /** @format int64 */
+  userId?: number;
+  /** @format int64 */
+  walletTxId?: number;
 }
 
 /** DepositRequest */
@@ -179,7 +491,10 @@ export interface FiatTransactionInfoResponse {
 
 /** GenerateUserDepositAddressRequest */
 export interface GenerateUserDepositAddressRequest {
-  /** @format int64 */
+  /**
+   * blockchainId
+   * @format int64
+   */
   blockchainId?: number;
   /** @format int64 */
   userId?: number;
@@ -187,14 +502,21 @@ export interface GenerateUserDepositAddressRequest {
 
 /** GetInvestmentParameterRequest */
 export interface GetInvestmentParameterRequest {
-  /** @format int64 */
+  /**
+   * investmentId
+   * @format int64
+   */
   investmentId?: number;
 }
 
 /** GetTokenPolicyRequest */
 export interface GetTokenPolicyRequest {
-  /** @format int64 */
+  /**
+   * tokenId
+   * @format int64
+   */
   tokenId?: number;
+  /** typeList */
   typeList?: number[];
   /** @format int64 */
   userId?: number;
@@ -203,10 +525,32 @@ export interface GetTokenPolicyRequest {
 /** GetTransactionRequest */
 export interface GetTransactionRequest {
   /**
+   * loginUserId
+   * @format int64
+   * @example 1
+   */
+  loginUserId?: number;
+  /**
+   * third api use
+   * @example 1
+   */
+  thirdType?: string;
+  /**
+   * third api use
+   * @example 1
+   */
+  thirdUserId?: string;
+  /**
    * 交易ID
    * @format int64
    */
   txId?: number;
+  /**
+   * userId
+   * @format int64
+   * @example 1
+   */
+  userId?: number;
 }
 
 /** GetUserInfoRequest */
@@ -237,15 +581,40 @@ export interface GetUserInfoRequest {
 
 /** GoogleAuthDto */
 export interface GoogleAuthDto {
+  /** 加密GAkey */
   encryptGaKey?: string;
+  /** Google Auth url */
   gaUrl?: string;
+}
+
+/** InvestmentVo */
+export interface InvestmentVo {
+  /** extInfo */
+  extInfo?: Record<string, string>;
+  /**
+   * fundId
+   * @format int64
+   */
+  fundId?: number;
+  /** name */
+  name?: string;
+  /** remark */
+  remark?: string;
+  /**
+   * 0=禁用,1=启用
+   * @format int32
+   */
+  status?: number;
 }
 
 /** ListWalletInfoRequest */
 export interface ListWalletInfoRequest {
   /** @format int64 */
   userId?: number;
-  /** @format int32 */
+  /**
+   * walletStatus:1=有效,2=冻结
+   * @format int32
+   */
   walletStatus?: number;
 }
 
@@ -282,8 +651,12 @@ export interface QueryAccountResponse {
 
 /** QueryBalanceRequest */
 export interface QueryBalanceRequest {
-  /** @format int64 */
+  /**
+   * tokenId
+   * @format int64
+   */
   tokenId?: number;
+  /** tokenNo */
   tokenNo?: string;
   /** @format int64 */
   userId?: number;
@@ -353,6 +726,37 @@ export interface QueryByMailRequest {
   userId?: number;
 }
 
+/** QueryChildBalanceResponse */
+export interface QueryChildBalanceResponse {
+  /** 数据列表 */
+  list?: ChildBalanceVo[];
+  /**
+   * 页码
+   * @format int32
+   */
+  pageNum?: number;
+  /**
+   * 每页数量
+   * @format int32
+   */
+  pageSize?: number;
+  /**
+   * 总页数
+   * @format int32
+   */
+  pages?: number;
+  /**
+   * 当前页的数量
+   * @format int32
+   */
+  size?: number;
+  /**
+   * 总数
+   * @format int32
+   */
+  total?: number;
+}
+
 /** QueryCurrencyResponse */
 export interface QueryCurrencyResponse {
   /** 币种：USD，HKD */
@@ -406,7 +810,10 @@ export interface QueryFiatTransactionRequest {
 
 /** QueryInvestmentBalanceRequest */
 export interface QueryInvestmentBalanceRequest {
-  /** @format int64 */
+  /**
+   * investmentId
+   * @format int64
+   */
   investmentId?: number;
   /** @format int64 */
   userId?: number;
@@ -435,41 +842,75 @@ export interface QueryParameterResponse {
 
 /** QueryTransactionRequest */
 export interface QueryTransactionRequest {
-  /** @format date-time */
+  /**
+   * billEndTime
+   * @format date-time
+   */
   billEndTime?: string;
-  /** @format date-time */
+  /**
+   * billStartTime
+   * @format date-time
+   */
   billStartTime?: string;
+  /** endTime */
   endTime?: string;
-  /** @format int64 */
+  /**
+   * investmentId
+   * @format int64
+   */
   investmentId?: number;
-  /** @format int32 */
+  /**
+   * pageNum
+   * @format int32
+   */
   pageNum?: number;
-  /** @format int32 */
+  /**
+   * pageSize
+   * @format int32
+   */
   pageSize?: number;
-  /** @format int64 */
+  /**
+   * queryUserId
+   * @format int64
+   */
   queryUserId?: number;
+  /** requestId */
   requestId?: string;
+  /** startTime */
   startTime?: string;
+  /** statusList:null=all,1=Processing,2=Pending,3=Success,4=Failed,5=Flagged,6=WaitSend,7=Exception,8=Cancel */
   statusList?: number[];
+  /** tokenList */
   tokenList?: number[];
+  /** txHash */
   txHash?: string;
+  /** txIdList */
   txIdList?: number[];
+  /** txTypeList:null = all,1=Deposit,2=WithDraw,3=TransferOut,4=SubscribeRequest,5=RedeemRequest,6=Approve,7=GasDeposit,8=GasTransfer,9=Subscribe,10=Redeem,11=TransferIn,31=SpeedUp */
   txTypeList?: number[];
   /** @format int64 */
   userId?: number;
-  /** @format int64 */
+  /**
+   * walletId
+   * @format int64
+   */
   walletId?: number;
 }
 
 /** QueryUserListInvestmentBalanceRequest */
 export interface QueryUserListInvestmentBalanceRequest {
+  /** userIds */
   userIds?: number[];
 }
 
 /** QueryUserRateRequest */
 export interface QueryUserRateRequest {
+  /** channel */
   channel?: string;
-  /** @format int64 */
+  /**
+   * productId
+   * @format int64
+   */
   productId?: number;
   /** @format int64 */
   userId?: number;
@@ -477,33 +918,72 @@ export interface QueryUserRateRequest {
 
 /** QueryYieldRequest */
 export interface QueryYieldRequest {
+  /** endTime */
   endTime?: string;
-  /** @format int64 */
+  /**
+   * investmentId
+   * @format int64
+   */
   investmentId?: number;
-  /** @format int32 */
+  /**
+   * pageNum
+   * @format int32
+   */
   pageNum?: number;
-  /** @format int32 */
+  /**
+   * pageSize
+   * @format int32
+   */
   pageSize?: number;
-  /** @format int64 */
+  /**
+   * queryUserId
+   * @format int64
+   */
   queryUserId?: number;
+  /** startTime */
   startTime?: string;
   /** @format int64 */
   userId?: number;
 }
 
+/** RecentTransactionResponse */
+export interface RecentTransactionResponse {
+  /** amount */
+  amount?: string;
+  /** currency */
+  currency?: string;
+  /** fee */
+  fee?: string;
+  /**
+   * status:1=Processing,2=Pending,3=Success,4=Failed,5=Flagged,6=WaitSend,7=Exception,8=Cancel
+   * @format int32
+   */
+  status?: number;
+  /** txTime */
+  txTime?: string;
+  /**
+   * txType:1=Deposit,2=WithDraw,3=TransferOut,4=SubscribeRequest,5=RedeemRequest,6=Approve,7=GasDeposit,8=GasTransfer,9=Subscribe,10=Redeem,11=TransferIn,31=SpeedUp
+   * @format int32
+   */
+  txType?: number;
+}
+
 /** RedeemByGaRequest */
 export interface RedeemByGaRequest {
+  /** amount */
   amount?: number;
+  /** gaCode */
   gaCode?: string;
-  /** @format int64 */
-  investmentId?: number;
-  remark?: string;
-  requestId?: string;
   /**
-   * userId
+   * investmentId
    * @format int64
-   * @example 1
    */
+  investmentId?: number;
+  /** remark */
+  remark?: string;
+  /** requestId */
+  requestId?: string;
+  /** @format int64 */
   userId?: number;
 }
 
@@ -594,6 +1074,7 @@ export interface SendFaCodeByLoginRequest {
 
 /** SetPasswordRequest */
 export interface SetPasswordRequest {
+  /** password */
   password?: string;
   /** @format int64 */
   userId?: number;
@@ -601,54 +1082,247 @@ export interface SetPasswordRequest {
 
 /** SubscribeRequest */
 export interface SubscribeRequest {
+  /** amount */
   amount?: number;
-  /** @format int64 */
+  /**
+   * investmentId
+   * @format int64
+   */
   investmentId?: number;
+  /** remark */
   remark?: string;
+  /** requestId */
   requestId?: string;
   /** @format int64 */
   userId?: number;
 }
 
-/** UserRejestRequest */
-export interface UserRejestRequest {
+/** TokenPolicyVo */
+export interface TokenPolicyVo {
+  /** amount */
+  amount?: string;
   /**
-   * investmentId
+   * policyType:10=最小提现金额，11=最大提现金额
+   * @format int32
+   */
+  policyType?: number;
+  /** remark */
+  remark?: string;
+  /**
+   * tokenId
    * @format int64
-   * @example 1
+   */
+  tokenId?: number;
+}
+
+/** TokenVo */
+export interface TokenVo {
+  /**
+   * blockChainId
+   * @format int64
+   */
+  blockChainId?: number;
+  /** blockChainName */
+  blockChainName?: string;
+  /**
+   * ETH兼容链chainid
+   * @format int64
+   */
+  chainId?: number;
+  /**
+   * 1=bitcoin，2=ethereum，3=bsc，4=polygon，5=Solana，6=AVAX_C，7=TRON，8=Litecoin，9=Dogecoin，10=Polkadot，11=XRP，12=TON
+   * @format int32
+   */
+  chainType?: number;
+  /**
+   * 确认数
+   * @format int32
+   */
+  confirmations?: number;
+  /** 合约地址 */
+  contract?: string;
+  /** contractVo */
+  contractVo?: ContractVo;
+  /**
+   * 小数位(必填)
+   * @format int32
+   */
+  decimals?: number;
+  /** extInfo */
+  extInfo?: Record<string, string>;
+  /** icon */
+  icon?: string;
+  /** ETHCoin */
+  name?: string;
+  /**
+   * 1=MAIN_NET，2=TEST_NET
+   * @format int32
+   */
+  networkType?: number;
+  /** remark */
+  remark?: string;
+  /**
+   * 0=禁用,1=启用
+   * @format int32
+   */
+  status?: number;
+  /**
+   * tokenId
+   * @format int64
+   */
+  tokenId?: number;
+  /** ETH */
+  tradingName?: string;
+  /** 链交易预估时间 */
+  txTime?: string;
+  /**
+   * type 1=原生币，2=合约币
+   * @format int32
+   */
+  type?: number;
+}
+
+/** TransactionVo */
+export interface TransactionVo {
+  /** 交易金额 */
+  amount?: string;
+  /**
+   * blockChainId
+   * @format int64
+   */
+  blockChainId?: number;
+  /** blockChainName */
+  blockChainName?: string;
+  /** 异常信息 */
+  errorMsg?: string;
+  /** 交易费用 */
+  fee?: string;
+  /**  转出账户名称 */
+  fromAddress?: string;
+  /** fromName */
+  fromName?: string;
+  /**
+   * fromUserId
+   * @format int64
+   */
+  fromUserId?: number;
+  /**
+   * 交易ID
+   * @format int64
+   */
+  id?: number;
+  /**
+   *  投资产品ID
+   * @format int64
    */
   investmentId?: number;
+  /** 投资产品名称 */
+  investmentName?: string;
   /**
-   * loginUserId
+   * 请求id
    * @format int64
-   * @example 1
    */
-  loginUserId?: number;
+  requestId?: number;
   /**
-   * third api use
-   * @example 1
+   * 交易状态:1=Pending、2=WaitSend、3=UnConfirm、4=Success、5=Failed,6=Processing,7=Sent,8=Exception,9=WaitSign,10=SpeedUpSuccess,11=ExecutionFail
+   * @format int32
    */
-  thirdType?: string;
+  status?: number;
+  /** 转入账户/用户企业名称 */
+  toAddress?: string;
+  /** toName */
+  toName?: string;
   /**
-   * third api use
-   * @example 1
+   * toUserId
+   * @format int64
    */
-  thirdUserId?: string;
+  toUserId?: number;
+  /**
+   * 链币种ID
+   * @format int64
+   */
+  tokenId?: number;
+  /** tokenName */
+  tokenName?: string;
+  /** 交易完成时间ms */
+  txBillTime?: string;
+  /** 交易HASH */
+  txHash?: string;
+  /** 交易创建时间戳ms */
+  txTime?: string;
+  /**
+   * 交易类型:1=充值,2=提现,3=授权,4=mint,7=gas充值,8=gas转账,31=交易重发加速
+   * @format int32
+   */
+  txType?: number;
+  /** 交易更新时间戳ms */
+  updateTime?: string;
+  /**
+   * 归属用户ID
+   * @format int64
+   */
+  userId?: number;
+  /**
+   * walletTxId
+   * @format int64
+   */
+  walletTxId?: number;
+}
+
+/** UserAcquisitionInfoResponse */
+export interface UserAcquisitionInfoResponse {
+  /** invitationCode */
+  invitationCode?: string;
+  /** rate */
+  rate?: number;
+  /** totalYield */
+  totalYield?: number;
   /**
    * userId
    * @format int64
-   * @example 1
    */
   userId?: number;
 }
 
 /** VerifyAddressRequest */
 export interface VerifyAddressRequest {
+  /** address */
   address?: string;
-  /** @format int64 */
+  /**
+   * blockChainId
+   * @format int64
+   */
   blockChainId?: number;
   /** @format int64 */
   userId?: number;
+}
+
+/** WalletVo */
+export interface WalletVo {
+  /** addressList */
+  addressList?: AddressVo[];
+  /**
+   * wallet  id
+   * @format int64
+   */
+  id?: number;
+  /** wallet name */
+  name?: string;
+  /**
+   * 状态(1=有效,0=废弃)
+   * @format int32
+   */
+  status?: number;
+  /**
+   * 钱包类型 1=Deposit,2=Hot,3=Cold,4=Warm,5=Gas,6=Net
+   * @format int32
+   */
+  type?: number;
+  /**
+   * 钱包创建时间
+   * @format date-time
+   */
+  walletCreateTime?: string;
 }
 
 /** WithdrawFiatRequest */
@@ -746,6 +1420,69 @@ export interface WithdrawRequest {
   userId?: number;
 }
 
+/** YieldsVo */
+export interface YieldsVo {
+  /** currency */
+  currency?: string;
+  /** earnings */
+  earnings?: number;
+  /** holdBalance */
+  holdBalance?: number;
+  /**
+   * id
+   * @format int64
+   */
+  id?: number;
+  /**
+   * investmentId
+   * @format int64
+   */
+  investmentId?: number;
+  /** logDate */
+  logDate?: string;
+  /** maturityTime */
+  maturityTime?: string;
+  /**
+   * status：1=未兑付，2=已兑付，3=转账中，4=已转账
+   * @format int32
+   */
+  status?: number;
+  /**
+   * txId
+   * @format int64
+   */
+  txId?: number;
+  /**
+   * userId
+   * @format int64
+   */
+  userId?: number;
+}
+
+/** BasePageResponse«CommissionVo» */
+export interface BasePageResponseCommissionVo {
+  content?: BasePageCommissionVo;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BasePageResponse«CustodyTransactionVo» */
+export interface BasePageResponseCustodyTransactionVo {
+  content?: BasePageCustodyTransactionVo;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
 /** BasePageResponse«FiatTransactionInfoResponse» */
 export interface BasePageResponseFiatTransactionInfoResponse {
   content?: BasePageFiatTransactionInfoResponse;
@@ -756,6 +1493,92 @@ export interface BasePageResponseFiatTransactionInfoResponse {
   respCode?: number;
   /** 返回信息,用于非成功说明 */
   respMsg?: string;
+}
+
+/** BasePageResponse«TransactionVo» */
+export interface BasePageResponseTransactionVo {
+  content?: BasePageTransactionVo;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BasePageResponse«YieldsVo» */
+export interface BasePageResponseYieldsVo {
+  content?: BasePageYieldsVo;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BasePage«CommissionVo» */
+export interface BasePageCommissionVo {
+  /** 数据列表 */
+  list?: CommissionVo[];
+  /**
+   * 页码
+   * @format int32
+   */
+  pageNum?: number;
+  /**
+   * 每页数量
+   * @format int32
+   */
+  pageSize?: number;
+  /**
+   * 总页数
+   * @format int32
+   */
+  pages?: number;
+  /**
+   * 当前页的数量
+   * @format int32
+   */
+  size?: number;
+  /**
+   * 总数
+   * @format int32
+   */
+  total?: number;
+}
+
+/** BasePage«CustodyTransactionVo» */
+export interface BasePageCustodyTransactionVo {
+  /** 数据列表 */
+  list?: CustodyTransactionVo[];
+  /**
+   * 页码
+   * @format int32
+   */
+  pageNum?: number;
+  /**
+   * 每页数量
+   * @format int32
+   */
+  pageSize?: number;
+  /**
+   * 总页数
+   * @format int32
+   */
+  pages?: number;
+  /**
+   * 当前页的数量
+   * @format int32
+   */
+  size?: number;
+  /**
+   * 总数
+   * @format int32
+   */
+  total?: number;
 }
 
 /** BasePage«FiatTransactionInfoResponse» */
@@ -789,10 +1612,10 @@ export interface BasePageFiatTransactionInfoResponse {
   total?: number;
 }
 
-/** BasePage«object» */
-export interface BasePageObject {
+/** BasePage«TransactionVo» */
+export interface BasePageTransactionVo {
   /** 数据列表 */
-  list?: object[];
+  list?: TransactionVo[];
   /**
    * 页码
    * @format int32
@@ -820,9 +1643,40 @@ export interface BasePageObject {
   total?: number;
 }
 
-/** 公共请求回复 */
-export interface _ {
-  content?: object;
+/** BasePage«YieldsVo» */
+export interface BasePageYieldsVo {
+  /** 数据列表 */
+  list?: YieldsVo[];
+  /**
+   * 页码
+   * @format int32
+   */
+  pageNum?: number;
+  /**
+   * 每页数量
+   * @format int32
+   */
+  pageSize?: number;
+  /**
+   * 总页数
+   * @format int32
+   */
+  pages?: number;
+  /**
+   * 当前页的数量
+   * @format int32
+   */
+  size?: number;
+  /**
+   * 总数
+   * @format int32
+   */
+  total?: number;
+}
+
+/** BaseResponse«AddressVo» */
+export interface BaseResponseAddressVo {
+  content?: AddressVo;
   /**
    * 返回码 0成功，其他为失败,例如15xxx
    * @format int32
@@ -832,8 +1686,20 @@ export interface _ {
   respMsg?: string;
 }
 
-/** 公共请求回复«FiatTransactionInfoResponse» */
-export interface FiatTransactionInfoResponse {
+/** BaseResponse«CustodyTransactionVo» */
+export interface BaseResponseCustodyTransactionVo {
+  content?: CustodyTransactionVo;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«FiatTransactionInfoResponse» */
+export interface BaseResponseFiatTransactionInfoResponse {
   content?: FiatTransactionInfoResponse;
   /**
    * 返回码 0成功，其他为失败,例如15xxx
@@ -844,8 +1710,8 @@ export interface FiatTransactionInfoResponse {
   respMsg?: string;
 }
 
-/** 公共请求回复«GoogleAuthDto» */
-export interface GoogleAuthDto {
+/** BaseResponse«GoogleAuthDto» */
+export interface BaseResponseGoogleAuthDto {
   content?: GoogleAuthDto;
   /**
    * 返回码 0成功，其他为失败,例如15xxx
@@ -856,8 +1722,56 @@ export interface GoogleAuthDto {
   respMsg?: string;
 }
 
-/** 公共请求回复«List«QueryAccountResponse»» */
-export interface ListQueryAccountResponse {
+/** BaseResponse«List«BalanceVo»» */
+export interface BaseResponseListBalanceVo {
+  content?: BalanceVo[];
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«List«BlockchainVo»» */
+export interface BaseResponseListBlockchainVo {
+  content?: BlockchainVo[];
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«List«CustodyBalanceVo»» */
+export interface BaseResponseListCustodyBalanceVo {
+  content?: CustodyBalanceVo[];
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«List«InvestmentVo»» */
+export interface BaseResponseListInvestmentVo {
+  content?: InvestmentVo[];
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«List«QueryAccountResponse»» */
+export interface BaseResponseListQueryAccountResponse {
   content?: QueryAccountResponse[];
   /**
    * 返回码 0成功，其他为失败,例如15xxx
@@ -868,8 +1782,8 @@ export interface ListQueryAccountResponse {
   respMsg?: string;
 }
 
-/** 公共请求回复«List«QueryCurrencyResponse»» */
-export interface ListQueryCurrencyResponse {
+/** BaseResponse«List«QueryCurrencyResponse»» */
+export interface BaseResponseListQueryCurrencyResponse {
   content?: QueryCurrencyResponse[];
   /**
    * 返回码 0成功，其他为失败,例如15xxx
@@ -880,8 +1794,8 @@ export interface ListQueryCurrencyResponse {
   respMsg?: string;
 }
 
-/** 公共请求回复«List«QueryParameterResponse»» */
-export interface ListQueryParameterResponse {
+/** BaseResponse«List«QueryParameterResponse»» */
+export interface BaseResponseListQueryParameterResponse {
   content?: QueryParameterResponse[];
   /**
    * 返回码 0成功，其他为失败,例如15xxx
@@ -891,6 +1805,130 @@ export interface ListQueryParameterResponse {
   /** 返回信息,用于非成功说明 */
   respMsg?: string;
 }
+
+/** BaseResponse«List«RecentTransactionResponse»» */
+export interface BaseResponseListRecentTransactionResponse {
+  content?: RecentTransactionResponse[];
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«List«TokenPolicyVo»» */
+export interface BaseResponseListTokenPolicyVo {
+  content?: TokenPolicyVo[];
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«List«TokenVo»» */
+export interface BaseResponseListTokenVo {
+  content?: TokenVo[];
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«List«WalletVo»» */
+export interface BaseResponseListWalletVo {
+  content?: WalletVo[];
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«Map«string,string»» */
+export interface BaseResponseMapStringString {
+  content?: Record<string, string>;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«QueryChildBalanceResponse» */
+export interface BaseResponseQueryChildBalanceResponse {
+  content?: QueryChildBalanceResponse;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«TransactionVo» */
+export interface BaseResponseTransactionVo {
+  content?: TransactionVo;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«UserAcquisitionInfoResponse» */
+export interface BaseResponseUserAcquisitionInfoResponse {
+  content?: UserAcquisitionInfoResponse;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«boolean» */
+export interface BaseResponseBoolean {
+  content?: boolean;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«long» */
+export interface BaseResponseLong {
+  /** @format int64 */
+  content?: number;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** Map«string,string» */
+export type MapStringString = Record<string, string>;
 
 export interface GetTermConditionsUsingPostParams {
   /**

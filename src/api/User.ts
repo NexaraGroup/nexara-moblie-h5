@@ -10,11 +10,11 @@
  */
 
 import {
-  _,
-  BasePageResponse,
+  BasePageResponseTransactionVo,
+  BaseResponse,
+  BaseResponseGoogleAuthDto,
   GetTermConditionsUsingPostParams,
   GetUserInfoRequest,
-  GoogleAuthDto,
   ModifyLanguageRequest,
   QueryTransactionRequest,
   SendFaCodeByLoginRequest,
@@ -32,7 +32,7 @@ export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/user/getGASecretKey
    */
   getGaSecretKeyUsingPost = <T,>(request: GetUserInfoRequest, params: RequestParams = {}) =>
-    this.request<GoogleAuthDto, void>({
+    this.request<BaseResponseGoogleAuthDto, void>({
       path: `/user/getGASecretKey`,
       method: 'POST',
       body: request,
@@ -67,7 +67,7 @@ export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/user/modifyLanguage
    */
   modifyLanguageUsingPost = <T,>(request: ModifyLanguageRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/user/modifyLanguage`,
       method: 'POST',
       body: request,
@@ -83,7 +83,7 @@ export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/user/saveGACode
    */
   saveGaCodeUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
-    this.request<GoogleAuthDto, void>({
+    this.request<BaseResponse, void>({
       path: `/user/saveGACode`,
       method: 'POST',
       body: request,
@@ -99,7 +99,7 @@ export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/user/setPassword
    */
   setPasswordUsingPost = <T,>(request: SetPasswordRequest, params: RequestParams = {}) =>
-    this.request<GoogleAuthDto, void>({
+    this.request<BaseResponse, void>({
       path: `/user/setPassword`,
       method: 'POST',
       body: request,
@@ -115,7 +115,7 @@ export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/user/transaction/queryTransaction
    */
   queryTransactionUsingPost3 = <T,>(request: QueryTransactionRequest, params: RequestParams = {}) =>
-    this.request<BasePageResponse, void>({
+    this.request<BasePageResponseTransactionVo, void>({
       path: `/user/transaction/queryTransaction`,
       method: 'POST',
       body: request,

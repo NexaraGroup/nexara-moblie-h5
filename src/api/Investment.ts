@@ -10,8 +10,14 @@
  */
 
 import {
-  _,
-  BasePageResponse,
+  BasePageResponseCommissionVo,
+  BasePageResponseTransactionVo,
+  BasePageResponseYieldsVo,
+  BaseResponse,
+  BaseResponseListBalanceVo,
+  BaseResponseListInvestmentVo,
+  BaseResponseMapStringString,
+  BaseResponseTransactionVo,
   GetInvestmentParameterRequest,
   GetTransactionRequest,
   GetUserInfoRequest,
@@ -22,7 +28,6 @@ import {
   RedeemByGaRequest,
   RegisterRequest,
   SubscribeRequest,
-  UserRejestRequest,
 } from './data-contracts';
 import { ContentType, HttpClient, RequestParams } from './http-client';
 
@@ -39,7 +44,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
     request: GetInvestmentParameterRequest,
     params: RequestParams = {},
   ) =>
-    this.request<_, void>({
+    this.request<BaseResponseMapStringString, void>({
       path: `/investment/investment/getInvestmentParameter`,
       method: 'POST',
       body: request,
@@ -55,7 +60,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/investment/queryInvestmentList
    */
   queryInvestmentListUsingPost = <T,>(request: GetUserInfoRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponseListInvestmentVo, void>({
       path: `/investment/investment/queryInvestmentList`,
       method: 'POST',
       body: request,
@@ -71,7 +76,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/transaction/getTransaction
    */
   getTransactionUsingPost2 = <T,>(request: GetTransactionRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponseTransactionVo, void>({
       path: `/investment/transaction/getTransaction`,
       method: 'POST',
       body: request,
@@ -87,7 +92,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/transaction/queryTransaction
    */
   queryTransactionUsingPost2 = <T,>(request: QueryTransactionRequest, params: RequestParams = {}) =>
-    this.request<BasePageResponse, void>({
+    this.request<BasePageResponseTransactionVo, void>({
       path: `/investment/transaction/queryTransaction`,
       method: 'POST',
       body: request,
@@ -103,7 +108,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/transaction/redeem
    */
   redeemUsingPost = <T,>(request: RedeemByGaRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/investment/transaction/redeem`,
       method: 'POST',
       body: request,
@@ -119,7 +124,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/transaction/subscribe
    */
   subscribeUsingPost = <T,>(request: SubscribeRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/investment/transaction/subscribe`,
       method: 'POST',
       body: request,
@@ -138,7 +143,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
     request: QueryInvestmentBalanceRequest,
     params: RequestParams = {},
   ) =>
-    this.request<_, void>({
+    this.request<BaseResponseListBalanceVo, void>({
       path: `/investment/user/queryInvestmentBalance`,
       method: 'POST',
       body: request,
@@ -157,24 +162,8 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
     request: QueryUserListInvestmentBalanceRequest,
     params: RequestParams = {},
   ) =>
-    this.request<_, void>({
+    this.request<BaseResponseListBalanceVo, void>({
       path: `/investment/user/queryUserListInvestmentBalance`,
-      method: 'POST',
-      body: request,
-      type: ContentType.Json,
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags investment-controller
-   * @name RegisterUsingPost
-   * @summary 用户签约(弃用)
-   * @request POST:/investment/user/register
-   */
-  registerUsingPost = <T,>(request: UserRejestRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
-      path: `/investment/user/register`,
       method: 'POST',
       body: request,
       type: ContentType.Json,
@@ -192,7 +181,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
     request: QueryInvestmentBalanceRequest,
     params: RequestParams = {},
   ) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/investment/user/sumInvestmentBalance`,
       method: 'POST',
       body: request,
@@ -208,7 +197,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/user/v2/register
    */
   registerV2UsingPost = <T,>(request: RegisterRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/investment/user/v2/register`,
       method: 'POST',
       body: request,
@@ -224,7 +213,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/yield/queryCommission
    */
   queryCommissionUsingPost = <T,>(request: QueryYieldRequest, params: RequestParams = {}) =>
-    this.request<BasePageResponse, void>({
+    this.request<BasePageResponseCommissionVo, void>({
       path: `/investment/yield/queryCommission`,
       method: 'POST',
       body: request,
@@ -240,7 +229,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/yield/queryYield
    */
   queryYieldUsingPost = <T,>(request: QueryYieldRequest, params: RequestParams = {}) =>
-    this.request<BasePageResponse, void>({
+    this.request<BasePageResponseYieldsVo, void>({
       path: `/investment/yield/queryYield`,
       method: 'POST',
       body: request,
@@ -256,7 +245,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/yield/sumCommission
    */
   sumCommissionUsingPost = <T,>(request: QueryYieldRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/investment/yield/sumCommission`,
       method: 'POST',
       body: request,
@@ -272,7 +261,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/yield/sumYield
    */
   sumYieldUsingPost = <T,>(request: QueryYieldRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/investment/yield/sumYield`,
       method: 'POST',
       body: request,

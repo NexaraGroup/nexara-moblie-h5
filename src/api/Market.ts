@@ -9,7 +9,14 @@
  * ---------------------------------------------------------------
  */
 
-import { _, GetUserInfoRequest, QueryByMailRequest, QueryUserRateRequest } from './data-contracts';
+import {
+  BaseResponse,
+  BaseResponseQueryChildBalanceResponse,
+  BaseResponseUserAcquisitionInfoResponse,
+  GetUserInfoRequest,
+  QueryByMailRequest,
+  QueryUserRateRequest,
+} from './data-contracts';
 import { ContentType, HttpClient, RequestParams } from './http-client';
 
 export class Market<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
@@ -25,7 +32,7 @@ export class Market<SecurityDataType = unknown> extends HttpClient<SecurityDataT
     request: QueryUserRateRequest,
     params: RequestParams = {},
   ) =>
-    this.request<_, void>({
+    this.request<BaseResponseUserAcquisitionInfoResponse, void>({
       path: `/market/acquisition/getUserAcquisitionInfo`,
       method: 'POST',
       body: request,
@@ -41,7 +48,7 @@ export class Market<SecurityDataType = unknown> extends HttpClient<SecurityDataT
    * @request POST:/market/acquisition/queryChildBalance
    */
   queryChildBalanceUsingPost = <T,>(request: QueryByMailRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponseQueryChildBalanceResponse, void>({
       path: `/market/acquisition/queryChildBalance`,
       method: 'POST',
       body: request,
@@ -57,7 +64,7 @@ export class Market<SecurityDataType = unknown> extends HttpClient<SecurityDataT
    * @request POST:/market/user/getActiveInviteCode
    */
   getActiveInviteCodeUsingPost = <T,>(request: GetUserInfoRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/market/user/getActiveInviteCode`,
       method: 'POST',
       body: request,

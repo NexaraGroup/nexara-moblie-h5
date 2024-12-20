@@ -9,7 +9,7 @@
  * ---------------------------------------------------------------
  */
 
-import { _ } from './data-contracts';
+import { BaseResponse } from './data-contracts';
 import { HttpClient, RequestParams } from './http-client';
 
 export class VpnHealth<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
@@ -22,7 +22,7 @@ export class VpnHealth<SecurityDataType = unknown> extends HttpClient<SecurityDa
    * @request GET:/vpnHealth
    */
   vpnHealthUsingGet = <T,>(params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/vpnHealth`,
       method: 'GET',
       ...params,

@@ -10,7 +10,7 @@
  */
 
 import {
-  _,
+  BaseResponse,
   RegisterRequest,
   SendFaCodeByInvitationRequest,
   SendFaCodeByLoginRequest,
@@ -27,7 +27,7 @@ export class Login<SecurityDataType = unknown> extends HttpClient<SecurityDataTy
    * @request POST:/login/loginByFaCode
    */
   loginByFaCodeUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/login/loginByFaCode`,
       method: 'POST',
       body: request,
@@ -43,7 +43,7 @@ export class Login<SecurityDataType = unknown> extends HttpClient<SecurityDataTy
    * @request POST:/login/loginByFaGa
    */
   loginByFaGaUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/login/loginByFaGa`,
       method: 'POST',
       body: request,
@@ -54,12 +54,12 @@ export class Login<SecurityDataType = unknown> extends HttpClient<SecurityDataTy
    * @description register
    *
    * @tags login-controller
-   * @name RegisterUsingPost1
+   * @name RegisterUsingPost
    * @summary RegisterRequest
    * @request POST:/login/register
    */
-  registerUsingPost1 = <T,>(request: RegisterRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+  registerUsingPost = <T,>(request: RegisterRequest, params: RequestParams = {}) =>
+    this.request<BaseResponse, void>({
       path: `/login/register`,
       method: 'POST',
       body: request,
@@ -75,7 +75,7 @@ export class Login<SecurityDataType = unknown> extends HttpClient<SecurityDataTy
    * @request POST:/login/resetPassword
    */
   resetPasswordUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/login/resetPassword`,
       method: 'POST',
       body: request,
@@ -91,7 +91,7 @@ export class Login<SecurityDataType = unknown> extends HttpClient<SecurityDataTy
    * @request POST:/login/sendFaByEmail
    */
   sendFaByEmailUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/login/sendFaByEmail`,
       method: 'POST',
       body: request,
@@ -110,7 +110,7 @@ export class Login<SecurityDataType = unknown> extends HttpClient<SecurityDataTy
     request: SendFaCodeByInvitationRequest,
     params: RequestParams = {},
   ) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/login/sendFaCodeByInvitation`,
       method: 'POST',
       body: request,
@@ -129,7 +129,7 @@ export class Login<SecurityDataType = unknown> extends HttpClient<SecurityDataTy
     request: SendFaCodeByLoginRequest,
     params: RequestParams = {},
   ) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/login/sendFaCodeByLogin`,
       method: 'POST',
       body: request,
@@ -145,7 +145,7 @@ export class Login<SecurityDataType = unknown> extends HttpClient<SecurityDataTy
    * @request POST:/login/verifyGaFa
    */
   verifyGaFaUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/login/verifyGaFa`,
       method: 'POST',
       body: request,

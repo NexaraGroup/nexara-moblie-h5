@@ -9,7 +9,7 @@
  * ---------------------------------------------------------------
  */
 
-import { _, BaseRequest } from './data-contracts';
+import { BaseRequest, BaseResponse } from './data-contracts';
 import { ContentType, HttpClient, RequestParams } from './http-client';
 
 export class Health<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
@@ -22,7 +22,7 @@ export class Health<SecurityDataType = unknown> extends HttpClient<SecurityDataT
    * @request GET:/health
    */
   getHealthUsingGet = <T,>(params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/health`,
       method: 'GET',
       ...params,
@@ -36,7 +36,7 @@ export class Health<SecurityDataType = unknown> extends HttpClient<SecurityDataT
    * @request POST:/health/checkToken
    */
   checkTokenUsingPost = <T,>(request: BaseRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/health/checkToken`,
       method: 'POST',
       body: request,

@@ -10,8 +10,17 @@
  */
 
 import {
-  _,
-  BasePageResponse,
+  BasePageResponseCustodyTransactionVo,
+  BaseResponse,
+  BaseResponseAddressVo,
+  BaseResponseBoolean,
+  BaseResponseCustodyTransactionVo,
+  BaseResponseListBlockchainVo,
+  BaseResponseListCustodyBalanceVo,
+  BaseResponseListTokenPolicyVo,
+  BaseResponseListTokenVo,
+  BaseResponseListWalletVo,
+  BaseResponseLong,
   GenerateUserDepositAddressRequest,
   GetTokenPolicyRequest,
   GetTransactionRequest,
@@ -34,7 +43,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/custody/token/getTokenList
    */
   getTokenListUsingPost = <T,>(request: GetUserInfoRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponseListTokenVo, void>({
       path: `/custody/token/getTokenList`,
       method: 'POST',
       body: request,
@@ -50,7 +59,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/custody/token/getTokenPolicy
    */
   getTokenPolicyUsingPost = <T,>(request: GetTokenPolicyRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponseListTokenPolicyVo, void>({
       path: `/custody/token/getTokenPolicy`,
       method: 'POST',
       body: request,
@@ -66,7 +75,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/custody/token/listBlockchain
    */
   listBlockchainUsingPost = <T,>(request: GetUserInfoRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponseListBlockchainVo, void>({
       path: `/custody/token/listBlockchain`,
       method: 'POST',
       body: request,
@@ -82,7 +91,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/custody/token/verifyAddress
    */
   verifyAddressUsingPost = <T,>(request: VerifyAddressRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponseBoolean, void>({
       path: `/custody/token/verifyAddress`,
       method: 'POST',
       body: request,
@@ -98,7 +107,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/custody/transaction/getTransaction
    */
   getTransactionUsingPost = <T,>(request: GetTransactionRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponseCustodyTransactionVo, void>({
       path: `/custody/transaction/getTransaction`,
       method: 'POST',
       body: request,
@@ -114,7 +123,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/custody/transaction/queryTransaction
    */
   queryTransactionUsingPost = <T,>(request: QueryTransactionRequest, params: RequestParams = {}) =>
-    this.request<BasePageResponse, void>({
+    this.request<BasePageResponseCustodyTransactionVo, void>({
       path: `/custody/transaction/queryTransaction`,
       method: 'POST',
       body: request,
@@ -130,7 +139,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/custody/transaction/withdraw
    */
   withdrawUsingPost = <T,>(request: WithdrawRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponseLong, void>({
       path: `/custody/transaction/withdraw`,
       method: 'POST',
       body: request,
@@ -149,7 +158,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
     request: GenerateUserDepositAddressRequest,
     params: RequestParams = {},
   ) =>
-    this.request<_, void>({
+    this.request<BaseResponseAddressVo, void>({
       path: `/custody/user/generateDepositAddress`,
       method: 'POST',
       body: request,
@@ -165,7 +174,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/custody/user/listWalletInfo
    */
   listWalletInfoUsingPost = <T,>(request: ListWalletInfoRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponseListWalletVo, void>({
       path: `/custody/user/listWalletInfo`,
       method: 'POST',
       body: request,
@@ -181,7 +190,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/custody/user/queryBalance
    */
   queryUserBalanceUsingPost = <T,>(request: QueryBalanceRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponseListCustodyBalanceVo, void>({
       path: `/custody/user/queryBalance`,
       method: 'POST',
       body: request,
@@ -197,7 +206,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/custody/user/sumBalance
    */
   sumBalanceUsingPost = <T,>(request: GetUserInfoRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/custody/user/sumBalance`,
       method: 'POST',
       body: request,

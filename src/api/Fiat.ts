@@ -10,17 +10,17 @@
  */
 
 import {
-  _,
   AddBankRequest,
   BasePageResponseFiatTransactionInfoResponse,
+  BaseResponse,
+  BaseResponseFiatTransactionInfoResponse,
+  BaseResponseListQueryAccountResponse,
+  BaseResponseListQueryCurrencyResponse,
+  BaseResponseListQueryParameterResponse,
   BaseUserRequest,
   DepositRequest,
-  FiatTransactionInfoResponse,
   GetTransactionRequest,
   GetUserInfoRequest,
-  ListQueryAccountResponse,
-  ListQueryCurrencyResponse,
-  ListQueryParameterResponse,
   QueryFiatTransactionRequest,
   QueryParameterRequest,
   WithdrawFiatRequest,
@@ -37,7 +37,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/addBank
    */
   addBankUsingPost = <T,>(request: AddBankRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/fiat/addBank`,
       method: 'POST',
       body: request,
@@ -53,7 +53,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/deposit
    */
   depositUsingPost = <T,>(request: DepositRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/fiat/deposit`,
       method: 'POST',
       body: request,
@@ -69,7 +69,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/getRate
    */
   getRateUsingPost = <T,>(request: GetUserInfoRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/fiat/getRate`,
       method: 'POST',
       body: request,
@@ -85,7 +85,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/getTransaction
    */
   getTransactionUsingPost1 = <T,>(request: GetTransactionRequest, params: RequestParams = {}) =>
-    this.request<FiatTransactionInfoResponse, void>({
+    this.request<BaseResponseFiatTransactionInfoResponse, void>({
       path: `/fiat/getTransaction`,
       method: 'POST',
       body: request,
@@ -101,7 +101,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/queryAccount
    */
   queryAccountUsingPost = <T,>(request: BaseUserRequest, params: RequestParams = {}) =>
-    this.request<ListQueryAccountResponse, void>({
+    this.request<BaseResponseListQueryAccountResponse, void>({
       path: `/fiat/queryAccount`,
       method: 'POST',
       body: request,
@@ -117,7 +117,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/queryBank
    */
   queryBankUsingPost = <T,>(request: BaseUserRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/fiat/queryBank`,
       method: 'POST',
       body: request,
@@ -133,7 +133,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/queryCurrency
    */
   queryCurrencyUsingPost = <T,>(request: BaseUserRequest, params: RequestParams = {}) =>
-    this.request<ListQueryCurrencyResponse, void>({
+    this.request<BaseResponseListQueryCurrencyResponse, void>({
       path: `/fiat/queryCurrency`,
       method: 'POST',
       body: request,
@@ -149,8 +149,24 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/queryParameter
    */
   queryParameterUsingPost = <T,>(request: QueryParameterRequest, params: RequestParams = {}) =>
-    this.request<ListQueryParameterResponse, void>({
+    this.request<BaseResponseListQueryParameterResponse, void>({
       path: `/fiat/queryParameter`,
+      method: 'POST',
+      body: request,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description 查询用户银行卡
+   *
+   * @tags fiat-controller
+   * @name QueryPlatformBankUsingPost
+   * @summary 查询用户银行卡
+   * @request POST:/fiat/queryPlatformBank
+   */
+  queryPlatformBankUsingPost = <T,>(request: AddBankRequest, params: RequestParams = {}) =>
+    this.request<BaseResponse, void>({
+      path: `/fiat/queryPlatformBank`,
       method: 'POST',
       body: request,
       type: ContentType.Json,
@@ -184,7 +200,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/sumAccountUSD
    */
   sumAccountUsdUsingPost = <T,>(request: BaseUserRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/fiat/sumAccountUSD`,
       method: 'POST',
       body: request,
@@ -200,7 +216,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/withdraw
    */
   withdrawUsingPost1 = <T,>(request: WithdrawFiatRequest, params: RequestParams = {}) =>
-    this.request<_, void>({
+    this.request<BaseResponse, void>({
       path: `/fiat/withdraw`,
       method: 'POST',
       body: request,
