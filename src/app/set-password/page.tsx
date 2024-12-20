@@ -1,9 +1,14 @@
 'use client';
 
+import { Login } from '@/api';
 import Button from '@/components/button';
 import Form from '@/components/form';
 import Input from '@/components/input';
+import { isSuccess } from '@/utils/api';
 import useRequireRuleTs from '@/utils/useRequireRuleTs';
+import { to } from '@atom8/await-to-js';
+import CryptoJS from 'crypto-js';
+import sha256 from 'crypto-js/sha256';
 import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useImmer } from 'use-immer';
@@ -13,7 +18,6 @@ const PageSetPassword = () => {
 	const t = useTranslations('page-set-password');
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const email = searchParams.get('email');
 	const type = searchParams.get('type');
 	const [form] = Form.useForm<{ password: string; confirmPassword?: string }>();
 	const requireRuleTs = useRequireRuleTs({ tsKey: 'page-set-password' });
@@ -26,11 +30,20 @@ const PageSetPassword = () => {
 		await form.validateFields();
 		const values = form.getFieldsValue();
 		delete values.confirmPassword;
+		const email = searchParams.get('email')!;
+		const gaCode = searchParams.get('gaCode')!;
+		const redirect = searchParams.get('redirect')!;
 		setLoading(true);
-		// api
+		const [err, res] = await to(
+			Login.resetPasswordUsingPost({
+				email: email!,
+				password: sha256(values.password).toString(CryptoJS.enc.Hex),
+				faCode: gaCode!,
+			}),
+		);
+		if (err || !isSuccess(res)) return;
 		setLoading(false);
-		// TODO，去密码设置成功页面
-		// router.replace(`/login?email=${email}`);
+		router.replace(`/feedback?redirect=${redirect}`);
 	};
 
 	const handlePasswordBlur = () => {

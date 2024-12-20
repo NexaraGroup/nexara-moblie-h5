@@ -129,7 +129,7 @@ export class HttpClient<SecurityDataType = unknown> {
 	}: ApiConfig<SecurityDataType> = {}) {
 		this.instance = axios.create({
 			...axiosConfig,
-			baseURL: axiosConfig.baseURL || process.env.API_HOST,
+			baseURL: process.env.API_HOST,
 		});
 
 		this.instance.interceptors.request.use(function (config) {
@@ -163,10 +163,12 @@ export class HttpClient<SecurityDataType = unknown> {
 										? zh_HK_commonLocaleJSON
 										: zh_CN_commonLocaleJSON;
 							Toast.show({
+								maskClickable: false,
 								content: json.errorMsg[data.respCode as keyof typeof json.errorMsg],
 							});
 						} else {
 							Toast.show({
+								maskClickable: false,
 								content: defaultError,
 							});
 						}
@@ -183,6 +185,7 @@ export class HttpClient<SecurityDataType = unknown> {
 				}
 				if (!isFalse(error.config.showDefaultErrorMessage)) {
 					Toast.show({
+						maskClickable: false,
 						content: defaultError,
 					});
 				}

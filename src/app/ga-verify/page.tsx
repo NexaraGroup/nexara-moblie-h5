@@ -1,18 +1,42 @@
 'use client';
 
+import { Login } from '@/api';
 import VerifyCodeInput from '@/components/verify-code-input';
+import { isSuccess } from '@/utils/api';
+import { to } from '@atom8/await-to-js';
 import { useTranslations } from 'next-intl';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const PageGaVerify = () => {
 	const t = useTranslations('page-ga-verify');
+	const searchParams = useSearchParams();
+	const type = searchParams.get('type');
+	const router = useRouter();
 
 	const handleSubmit = async (code: string) => {
-		// api
-		if (false) {
-			return false;
+		if (type === '2') {
+			const email = searchParams.get('email')!;
+			const redirect = searchParams.get('redirect')!;
+			const emailVerifyCode = searchParams.get('emailVerifyCode')!;
+			const [err, res] = await to(
+				Login.verifyGaFaUsingPost({
+					email,
+					faCode: emailVerifyCode,
+					gaCode: code,
+				}),
+			);
+			if (err || !isSuccess(res)) return false;
+			router.replace(
+				'/set-password?gaCode=' + res.content + '&email=' + email + '&redirect=' + redirect,
+			);
+			return true;
+		} else if (type === '1') {
+			// TODO, api
+			// const redirect = searchParams.get('redirect')!;
+			// window.location.replace(redirect); // 清理路由
+			return true;
 		}
 		return true;
-		// TODO，需要前一页，指明跳转路径和参数
 	};
 
 	return (

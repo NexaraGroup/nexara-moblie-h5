@@ -3,7 +3,10 @@
 | Designer | cz |
 | PM | zy |
 
-## Project
+## api 拦截器相关
+1. 错误默认 message
+2. 除了网络错误，其他都是 resolve，按需控制流程
+3. 网络错误会 reject，按需控制流程
 
 ## Theme
 > 这里考虑主题情况下应该如何书写

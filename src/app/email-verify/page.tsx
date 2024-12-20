@@ -1,9 +1,11 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { Login } from '@/api';
 import Button from '@/components/button';
 import VerifyCodeInput from '@/components/verify-code-input';
-import Big from 'big.js';
+import { isSuccess } from '@/utils/api';
+import useAutoSendCode from '@/utils/useAutoSendCode';
+import { to } from '@atom8/await-to-js';
 import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useImmer } from 'use-immer';
@@ -16,115 +18,63 @@ const titleMap = {
 const PageEmailVerify = () => {
 	const t = useTranslations('page-email-verify');
 	const searchParams = useSearchParams();
-	const email = searchParams.get('email');
+	const email = searchParams.get('email')!;
 	const type = searchParams.get('type') || '1';
 	const title = titleMap[type as keyof typeof titleMap] || 'dt1';
 	const router = useRouter();
 	const [loading, setLoading] = useImmer<boolean>(false);
-	const [countdown, setCountdown] = useImmer<number | undefined>(undefined);
-	const [receiving, setReceiving] = useImmer<boolean>(false);
-	const rafRef = useRef<number>();
-	const lastTimeRef = useRef<number>(0);
-
-	const startCountdown = () => {
-		const startTime = Date.now();
-		const endTime = startTime + 60 * 1000;
-		localStorage.setItem('countdown', startTime.toString());
-		localStorage.setItem('countdownEndTime', endTime.toString());
-		setCountdown(60);
-		setReceiving(true);
-	};
+	const [msgLoading, setMsgLoading] = useImmer<boolean>(false);
 
 	const handleSendCode = async () => {
-		// api
-		startCountdown();
-	};
-
-	const handleSubmit = async (msgCode: string) => {
-		setLoading(true);
-		// api
-		setLoading(false);
-
-		if (false) {
+		setMsgLoading(true);
+		const [err, res] = await to(
+			Login.sendFaByEmailUsingPost({
+				email,
+			}),
+		);
+		setMsgLoading(false);
+		if (err || !isSuccess(res)) {
 			return false;
-		}
-		// 清楚计时器状态
-		setCountdown(undefined);
-		setReceiving(false);
-		localStorage.removeItem('countdown');
-		localStorage.removeItem('countdownEndTime');
-		if (type === '1') {
-			// 登录
-			// 去验证 ga
-		} else if (type === '2') {
-			// 忘记密码，去设置密码
-			router.push(`/set-password?email=${email}`);
 		}
 		return true;
 	};
 
-	// 页面加载时自动发送验证码
-	useEffect(() => {
-		const savedTime = localStorage.getItem('countdown');
-		const endTime = localStorage.getItem('countdownEndTime');
-		if (savedTime && endTime) {
-			const remainingTime = Math.floor((parseInt(endTime) - Date.now()) / 1000);
-			const _t = Math.max(0, remainingTime);
-			setCountdown(_t);
-			if (_t > 0) {
-				setReceiving(true);
-			} else {
-				localStorage.removeItem('countdown');
-				localStorage.removeItem('countdownEndTime');
-				handleSendCode();
-			}
-		} else {
-			handleSendCode();
+	const { clearCountdown, countdown, receiving } = useAutoSendCode({
+		sendCodeAction: handleSendCode,
+	});
+
+	const handleSubmit = async (msgCode: string) => {
+		if (type === '2') {
+			router.replace(`/ga-verify?email=${email}&emailVerifyCode=${msgCode}&type=2`);
+			clearCountdown();
+			return true;
 		}
-	}, []);
-
-	// 基于 countdown 的倒计时，这个要放在第一个 useEffect 上面
-	useEffect(() => {
-		const animate = (timestamp: number) => {
-			if (!lastTimeRef.current) {
-				lastTimeRef.current = timestamp;
-			}
-
-			const deltaTime = timestamp - lastTimeRef.current;
-
-			if (deltaTime >= 1000) {
-				// 每秒更新一次
-				lastTimeRef.current = timestamp;
-
-				if (countdown ?? 0 > 0) {
-					setCountdown((prev) => {
-						const newCountdown = new Big(prev ?? 0).minus(1).toNumber();
-						if (newCountdown <= 0) {
-							setReceiving(false);
-							localStorage.removeItem('countdown');
-							localStorage.removeItem('countdownEndTime');
-							return 0;
-						}
-						return newCountdown;
-					});
-				}
-			}
-
-			if (countdown ?? 0 > 0) {
-				rafRef.current = requestAnimationFrame(animate);
-			}
-		};
-
-		if (countdown ?? 0 > 0) {
-			rafRef.current = requestAnimationFrame(animate);
-		}
-
-		return () => {
-			if (rafRef.current) {
-				cancelAnimationFrame(rafRef.current);
-			}
-		};
-	}, [countdown]);
+		return true;
+		// setLoading(true);
+		// const [err, res] = await to(
+		// 	Login.verifyGaFaUsingPost({
+		// 		email,
+		// 		faCode: msgCode,
+		// 		gaCode,
+		// 	}),
+		// );
+		// setLoading(false);
+		// // api
+		// setLoading(false);
+		// if (false) {
+		// 	return false;
+		// }
+		// // 清楚计时器状态
+		// clearCountdown();
+		// if (type === '1') {
+		// 	// 登录
+		// 	// 去验证 ga
+		// } else if (type === '2') {
+		// 	// 忘记密码，去设置密码
+		// 	router.push(`/set-password?email=${email}`);
+		// }
+		// return true;
+	};
 
 	return (
 		<>
@@ -157,7 +107,7 @@ const PageEmailVerify = () => {
 			<Button
 				type="link"
 				size="large"
-				loading={loading}
+				loading={msgLoading}
 				className="block mx-auto mt-[12px]"
 				fontBold
 				disabled={receiving}

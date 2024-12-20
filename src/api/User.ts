@@ -17,7 +17,7 @@ import {
   GetUserInfoRequest,
   ModifyLanguageRequest,
   QueryTransactionRequest,
-  SendFaCodeByLoginRequest,
+  SaveGACodeRequest,
   SetPasswordRequest,
 } from './data-contracts';
 import { ContentType, HttpClient, RequestParams } from './http-client';
@@ -82,7 +82,7 @@ export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @summary saveGACode
    * @request POST:/user/saveGACode
    */
-  saveGaCodeUsingPost = <T,>(request: SendFaCodeByLoginRequest, params: RequestParams = {}) =>
+  saveGaCodeUsingPost = <T,>(request: SaveGACodeRequest, params: RequestParams = {}) =>
     this.request<BaseResponse, void>({
       path: `/user/saveGACode`,
       method: 'POST',

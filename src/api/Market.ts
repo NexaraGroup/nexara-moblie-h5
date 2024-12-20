@@ -14,7 +14,7 @@ import {
   BaseResponseQueryChildBalanceResponse,
   BaseResponseUserAcquisitionInfoResponse,
   GetUserInfoRequest,
-  QueryByMailRequest,
+  QueryChildBalanceRequest,
   QueryUserRateRequest,
 } from './data-contracts';
 import { ContentType, HttpClient, RequestParams } from './http-client';
@@ -47,7 +47,10 @@ export class Market<SecurityDataType = unknown> extends HttpClient<SecurityDataT
    * @summary QueryChildBalanceRequest
    * @request POST:/market/acquisition/queryChildBalance
    */
-  queryChildBalanceUsingPost = <T,>(request: QueryByMailRequest, params: RequestParams = {}) =>
+  queryChildBalanceUsingPost = <T,>(
+    request: QueryChildBalanceRequest,
+    params: RequestParams = {},
+  ) =>
     this.request<BaseResponseQueryChildBalanceResponse, void>({
       path: `/market/acquisition/queryChildBalance`,
       method: 'POST',

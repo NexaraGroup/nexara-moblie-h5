@@ -368,40 +368,81 @@ export interface CustodyBalanceVo {
 
 /** CustodyTransactionVo */
 export interface CustodyTransactionVo {
+  /** 交易金额 */
   amount?: string;
-  /** @format int64 */
+  /**
+   * blockChainId
+   * @format int64
+   * @example 1
+   */
   blockChainId?: number;
+  /**
+   * blockChainName
+   * @example 1
+   */
   blockChainName?: string;
+  /** 异常信息 */
   errorMsg?: string;
+  /** 交易费用 */
   fee?: string;
+  /** 转出账户名称 */
   fromAddress?: string;
   fromName?: string;
   /** @format int64 */
   fromUserId?: number;
-  /** @format int64 */
+  /**
+   * id
+   * @format int64
+   */
   id?: number;
-  /** @format int64 */
+  /**
+   * requestId
+   * @format int64
+   */
   requestId?: number;
+  /** riskScore */
   riskScore?: string;
+  /** riskTime */
   riskTime?: string;
-  /** @format int32 */
+  /**
+   * 1=Processing,2=Pending,3=Success,4=Failed,5=Flagged,6=WaitSend,7=Exception,8=Cancel
+   * @format int32
+   */
   status?: number;
+  /** 转入账户/用户企业名称 */
   toAddress?: string;
   toName?: string;
   /** @format int64 */
   toUserId?: number;
-  /** @format int64 */
+  /**
+   * 链币种ID
+   * @format int64
+   */
   tokenId?: number;
+  /** tokenName */
   tokenName?: string;
+  /** 交易完成时间ms */
   txBillTime?: string;
+  /** 交易HASH */
   txHash?: string;
+  /** 交易创建时间戳ms */
   txTime?: string;
-  /** @format int32 */
+  /**
+   * 1=deposit,2=withdraw,3=TransferOut,4=SubscribeRequest,5=RedeemRequest,6=Approve,7=gasFee,8=gasTransfer,9=Subscribe,10=Redeem,11=TransferIn
+   * @format int32
+   */
   txType?: number;
+  /** 交易更新时间戳ms */
   updateTime?: string;
-  /** @format int64 */
+  /**
+   * 归属用户ID
+   * @format int64
+   */
   userId?: number;
-  /** @format int64 */
+  /**
+   * walletTxId
+   * @format int64
+   */
   walletTxId?: number;
 }
 
@@ -618,6 +659,39 @@ export interface ListWalletInfoRequest {
   walletStatus?: number;
 }
 
+/** LoginByFaCodeRequest */
+export interface LoginByFaCodeRequest {
+  /**
+   * email
+   * @example "abc@hk.com"
+   */
+  email?: string;
+  /**
+   * faCode
+   * @example "Asj"
+   */
+  faCode?: string;
+}
+
+/** LoginByFaGaRequest */
+export interface LoginByFaGaRequest {
+  /**
+   * email
+   * @example "abc@hk.com"
+   */
+  email?: string;
+  /**
+   * faCode
+   * @example "Asj"
+   */
+  faCode?: string;
+  /**
+   * faCode
+   * @example "Asj"
+   */
+  gaCode?: string;
+}
+
 /** ModifyLanguageRequest */
 export interface ModifyLanguageRequest {
   /**
@@ -682,8 +756,8 @@ export interface QueryBankResponse {
   userId?: number;
 }
 
-/** QueryByMailRequest */
-export interface QueryByMailRequest {
+/** QueryChildBalanceRequest */
+export interface QueryChildBalanceRequest {
   /**
    * 产品ID
    * @format int64
@@ -1043,6 +1117,49 @@ export interface RegisterRequest {
   userType?: number;
 }
 
+/** ResetPasswordRequest */
+export interface ResetPasswordRequest {
+  /**
+   * email
+   * @example "abc@hk.com"
+   */
+  email?: string;
+  /**
+   * faCode
+   * @example "Asj"
+   */
+  faCode?: string;
+  /**
+   * password
+   * @example "jkhnsiabdsb"
+   */
+  password?: string;
+}
+
+/** SaveGACodeRequest */
+export interface SaveGACodeRequest {
+  /**
+   * gaCode
+   * @example "Asj"
+   */
+  gaCode?: string;
+  /**
+   * userId
+   * @format int64
+   * @example 123
+   */
+  userId?: number;
+}
+
+/** SendFaByEmailRequest */
+export interface SendFaByEmailRequest {
+  /**
+   * email
+   * @example "abc@hk.com"
+   */
+  email?: string;
+}
+
 /** SendFaCodeByInvitationRequest */
 export interface SendFaCodeByInvitationRequest {
   /**
@@ -1060,16 +1177,15 @@ export interface SendFaCodeByInvitationRequest {
 /** SendFaCodeByLoginRequest */
 export interface SendFaCodeByLoginRequest {
   /**
-   * gaCode
+   * email
+   * @example "abc@hk.com"
+   */
+  email?: string;
+  /**
+   * password
    * @example "Asj"
    */
-  gaCode?: string;
-  /**
-   * userId
-   * @format int64
-   * @example 123
-   */
-  userId?: number;
+  password?: string;
 }
 
 /** SetPasswordRequest */
@@ -1189,15 +1305,19 @@ export interface TransactionVo {
   /**
    * blockChainId
    * @format int64
+   * @example 1
    */
   blockChainId?: number;
-  /** blockChainName */
+  /**
+   * blockChainName
+   * @example 1
+   */
   blockChainName?: string;
   /** 异常信息 */
   errorMsg?: string;
   /** 交易费用 */
   fee?: string;
-  /**  转出账户名称 */
+  /** 转出账户名称 */
   fromAddress?: string;
   /** fromName */
   fromName?: string;
@@ -1212,7 +1332,7 @@ export interface TransactionVo {
    */
   id?: number;
   /**
-   *  投资产品ID
+   * 投资产品ID
    * @format int64
    */
   investmentId?: number;
@@ -1223,6 +1343,10 @@ export interface TransactionVo {
    * @format int64
    */
   requestId?: number;
+  /** riskScore */
+  riskScore?: string;
+  /** riskTime */
+  riskTime?: string;
   /**
    * 交易状态:1=Pending、2=WaitSend、3=UnConfirm、4=Success、5=Failed,6=Processing,7=Sent,8=Exception,9=WaitSign,10=SpeedUpSuccess,11=ExecutionFail
    * @format int32
@@ -1295,6 +1419,25 @@ export interface VerifyAddressRequest {
   blockChainId?: number;
   /** @format int64 */
   userId?: number;
+}
+
+/** VerifyGaFaRequest */
+export interface VerifyGaFaRequest {
+  /**
+   * email
+   * @example "abc@hk.com"
+   */
+  email?: string;
+  /**
+   * faCode
+   * @example "Asj"
+   */
+  faCode?: string;
+  /**
+   * faCode
+   * @example "Asj"
+   */
+  gaCode?: string;
 }
 
 /** WalletVo */

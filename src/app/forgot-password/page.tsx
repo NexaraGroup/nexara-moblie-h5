@@ -22,10 +22,8 @@ const PageForgotPassword = () => {
 
 	const handleSubmit = async () => {
 		await form.validateFields();
-		setLoading(true);
-		// api
-		setLoading(false);
 		const email = form.getFieldValue('email');
+		setLoading(true);
 		router.push(`/email-verify?email=${email}&type=2`);
 	};
 
