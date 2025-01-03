@@ -37,7 +37,7 @@ const themeConfig = {
 } as const;
 
 const config: Config = {
-	// 给所有class添加#app命名空间
+	// 给所有 class 添加 #app 命名空间
 	important: '#app',
 
 	content: [
@@ -58,7 +58,7 @@ const config: Config = {
 		borderColor: ['dark'],
 	},
 	plugins: [
-		remToPx({ baseFontSize: 16 }),
+		remToPx({ baseFontSize: process.env.TAILWIND_REM_TO_PX_BASE_FONT_SIZE }),
 		({ addUtilities }: PluginAPI) => {
 			addUtilities({
 				'.flex-center': {

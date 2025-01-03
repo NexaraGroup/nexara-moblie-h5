@@ -12,6 +12,7 @@ declare global {
 			DEPLOY_ENV: 'dev' | 'prod' | 'uat';
 			API_HOST: string;
 			PX_TO_REM_ROOT_VALUE_WITH_DESIGN_WIDTH: number;
+			TAILWIND_REM_TO_PX_BASE_FONT_SIZE: number;
 		}
 	}
 }

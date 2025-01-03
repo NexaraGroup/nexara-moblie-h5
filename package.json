@@ -7,7 +7,7 @@
 		"build:prod": "cross-env mode=prod next build",
 		"build:uat": "cross-env mode=uat next build",
 		"dev": "npm-run-all --parallel imgToCp nextDev",
-		"imgToCp": "cross-env node ./boot.mjs",
+		"imgToCp": "cross-env node ./img-to-cp-boot.mjs",
 		"lint": "next lint",
 		"nextDev": "cross-env mode=dev next dev",
 		"start": "next start",

@@ -4,9 +4,9 @@ export interface Props {
 	shape?: 'rounded' | 'default';
 	disabled?: boolean;
 	loading?: boolean;
-	onClick?: () => void;
 	style?: React.CSSProperties;
 	className?: string;
 	block?: boolean;
 	fontBold?: boolean;
+	onClick?: () => void;
 }

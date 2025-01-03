@@ -20,8 +20,5 @@
 	&:global(.adm-button-fill-none) {
 		--adm-button-border-radius: 3px;
 		@apply text-fz-c1 dark:text-dark-fz-c1;
-		// &:active::before {
-		// 	opacity: 0;
-		// }
 	}
 }

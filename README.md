@@ -4,13 +4,19 @@
 | PM | zy |
 
 ## api 拦截器相关
-1. 错误默认 message
+1. 错误默认有 message 提示
 2. 除了网络错误，其他都是 resolve，按需控制流程
 3. 网络错误会 reject，按需控制流程
 
+## URL 编码
+目前除了 redirect 这类参数，会主动编码一次外，其他都不做额外处理
+
+## trim
+所有的 表单 都没有 trim，不需要做
+
 ## Theme
 > 这里考虑主题情况下应该如何书写
-1. 首先，需要开启 tailwind 的 theme 功能 dark，全都归结于这三种
+1. 首先，需要开启 tailwind 的 theme 功能 dark，主要作用于这三种：
 ```
 	extend: {
 		textColor: ['dark'],
@@ -19,8 +25,11 @@
 	},
 ```
 
-2. 原则上，都用 css module 写，灵活的用 tailwind 写
+2. 优先考虑 tailwind，不行的话，css module
 css module 可以都用 tailwind，然后 dark 来处理
 mixin 是保留项，主要处理组件和特别定制的一些主题差别
 
-TODO，我这边处理具体 antd 已经特别定制的主题，在平常的地方，暗色主题已经写进去了，需要等 cz 确认完，直接改 tailwind 就行了
+
+## 其他
+sharp 可以不装，先放着（package.json 里未删除），这里在部署的时候，明确说图片不需要优化了
+`unoptimized: true,` docker 里多少遇到点问题，所以关闭了

@@ -12,7 +12,7 @@ import { usePathname } from 'next/navigation';
 import { useImmer } from 'use-immer';
 
 const px2rem = px2remTransformer({
-	rootValue: Number(process.env.PX_TO_REM_ROOT_VALUE_WITH_DESIGN_WIDTH),
+	rootValue: process.env.PX_TO_REM_ROOT_VALUE_WITH_DESIGN_WIDTH,
 });
 
 const localMap = new Map<Locale, typeof enUS | typeof zhCN | typeof zhHK>([
