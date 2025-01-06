@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { PageEmailVerifyType } from '@/global.enum';
 import Button from '@/components/button';
 import Checkbox from '@/components/checkbox';
 import Form from '@/components/form';
@@ -8,6 +9,7 @@ import Input from '@/components/input';
 import Selector from '@/components/selector';
 import TextArea from '@/components/textarea';
 import { COMMON_FIELD_MAX_LENGTH } from '@/config/base';
+import { useRouter } from 'next/navigation';
 import { Language, UserType } from '@/global.enum';
 import useRequireRuleTs from '@/utils/useRequireRuleTs';
 import { useTranslations } from 'next-intl';
@@ -20,15 +22,17 @@ import styles from '../index.module.scss';
 interface Props {
 	userType: UserType | undefined;
 	invitationCode?: string;
+	email?: string;
 }
 
 export default (props: Props) => {
 	const t = useTranslations('page-sign-up');
 	const tc = useTranslations();
 	const requireRuleTs = useRequireRuleTs({ tsKey: 'page-sign-up' });
-	const [form] = Form.useForm<IndividualForm | CorporateForm>();
+	const [form] = Form.useForm<(IndividualForm | CorporateForm) & { userType: UserType }>();
 	const [loading, setLoading] = useImmer(false);
 	const [languagePopupVisible, setLanguagePopupVisible] = useImmer(false);
+	const router = useRouter();
 
 	const handleOpenAgreement = (type: 'term' | 'privacy') => {
 		if (loading) return;
@@ -51,44 +55,45 @@ export default (props: Props) => {
 
 	const handleSubmit = async () => {
 		await form.validateFields();
+		setLoading(true);
 		const values = form.getFieldsValue();
 		delete values.agreement;
-		console.log(values);
-		setLoading(true);
-		// api
-		// TODO，跳转
-		setLoading(false);
+		values.userType = props.userType!;
+		router.replace(`/email-verify?type=${PageEmailVerifyType.Register}&invitationCode=${values.invitationCode}&email=${values.email}&formData=${encodeURIComponent(JSON.stringify(values))}`);
 	};
 
 	useEffect(() => {
 		if (props.invitationCode && form)
 			form.setFieldValue('invitationCode', props.invitationCode);
-	}, [form, props.invitationCode]);
+
+		if (props.email && form) form.setFieldValue('email', props.email);
+	}, [form, props.invitationCode, props.email]);
 
 	return (
 		<>
 			{props.userType === UserType.Individual ? (
-				<Form form={form}>
+				<Form form={form} disabled={loading}>
 					<Form.Item
 						label={t('t3')}
 						name="invitationCode"
+						disabled={!!props.invitationCode}
 						required
 						rules={requireRuleTs('t3')}
 					>
-						<Input maxLength={8} disabled={loading} />
+						<Input maxLength={8} />
 					</Form.Item>
 
 					<Form.Item label={t('t4')} name="name" required rules={requireRuleTs('t4')}>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
 					</Form.Item>
 
 					<Form.Item
 						label={t('t5')}
-						name="countryOfResidence"
+						name="country"
 						required
 						rules={requireRuleTs('t5')}
 					>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
 					</Form.Item>
 
 					<Form.Item
@@ -102,9 +107,8 @@ export default (props: Props) => {
 								message: tc('invalidEmail'),
 							},
 						]}
-						disabled={loading}
 					>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH} />
 					</Form.Item>
 
 					<Form.Item
@@ -116,7 +120,7 @@ export default (props: Props) => {
 						<Selector<Language>
 							onClick={() => setLanguagePopupVisible(true)}
 							options={languageOptions}
-							disabled={loading}
+
 						/>
 					</Form.Item>
 
@@ -131,7 +135,7 @@ export default (props: Props) => {
 							},
 						]}
 					>
-						<Checkbox disabled={loading}>
+						<Checkbox >
 							{t.rich('f3', {
 								Link: (chunks) => (
 									<a
@@ -161,44 +165,45 @@ export default (props: Props) => {
 							shape="rounded"
 							fontBold
 							size="large"
-							onClick={handleSubmit}
 							loading={loading}
+							onClick={handleSubmit}
 						>
 							{t('b3')}
 						</Button>
 					</Form.Item>
 				</Form>
 			) : (
-				<Form form={form}>
+				<Form form={form} disabled={loading}>
 					<Form.Item
 						label={t('t3')}
 						name="invitationCode"
+						disabled={!!props.invitationCode}
 						required
 						rules={requireRuleTs('t3')}
 					>
-						<Input maxLength={8} disabled={loading} />
+						<Input maxLength={8}  />
 					</Form.Item>
 
 					<Form.Item
 						label={t('t8')}
-						name="institutionName"
+						name="name"
 						required
 						rules={requireRuleTs('t8')}
 					>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH}  />
 					</Form.Item>
 
 					<Form.Item
 						label={t('t9')}
-						name="registeredCountry"
+						name="country"
 						required
 						rules={requireRuleTs('t9')}
 					>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH}  />
 					</Form.Item>
 
 					<Form.Item label={t('t10')} name="businessNature">
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH}  />
 					</Form.Item>
 
 					<Form.Item
@@ -213,11 +218,11 @@ export default (props: Props) => {
 							},
 						]}
 					>
-						<Input maxLength={COMMON_FIELD_MAX_LENGTH} disabled={loading} />
+						<Input maxLength={COMMON_FIELD_MAX_LENGTH}  />
 					</Form.Item>
 
 					<Form.Item label={t('t11')} name="intentionOfService">
-						<TextArea maxLength={COMMON_FIELD_MAX_LENGTH} rows={5} disabled={loading} />
+						<TextArea maxLength={COMMON_FIELD_MAX_LENGTH} rows={5}  />
 					</Form.Item>
 
 					<Form.Item
@@ -229,7 +234,7 @@ export default (props: Props) => {
 						<Selector<Language>
 							onClick={() => setLanguagePopupVisible(true)}
 							options={languageOptions}
-							disabled={loading}
+
 						/>
 					</Form.Item>
 
@@ -244,7 +249,7 @@ export default (props: Props) => {
 							},
 						]}
 					>
-						<Checkbox disabled={loading}>
+						<Checkbox >
 							{t.rich('f3', {
 								Link: (chunks) => (
 									<a

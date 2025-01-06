@@ -7,8 +7,9 @@ import styles from './index.module.scss';
 
 export default function Popup(props: React.PropsWithChildren<Props>) {
 	const handleMaskClick = () => {
-		if (!props.maskClosable) return;
-		props.onClose?.();
+		if (props.maskClosable !== false) {
+			props.onClose?.();
+		}
 	};
 
 	return (

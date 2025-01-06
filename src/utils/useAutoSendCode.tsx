@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Big from 'big.js';
 import { useImmer } from 'use-immer';
 
-export default (props: { sendCodeAction: () => Promise<boolean> }) => {
+export default (props: { sendCodeAction: () => Promise<boolean>, initWhenCountAction?: () => void }) => {
 	const [countdown, setCountdown] = useImmer<number | undefined>(undefined);
 	const [receiving, setReceiving] = useImmer<boolean>(false);
 	const rafRef = useRef<number>();
@@ -45,6 +45,7 @@ export default (props: { sendCodeAction: () => Promise<boolean> }) => {
 			setCountdown(_t);
 			if (_t > 0) {
 				setReceiving(true);
+				props.initWhenCountAction?.();
 			} else {
 				localStorage.removeItem('countdown');
 				localStorage.removeItem('countdownEndTime');

@@ -1,6 +1,7 @@
 'use client';
 
-import { Login } from '@/api';
+import { Login, User } from '@/api';
+import { PageFeedbackType } from '@/global.enum';
 import Button from '@/components/button';
 import Form from '@/components/form';
 import Input from '@/components/input';
@@ -30,20 +31,21 @@ const PageSetPassword = () => {
 		await form.validateFields();
 		const values = form.getFieldsValue();
 		delete values.confirmPassword;
-		const email = searchParams.get('email')!;
-		const gaCode = searchParams.get('gaCode')!;
-		const redirect = searchParams.get('redirect')!;
+		const fn = type === '1' ? User.setPasswordUsingPost : Login.resetPasswordUsingPost;
+		const p: Partial<Parameters<typeof Login.resetPasswordUsingPost>[0]> = {
+			password: sha256(values.password).toString(CryptoJS.enc.Hex),
+		}
+		if (type !== '1') {
+			p.email = searchParams.get('email')!;
+			p.faCode = searchParams.get('gaCode')!;
+		}
 		setLoading(true);
 		const [err, res] = await to(
-			Login.resetPasswordUsingPost({
-				email: email!,
-				password: sha256(values.password).toString(CryptoJS.enc.Hex),
-				faCode: gaCode!,
-			}),
+			fn(p),
 		);
 		if (err || !isSuccess(res)) return;
 		setLoading(false);
-		router.replace(`/feedback?redirect=${redirect}`);
+		router.replace(`/feedback?type=${PageFeedbackType.SetPassword}`);
 	};
 
 	const handlePasswordBlur = () => {
@@ -122,7 +124,12 @@ const PageSetPassword = () => {
 						},
 					]}
 				>
-					<Input maxLength={32} type="password" disabled={loading} />
+					<Input
+						onEnterPress={handleSubmit}
+						maxLength={32}
+						type="password"
+						disabled={loading}
+					/>
 				</Form.Item>
 			</Form>
 

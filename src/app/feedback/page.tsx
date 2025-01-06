@@ -5,6 +5,7 @@ import animationJson from '@/assets/lottie/success.json';
 import Button from '@/components/button';
 import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { PageFeedbackType } from '@/global.enum';
 
 const PageFeedback = () => {
 	const t = useTranslations('page-feedback');
@@ -13,9 +14,9 @@ const PageFeedback = () => {
 	const type = searchParams.get('type');
 
 	const handleContinue = () => {
-		let redirect = searchParams.get('redirect');
-		redirect = decodeURIComponent(redirect!);
-		router.replace(redirect);
+		if (type === PageFeedbackType.Register) router.replace('/login');
+		if (type === PageFeedbackType.GaBind) router.replace('/set-password');
+		if (type === PageFeedbackType.SetPassword) router.replace('/login');
 	};
 
 	return (
@@ -50,4 +51,5 @@ const PageFeedback = () => {
 		</>
 	);
 };
+
 export default PageFeedback;

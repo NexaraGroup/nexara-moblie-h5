@@ -1,25 +1,24 @@
 'use client';
 
-import { useEffect } from 'react';
 import { Login } from '@/api/';
+import { isSuccess } from '@/utils/api';
+import { to } from '@atom8/await-to-js';
+import { PageEmailVerifyType } from '@/global.enum';
 import Button from '@/components/button';
 import Form from '@/components/form';
 import Input from '@/components/input';
 import { COMMON_FIELD_MAX_LENGTH } from '@/config/base';
-import { isSuccess } from '@/utils/api';
 import useRequireRuleTs from '@/utils/useRequireRuleTs';
-import { to } from '@atom8/await-to-js';
 import CryptoJS from 'crypto-js';
 import sha256 from 'crypto-js/sha256';
 import { useTranslations } from 'next-intl';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useImmer } from 'use-immer';
 import type { FormType } from './index.d';
 
 const PageLogin = () => {
 	const t = useTranslations('page-login');
 	const tc = useTranslations();
-	const searchParams = useSearchParams();
 	const [form] = Form.useForm<FormType>();
 	const requireRuleTs = useRequireRuleTs({ tsKey: 'page-login' });
 	const router = useRouter();
@@ -29,34 +28,16 @@ const PageLogin = () => {
 		await form.validateFields();
 		const values = form.getFieldsValue();
 		setLoading(true);
-		console.log(values);
-		const [err, res] = await to(
-			Login.sendFaCodeByLoginUsingPost({
-				email: values.email,
-				password: sha256(values.password).toString(CryptoJS.enc.Hex),
-			}),
-		);
-		if (err || !isSuccess(res)) {
-			setLoading(false);
-			return;
-		}
-		console.log(res, err);
-		// debugger;
-		//   if (!isSuccess(res)) {
-		// 	messageError(error);
-		// 	return;
-		//   }
-		//   message.success('Success');
+		const [_, res] = await to(Login.sendFaCodeByLoginUsingPost({
+			email: values.email,
+			password: sha256(values.password).toString(CryptoJS.enc.Hex),
+		}));
+		setLoading(false);
+		if (!isSuccess(res)) return;
 
-		// setTimeout(() => {
-		// 	router.push('/home');
-		// }, 3000);
+		// 因为页面上有重新发送，这些参数得带上去
+		router.push(`/email-verify?type=${PageEmailVerifyType.Login}&email=${values.email}&password=${sha256(values.password).toString(CryptoJS.enc.Hex)}`);
 	};
-
-	useEffect(() => {
-		const email = searchParams.get('email');
-		if (email && form) form.setFieldValue('email', email);
-	}, [searchParams, form]);
 
 	const handleRouteToForgotPassword = () => {
 		const email = form.getFieldValue('email');

@@ -9,6 +9,7 @@ export const NO_AUTH_ROUTES = [
 	'/login',
 	'/email-verify',
 	'/ga-verify',
+	'/bind-ga',
 	'/feedback',
 	'/forgot-password',
 ];

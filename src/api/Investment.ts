@@ -26,7 +26,7 @@ import {
   QueryUserListInvestmentBalanceRequest,
   QueryYieldRequest,
   RedeemByGaRequest,
-  RegisterRequest,
+  RegisterInvestmentRequest,
   SubscribeRequest,
 } from './data-contracts';
 import { ContentType, HttpClient, RequestParams } from './http-client';
@@ -196,7 +196,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @summary 用户签约
    * @request POST:/investment/user/v2/register
    */
-  registerV2UsingPost = <T,>(request: RegisterRequest, params: RequestParams = {}) =>
+  registerV2UsingPost = <T,>(request: RegisterInvestmentRequest, params: RequestParams = {}) =>
     this.request<BaseResponse, void>({
       path: `/investment/user/v2/register`,
       method: 'POST',

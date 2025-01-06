@@ -16,24 +16,17 @@ const PageGaVerify = () => {
 	const handleSubmit = async (code: string) => {
 		if (type === '2') {
 			const email = searchParams.get('email')!;
-			const redirect = searchParams.get('redirect')!;
-			const emailVerifyCode = searchParams.get('emailVerifyCode')!;
-			const [err, res] = await to(
-				Login.verifyGaFaUsingPost({
-					email,
-					faCode: emailVerifyCode,
-					gaCode: code,
-				}),
-			);
-			if (err || !isSuccess(res)) return false;
-			router.replace(
-				'/set-password?gaCode=' + res.content + '&email=' + email + '&redirect=' + redirect,
-			);
+			const faCode = searchParams.get('faCode')!;
+			const [_, res] = await to(Login.verifyGaFaUsingPost({
+				email: email!,
+				faCode: faCode,
+				gaCode: code,
+			}));
+			if (!isSuccess(res)) return false;
+			router.replace('/set-password?gaCode=' + (res?.content ?? '') + '&email=' + email);
 			return true;
 		} else if (type === '1') {
-			// TODO, api
-			// const redirect = searchParams.get('redirect')!;
-			// window.location.replace(redirect); // 清理路由
+			router.replace('/home'); // 登录同一去首页，不做其他逻辑
 			return true;
 		}
 		return true;

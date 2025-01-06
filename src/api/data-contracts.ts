@@ -628,6 +628,12 @@ export interface GoogleAuthDto {
   gaUrl?: string;
 }
 
+/** HasGaVo */
+export interface HasGaVo {
+  /** hasGa */
+  hasGa?: boolean;
+}
+
 /** InvestmentVo */
 export interface InvestmentVo {
   /** extInfo */
@@ -1061,6 +1067,38 @@ export interface RedeemByGaRequest {
   userId?: number;
 }
 
+/** RegisterInvestmentRequest */
+export interface RegisterInvestmentRequest {
+  /**
+   * investmentId
+   * @format int64
+   * @example 1
+   */
+  investmentId?: number;
+  /**
+   * loginUserId
+   * @format int64
+   * @example 1
+   */
+  loginUserId?: number;
+  /**
+   * third api use
+   * @example 1
+   */
+  thirdType?: string;
+  /**
+   * third api use
+   * @example 1
+   */
+  thirdUserId?: string;
+  /**
+   * approve to userId
+   * @format int64
+   * @example 1
+   */
+  userId?: number;
+}
+
 /** RegisterRequest */
 export interface RegisterRequest {
   /**
@@ -1406,6 +1444,48 @@ export interface UserAcquisitionInfoResponse {
    * @format int64
    */
   userId?: number;
+}
+
+/** UserVo */
+export interface UserVo {
+  /** email */
+  email?: string;
+  /** extInfoList */
+  extInfoList?: object;
+  /**
+   * gmtCreated
+   * @format date-time
+   */
+  gmtCreated?: string;
+  /** hasGaKey */
+  hasGaKey?: boolean;
+  /** icon */
+  icon?: string;
+  /** jwtToken */
+  jwtToken?: string;
+  /** mobile */
+  mobile?: string;
+  /** name */
+  name?: string;
+  /**
+   * status
+   * @format int32
+   */
+  status?: number;
+  /**
+   * userId
+   * @format int64
+   */
+  userId?: number;
+  /** userIdentity */
+  userIdentity?: string;
+  /** userName */
+  userName?: string;
+  /**
+   * userType
+   * @format int32
+   */
+  userType?: number;
 }
 
 /** VerifyAddressRequest */
@@ -1865,6 +1945,18 @@ export interface BaseResponseGoogleAuthDto {
   respMsg?: string;
 }
 
+/** BaseResponse«HasGaVo» */
+export interface BaseResponseHasGaVo {
+  content?: HasGaVo;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
 /** BaseResponse«List«BalanceVo»» */
 export interface BaseResponseListBalanceVo {
   content?: BalanceVo[];
@@ -2045,6 +2137,18 @@ export interface BaseResponseUserAcquisitionInfoResponse {
   respMsg?: string;
 }
 
+/** BaseResponse«UserVo» */
+export interface BaseResponseUserVo {
+  content?: UserVo;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
 /** BaseResponse«boolean» */
 export interface BaseResponseBoolean {
   content?: boolean;
@@ -2061,6 +2165,18 @@ export interface BaseResponseBoolean {
 export interface BaseResponseLong {
   /** @format int64 */
   content?: number;
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
+/** BaseResponse«string» */
+export interface BaseResponseString {
+  content?: string;
   /**
    * 返回码 0成功，其他为失败,例如15xxx
    * @format int32

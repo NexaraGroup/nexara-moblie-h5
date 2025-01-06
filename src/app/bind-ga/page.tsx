@@ -5,7 +5,7 @@ import Step1 from './components/step1';
 import Step2 from './components/step2';
 
 const PageGaVerify = () => {
-	const [step, setStep] = useImmer<1 | 2>(2);
+	const [step, setStep] = useImmer<1 | 2>(1);
 
 	return (
 		<>

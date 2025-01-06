@@ -6,6 +6,7 @@ import Form from '@/components/form';
 import { PagesForgotPasswordIconBackground } from '@/components/images/PagesForgotPasswordIcon';
 import Input from '@/components/input';
 import { COMMON_FIELD_MAX_LENGTH } from '@/config/base';
+import { PageEmailVerifyType } from '@/global.enum';
 import useRequireRuleTs from '@/utils/useRequireRuleTs';
 import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -24,12 +25,13 @@ const PageForgotPassword = () => {
 		await form.validateFields();
 		const email = form.getFieldValue('email');
 		setLoading(true);
-		router.push(`/email-verify?email=${email}&type=2`);
+		router.push(`/email-verify?email=${email}&type=${PageEmailVerifyType.ForgotPassword}`);
 	};
 
 	useEffect(() => {
+		if (!searchParams || !form) return;
 		const emailFromQuery = searchParams.get('email');
-		if (emailFromQuery && form) form.setFieldValue('email', emailFromQuery);
+		if (emailFromQuery) form.setFieldValue('email', emailFromQuery);
 	}, [searchParams, form]);
 
 	return (

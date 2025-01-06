@@ -74,6 +74,7 @@ export default function Input(props: React.PropsWithChildren<Props>) {
 				ref={inputRef}
 				onEnterPress={handleEnterPress}
 				type={type}
+				autoComplete="current-password"
 				disabled={props.disabled}
 				value={props.value}
 				onChange={props.onChange}

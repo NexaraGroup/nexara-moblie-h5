@@ -1,37 +1,46 @@
 'use client';
 
 import Button from '@/components/button';
+import { User } from '@/api';
+import { isSuccess } from '@/utils/api';
+import { to } from '@atom8/await-to-js';
+import { Toast } from 'antd-mobile';
 import Form from '@/components/form';
 import Input from '@/components/input';
-import useAutoSendCode from '@/utils/useAutoSendCode';
 import useRequireRuleTs from '@/utils/useRequireRuleTs';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import store from 'store2';
 import { useImmer } from 'use-immer';
 
 export default () => {
 	const t = useTranslations('page-bind-ga');
-	const { countdown, receiving, clearCountdown } = useAutoSendCode({
-		sendCodeAction: () => Promise.resolve(true),
-	});
 	const requireRuleTs = useRequireRuleTs({ tsKey: 'page-bind-ga' });
 	const router = useRouter();
-	const [form] = Form.useForm<{ gaCode: string; emailCode: string }>();
+	const [form] = Form.useForm<{ gaCode: string }>();
 	const [loading, setLoading] = useImmer<boolean>(false);
 
 	const handleVerify = async () => {
 		await form.validateFields();
-		clearCountdown();
 		setLoading(true);
-		// api
+		const [_, res] = await to(
+			User.saveGaCodeUsingPost({
+				gaCode: form.getFieldValue('gaCode'),
+			}),
+		);
+		if (!isSuccess(res)) return;
 		setLoading(false);
-		router.replace(`/set-password?type=1&email=${store.get('email')}`);
+		router.replace(`/set-password?type=1`);
 	};
 
 	const handlePaste = async () => {
-		const text = await navigator.clipboard.readText();
-		form.setFieldValue('gaCode', text);
+		try {
+			const text = await navigator.clipboard.readText();
+			form.setFieldValue('gaCode', text);
+		} catch {
+			Toast.show({
+				content: t('m2'),
+			});
+		}
 	};
 
 	return (
@@ -62,23 +71,6 @@ export default () => {
 								onClick={handlePaste}
 							>
 								{t('b3')}
-							</Button>
-						}
-					/>
-				</Form.Item>
-
-				<Form.Item
-					label={t('t7', { email: store.get('email') })}
-					name="emailCode"
-					required
-					rules={requireRuleTs('e1')}
-				>
-					<Input
-						disabled={loading}
-						maxLength={6}
-						addonAfter={
-							<Button loading={loading} className="py-[3px]" type="text" fontBold>
-								{receiving ? `${countdown}s` : t('b4')}
 							</Button>
 						}
 					/>

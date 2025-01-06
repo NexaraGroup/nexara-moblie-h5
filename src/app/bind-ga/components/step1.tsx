@@ -1,25 +1,34 @@
 'use client';
 
 import { QRCodeSVG } from 'qrcode.react';
+import { to } from '@atom8/await-to-js';
+import { isSuccess } from '@/utils/api';
+import { User } from '@/api/';
 import { useEffect, useMemo } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Button from '@/components/button';
 import Input from '@/components/input';
 import { Toast } from 'antd-mobile';
 import { useTranslations } from 'next-intl';
-import store from 'store2';
+import store2 from 'store2';
 import { useImmer } from 'use-immer';
 
 export default (props: { onNext: () => void }) => {
 	const t = useTranslations('page-bind-ga');
 	const [gaKey, setGaKey] = useImmer('');
 	const qrCode = useMemo(() => {
-		return `otpauth://totp/User:${store.get('email')}?issuer=NEXARA&secret=${gaKey}`;
+		const loginInfo = store2.get('loginInfo') ?? {};
+		return `otpauth://totp/User:${loginInfo.email}?issuer=NEXARA&secret=${gaKey}`;
 	}, [gaKey]);
 
 	useEffect(() => {
-		// api
-		setGaKey('https://qr.io/1234567890');
+		(async () => {
+			const [_, res] = await to(
+				User.getGaSecretKeyUsingPost({}),
+			);
+			if (!isSuccess(res)) return;
+			setGaKey(res?.content?.encryptGaKey ?? '');
+		})()
 	}, []);
 
 	return (
@@ -59,8 +68,7 @@ export default (props: { onNext: () => void }) => {
 
 			<Input
 				className="mt-[12px]"
-				value={qrCode}
-				disabled
+				value={gaKey}
 				addonAfter={
 					<CopyToClipboard text={gaKey} onCopy={() => Toast.show({ content: t('m1') })}>
 						<Button type="text" fontBold className="py-[3px]" disabled={!gaKey}>
