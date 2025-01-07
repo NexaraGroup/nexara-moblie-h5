@@ -18,6 +18,8 @@ export default getRequestConfig(async () => {
 	const feedbackPageMessage = (await import(`../../locales/${locale}/page-feedback.json`))
 		.default;
 	const bindGaPageMessage = (await import(`../../locales/${locale}/page-bind-ga.json`)).default;
+	const cryptoDepositPageMessage = (await import(`../../locales/${locale}/page-crypto-deposit.json`))
+		.default;
 	return {
 		locale,
 		messages: {
@@ -46,6 +48,10 @@ export default getRequestConfig(async () => {
 			'page-bind-ga': {
 				...bindGaPageMessage,
 			},
+			'page-crypto-deposit': {
+				...cryptoDepositPageMessage,
+			},
 		},
 	};
 });
+

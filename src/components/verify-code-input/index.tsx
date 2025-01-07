@@ -62,7 +62,7 @@ export default (props: Props) => {
 			<div className="flex justify-between space-x-3">
 				{Array.from({ length: 6 }).map((_, index) => (
 					<i
-						className={`block h-[2px] rounded-max relative flex-1 animate__animated
+						className={`block h-[2px] rounded-full relative flex-1 animate__animated
 								${msgCodeError ? 'animate__shakeX' : ''}
 								${msgCode.length >= index + 1 ? 'bg-bg-c1 dark:bg-bg-c1' : 'bg-bg-c2 dark:bg-bg-c2'}
 								${msgCode.length === index ? 'animate__flash animate__infinite animate__slower' : ''}`}

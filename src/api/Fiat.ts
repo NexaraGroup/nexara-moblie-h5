@@ -15,8 +15,11 @@ import {
   BaseResponse,
   BaseResponseFiatTransactionInfoResponse,
   BaseResponseListQueryAccountResponse,
+  BaseResponseListQueryBankResponse,
   BaseResponseListQueryCurrencyResponse,
   BaseResponseListQueryParameterResponse,
+  BaseResponseLong,
+  BaseResponseString,
   BaseUserRequest,
   DepositRequest,
   GetTransactionRequest,
@@ -53,7 +56,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/deposit
    */
   depositUsingPost = <T,>(request: DepositRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
+    this.request<BaseResponseLong, void>({
       path: `/fiat/deposit`,
       method: 'POST',
       body: request,
@@ -117,7 +120,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/queryBank
    */
   queryBankUsingPost = <T,>(request: BaseUserRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
+    this.request<BaseResponseListQueryBankResponse, void>({
       path: `/fiat/queryBank`,
       method: 'POST',
       body: request,
@@ -165,7 +168,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/queryPlatformBank
    */
   queryPlatformBankUsingPost = <T,>(request: AddBankRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
+    this.request<BaseResponseListQueryBankResponse, void>({
       path: `/fiat/queryPlatformBank`,
       method: 'POST',
       body: request,
@@ -200,7 +203,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/sumAccountUSD
    */
   sumAccountUsdUsingPost = <T,>(request: BaseUserRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
+    this.request<BaseResponseString, void>({
       path: `/fiat/sumAccountUSD`,
       method: 'POST',
       body: request,
@@ -216,7 +219,7 @@ export class Fiat<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/fiat/withdraw
    */
   withdrawUsingPost1 = <T,>(request: WithdrawFiatRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
+    this.request<BaseResponseLong, void>({
       path: `/fiat/withdraw`,
       method: 'POST',
       body: request,

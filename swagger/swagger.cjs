@@ -81,7 +81,8 @@ const generate = (url, output, templateDirPath = path.join(__dirname, 'template'
 		// 'http://10.1.9.99:7983/v2/api-docs',
 		// 'http://10.1.9.123:7982/v2/api-docs',
 		// 'http://10.1.9.123:7984/v2/api-docs',
-		'http://10.1.9.99:7986/v2/api-docs',
+		'http://10.1.9.123:7986/v2/api-docs',
+		// API_HOST='http://10.1.9.123:7986'
 		// 'https://admin-backend-uat.894523.com/v2/api-docs',
 		path.resolve(process.cwd(), 'src/api'),
 	);

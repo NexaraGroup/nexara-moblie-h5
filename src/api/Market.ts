@@ -10,7 +10,7 @@
  */
 
 import {
-  BaseResponse,
+  BaseResponseLong,
   BaseResponseQueryChildBalanceResponse,
   BaseResponseUserAcquisitionInfoResponse,
   GetUserInfoRequest,
@@ -67,7 +67,7 @@ export class Market<SecurityDataType = unknown> extends HttpClient<SecurityDataT
    * @request POST:/market/user/getActiveInviteCode
    */
   getActiveInviteCodeUsingPost = <T,>(request: GetUserInfoRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
+    this.request<BaseResponseLong, void>({
       path: `/market/user/getActiveInviteCode`,
       method: 'POST',
       body: request,

@@ -17,6 +17,7 @@ import {
   BaseResponseListBalanceVo,
   BaseResponseListInvestmentVo,
   BaseResponseMapStringString,
+  BaseResponseString,
   BaseResponseTransactionVo,
   GetInvestmentParameterRequest,
   GetTransactionRequest,
@@ -181,7 +182,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
     request: QueryInvestmentBalanceRequest,
     params: RequestParams = {},
   ) =>
-    this.request<BaseResponse, void>({
+    this.request<BaseResponseString, void>({
       path: `/investment/user/sumInvestmentBalance`,
       method: 'POST',
       body: request,
@@ -245,7 +246,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/yield/sumCommission
    */
   sumCommissionUsingPost = <T,>(request: QueryYieldRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
+    this.request<BaseResponseString, void>({
       path: `/investment/yield/sumCommission`,
       method: 'POST',
       body: request,
@@ -261,7 +262,7 @@ export class Investment<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request POST:/investment/yield/sumYield
    */
   sumYieldUsingPost = <T,>(request: QueryYieldRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
+    this.request<BaseResponseString, void>({
       path: `/investment/yield/sumYield`,
       method: 'POST',
       body: request,

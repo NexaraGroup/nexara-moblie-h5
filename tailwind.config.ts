@@ -71,9 +71,6 @@ const config: Config = {
 					alignItems: 'center',
 					justifyContent: 'center',
 				},
-				'.rounded-max': {
-					'border-radius': '9999px',
-				},
 				/**
 				 * inset: 0; 这个也可以，兼容性一般，可能要借助 postcss
 				 * 暂时，还是用 position-full

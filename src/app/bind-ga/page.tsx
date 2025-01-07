@@ -13,7 +13,7 @@ const PageGaVerify = () => {
 				{Array.from({ length: 3 }).map((_, index) => (
 					<i
 						key={index}
-						className={`flex-1 h-[4px] rounded-max transition-all duration-300 ease-in-out
+						className={`flex-1 h-[4px] rounded-full transition-all duration-300 ease-in-out
 							${index + 1 <= step ? 'bg-bg-c1 dark:bg-bg-c1-dark' : 'bg-bg-c3 dark:bg-bg-c3-dark'}`}
 					/>
 				))}

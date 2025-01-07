@@ -2017,6 +2017,18 @@ export interface BaseResponseListQueryAccountResponse {
   respMsg?: string;
 }
 
+/** BaseResponse«List«QueryBankResponse»» */
+export interface BaseResponseListQueryBankResponse {
+  content?: QueryBankResponse[];
+  /**
+   * 返回码 0成功，其他为失败,例如15xxx
+   * @format int32
+   */
+  respCode?: number;
+  /** 返回信息,用于非成功说明 */
+  respMsg?: string;
+}
+
 /** BaseResponse«List«QueryCurrencyResponse»» */
 export interface BaseResponseListQueryCurrencyResponse {
   content?: QueryCurrencyResponse[];

@@ -6,7 +6,7 @@
 			--z-index: 5000;
 			@apply px-[24px] py-[16px] rounded-tl-[30px] rounded-tr-[30px] max-h-[80vh];
 			> i.toolbar {
-				@apply rounded-max bg-bg-c2 dark:bg-dark-bg-c2 w-[34px] h-[3px] block mx-auto;
+				@apply rounded-full bg-bg-c2 dark:bg-dark-bg-c2 w-[34px] h-[3px] block mx-auto;
 			}
 			> h2.title {
 				@apply text-fz-c1 dark:text-dark-fz-c1 font-bold my-[16px];

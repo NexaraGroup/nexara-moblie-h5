@@ -11,7 +11,6 @@
 
 import {
   BasePageResponseCustodyTransactionVo,
-  BaseResponse,
   BaseResponseAddressVo,
   BaseResponseBoolean,
   BaseResponseCustodyTransactionVo,
@@ -21,6 +20,7 @@ import {
   BaseResponseListTokenVo,
   BaseResponseListWalletVo,
   BaseResponseLong,
+  BaseResponseString,
   GenerateUserDepositAddressRequest,
   GetTokenPolicyRequest,
   GetTransactionRequest,
@@ -206,7 +206,7 @@ export class Custody<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/custody/user/sumBalance
    */
   sumBalanceUsingPost = <T,>(request: GetUserInfoRequest, params: RequestParams = {}) =>
-    this.request<BaseResponse, void>({
+    this.request<BaseResponseString, void>({
       path: `/custody/user/sumBalance`,
       method: 'POST',
       body: request,
