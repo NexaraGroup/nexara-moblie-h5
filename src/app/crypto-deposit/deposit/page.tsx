@@ -51,7 +51,6 @@ const PageCryptoDepositDeposit = () => {
 			);
 			if (isSuccess(configRes)) {
 				const configArr = configRes?.content ?? [];
-				console.log(configRes, 898989);
 				const minDeposit = configArr.find(
 					(item) => item.policyType === PolicyType.MinDeposit,
 				);

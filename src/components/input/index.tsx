@@ -73,6 +73,7 @@ export default function Input(props: React.PropsWithChildren<Props>) {
 			<AntdInput
 				ref={inputRef}
 				onEnterPress={handleEnterPress}
+				placeholder={props.placeholder}
 				type={type}
 				autoComplete="current-password"
 				disabled={props.disabled}
@@ -81,6 +82,8 @@ export default function Input(props: React.PropsWithChildren<Props>) {
 				maxLength={props.maxLength}
 				onFocus={() => setFocus(true)}
 				onBlur={handleBlur}
+				min={props.min}
+				max={props.max}
 			/>
 			{addonAfter}
 		</div>

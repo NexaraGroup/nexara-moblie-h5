@@ -91,6 +91,16 @@ const config: Config = {
 				'.z-overlay-content': {
 					zIndex: '5000',
 				},
+				'.active-bg': {
+					'&:active': {
+						backgroundColor: themeConfig['bg-c3'],
+					},
+					'@media (prefers-color-scheme: dark)': {
+						'&:active': {
+							backgroundColor: themeConfig['dark-bg-c3'],
+						},
+					},
+				},
 			});
 		},
 	],

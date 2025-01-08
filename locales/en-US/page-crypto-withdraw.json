@@ -1,0 +1,22 @@
+{
+	"m1": "Coin",
+	"m2": "To Address",
+	"m3": "Confirm",
+	"m4": "Security Verification",
+	"m5": "Confirm",
+	"m6": "Your account has been created successfullyPress continue to continue using the app",
+	"m7": "Withdrawal Success",
+	"m8": "Continue",
+	"t1": "All Cryptocurrencies",
+	"t10": "Select Network",
+	"t11": "Please enter the amount",
+	"t12": "amount must be greater than 0",
+	"t2": "Network",
+	"t3": "Amount",
+	"t4": "Address",
+	"t5": "Max",
+	"t6": "Min",
+	"t7": "Available",
+	"t8": "Withdraw",
+	"t9": "Withdraw Fee"
+}

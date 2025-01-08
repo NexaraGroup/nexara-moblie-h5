@@ -12,9 +12,10 @@ const AddonAfterCp = (props: React.PropsWithChildren) => {
 };
 
 export default function Selector<T = string>(props: React.PropsWithChildren<Props<T>>) {
-	useEffect(() => {
-		props.onChange?.(props.value as T);
-	}, [props.value]);
+	// TODO，应该是不需要的，论证下
+	// useEffect(() => {
+	// 	props.onChange?.(props.value as T);
+	// }, [props.value]);
 
 	const showValue = useMemo(() => {
 		if (isNil(props.value)) return '';

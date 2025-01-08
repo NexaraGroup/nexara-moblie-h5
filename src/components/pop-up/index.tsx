@@ -20,7 +20,7 @@ export default function Popup(props: React.PropsWithChildren<Props>) {
 		>
 			<i className={styles.toolbar} onClick={props.onClose} />
 			<h2 className={styles.title}>{props.title}</h2>
-			{props.children}
+			<div className={styles.content}>{props.children}</div>
 			{props.okText && (
 				<Button
 					onClick={() => props.onOk?.()}

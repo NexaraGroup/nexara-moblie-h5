@@ -3,9 +3,12 @@ export interface Props {
 	className?: string;
 	value?: string;
 	maxLength?: number;
+	placeholder?: string;
 	onChange?: (value: string) => void;
 	onEnterPress?: () => void;
 	onBlur?: () => void;
 	addonAfter?: React.ReactNode;
-	type?: 'password' | 'text';
+	min?: number;
+	max?: number;
+	type?: 'password' | 'text' | 'number';
 }

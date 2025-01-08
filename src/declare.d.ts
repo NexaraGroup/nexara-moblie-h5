@@ -15,4 +15,11 @@ declare global {
 			TAILWIND_REM_TO_PX_BASE_FONT_SIZE: number;
 		}
 	}
+
+	namespace G {
+		interface Opts<T extends string | number = string> {
+			label: string;
+			value: T;
+		}
+	}
 }
