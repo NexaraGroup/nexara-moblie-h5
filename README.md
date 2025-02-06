@@ -40,3 +40,4 @@ sharp 可以不装，先放着（package.json 里未删除），这里在部署�
 2. 数字币提现，目前流程没走，代码没写完
 3. 有几个 todo
 4. 路由的历史记录控制，没做，可以看 zy 的例子：https://stackblitz.com/edit/vitejs-vite-ge9xlxyc
+5. active-bg 那块要用一下，我在 tailwind 已经定义了这个类
